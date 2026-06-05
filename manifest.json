@@ -1,0 +1,18 @@
+{
+  "name": "노즐·배관 통합 계산",
+  "short_name": "노즐배관계산",
+  "description": "Spraying Systems Co. Korea — 노즐·배관 통합 계산 프로그램",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#006bb1",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
