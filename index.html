@@ -4000,8 +4000,8 @@ function calcAirFlow() {
   const P = parseFloat(document.getElementById('air_pres').value);
   const T = parseFloat(document.getElementById('air_temp').value);
   const P_kgcm2 = P / 0.980665;
-  const A_cm2 = Math.PI / 4 * Math.pow(d / 10, 2);
-  const Qa = (237.6 / 1.2) * A_cm2 * (P_kgcm2 + 1.033) / Math.sqrt(T + 273);
+  const A_mm2 = Math.PI / 4 * d * d;  // mm² 직접 사용
+  const Qa = (237.6 / 1.2) * A_mm2 * (P_kgcm2 + 1.033) / Math.sqrt(T + 273);
   showResults('air_flow_result', [
     {label:'분사 유량 (표준)', value:fmt(Qa, 2), unit:'L/min'},
     {label:'분사 유량 (표준)', value:fmt(Qa*60/1000, 4), unit:'Nm³/hr'},
