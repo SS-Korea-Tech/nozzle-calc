@@ -1019,6 +1019,10 @@
       overflow: hidden;
     }
   }
+  .nn-step-label {
+    font-size: 11px; font-weight: 700; color: var(--blue-dark);
+    margin-bottom: 6px; letter-spacing: 0.3px;
+  }
   /* SCROLLBAR */
   /* DIAGRAM */
   .diag-wrap { display: flex; flex-direction: column; gap: 14px; }
@@ -1441,6 +1445,10 @@
       padding-bottom: 0;
       overflow: hidden;
     }
+  }
+  .nn-step-label {
+    font-size: 11px; font-weight: 700; color: var(--blue-dark);
+    margin-bottom: 6px; letter-spacing: 0.3px;
   }
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -2289,22 +2297,61 @@
     <div id="p5" class="panel">
       <div class="panel-header">
         <div class="panel-title"><div class="icon">🏷️</div>Nozzle No. Maker</div>
-        <div class="panel-desc">현재 압력·유량 조건을 기준 압력으로 환산하여 노즐 번호(유량수)를 생성합니다.</div>
+        <div class="panel-desc" style="margin-left:44px;">현장 압력·유량 조건으로 카탈로그 기준 Nozzle No.를 생성합니다.</div>
       </div>
 
       <div class="calc-section">
-        <div class="section-title">🏷️ 노즐 번호 생성 (Full Cone / Flat Fan 계열)</div>
+        <div class="section-title">🏷️ 노즐 번호 생성</div>
         <div class="section-body">
+
           <div class="formula-toggle-wrap">
-          <button class="formula-toggle-btn" onclick="toggleFormula('fml7',this)">
-            <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
-          </button>
-          <div class="formula-content" id="fml7">
-            Nozzle No. = Q₂ × (P₁_base / P₂_base)^n<br>
-            여기서 Q₂ = Q₁ × (P_base / P₁)^n
+            <button class="formula-toggle-btn" onclick="toggleFormula('fml_nn',this)">
+              <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
+            </button>
+            <div class="formula-content" id="fml_nn">
+              Nozzle No. = (P기준 / P현장)^n × Q현장(L/min) × 0.26418 × 승수<br>
+              · 0.26418 = L/min → US gal/min 변환계수
+            </div>
           </div>
-        </div>
-          <div class="grid4">
+
+          <!-- STEP 1: 노즐 시리즈 선택 -->
+          <div style="margin-bottom:16px;">
+            <div class="nn-step-label">① 노즐 시리즈 선택</div>
+            <select id="nn_series" onchange="nnSelectSeries(this)" style="width:100%;font-size:13px;padding:8px 10px;border:1px solid var(--border);border-radius:6px;background:#fff;">
+              <option value="">— 시리즈를 선택하면 기준압·n값이 자동 입력됩니다 —</option>
+              <optgroup label="Full Cone / Fulljet (표준)">
+                <option value="0.7030696|0.46|10">1/8"~1/2" · Full Cone HH, H, G, GG, GA, GGA / Teejet TG</option>
+                <option value="0.4921487|0.46|1" >3/4"~10" · Full Cone HH, H, G / Teejet TG</option>
+                <option value="0.7030696|0.44|10">1/8"~1/2" · Full Cone W-Type (HH-W, H-W, G-W) / Teejet TG-W</option>
+                <option value="0.4921487|0.44|1" >3/4"~4"  · Full Cone W-Type</option>
+                <option value="0.7030696|0.46|10">1/8"~6"  · Full Cone SQ (G-SQ, GG-SQ, H-SQ, HH-SQ)</option>
+                <option value="2.812278|0.50|10" >1/8"~5"  · Full Cone Angle 15~30°</option>
+                <option value="0.7030696|0.50|10">1/4"~1/2" · Fulljet GANV, GGANV</option>
+              </optgroup>
+              <optgroup label="Spiraljet">
+                <option value="0.7030696|0.50|10">1/4"~4" · Spiraljet (HHSJ, HHSJX, BSJ)</option>
+              </optgroup>
+              <optgroup label="Distribojet">
+                <option value="0.211|0.46|1">2"~10" · Distribojet (R, RR, RF)</option>
+              </optgroup>
+              <optgroup label="Flat Fan / Veejet">
+                <option value="2.812278|0.50|10">1/8"~2"   · Veejet (H-VV, H-U, U) / Teejet TPU</option>
+                <option value="0.7030696|0.50|10">1/8"~1"  · Floodjet (K) / Teejet TK</option>
+                <option value="2.812278|0.50|10" >1/8"~3/4" · Flatjet (P)</option>
+              </optgroup>
+              <optgroup label="Hollow Cone / Whirljet">
+                <option value="0.7030696|0.46|10">1/8"~3/4" · Whirljet (A, AX, B, BX) W-Type</option>
+                <option value="0.4921487|0.50|1" >1/2"~6"   · Whirljet (C, CX, CF, CRC)</option>
+              </optgroup>
+              <optgroup label="직접 입력">
+                <option value="custom">직접 입력...</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <!-- STEP 2: 현장 조건 입력 -->
+          <div class="nn-step-label">② 현장 조건 입력</div>
+          <div class="grid2" style="margin-bottom:14px;">
             <div class="field">
               <label>현재 압력 <span class="unit">kgf/cm²</span></label>
               <input type="number" id="nn_p1" value="3.2" step="any">
@@ -2313,59 +2360,48 @@
               <label>현재 유량 <span class="unit">L/min</span></label>
               <input type="number" id="nn_q1" value="2.3" step="any">
             </div>
+          </div>
+
+          <!-- STEP 3: 자동 입력된 기준값 (읽기전용 표시) -->
+          <div class="nn-step-label">③ 카탈로그 기준값 <span id="nn_auto_badge" style="display:none;background:var(--blue-primary);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;">자동 입력</span></div>
+          <div class="grid2" style="margin-bottom:4px;">
             <div class="field">
               <label>기준 압력 <span class="unit">kgf/cm²</span></label>
-              <input type="number" id="nn_pbase" value="0.703" step="any">
+              <input type="number" id="nn_pbase" value="0.7030696" step="any">
             </div>
             <div class="field">
               <label>지수 n</label>
-              <select id="nn_n">
-                <option value="0.46">0.46 – 원형(표준/대유량)</option>
-                <option value="0.44">0.44 – 원형(광각)</option>
-                <option value="0.5">0.5 – 부채꼴/중공원형</option>
-              </select>
+              <input type="number" id="nn_n" value="0.46" step="any" min="0.1" max="1">
             </div>
           </div>
+          <div id="nn_mult_display" style="font-size:11px;color:var(--text3);margin-bottom:14px;padding-left:2px;"></div>
+
           <button class="calc-btn" onclick="calcNozzleNo()">⚡ Nozzle No. 생성</button>
           <div class="result-grid" id="nn_result"></div>
         </div>
       </div>
 
+      <!-- 참고표 -->
       <div class="calc-section">
-        <div class="section-title">📊 노즐 형태별 지수값(n) 참고표</div>
-        <div class="section-body">
-          <table class="ref-table">
-            <tr><th>노즐 형태</th><th>지수값 (n)</th></tr>
-            <tr><td>원형 – 표준/대유량 (Full Cone, Fulljet HH/H/G)</td><td>0.46</td></tr>
-            <tr><td>원형 – 광각 (Wide angle)</td><td>0.44</td></tr>
-            <tr><td>원형 – 협각/벤리스/스파이럴</td><td>0.5</td></tr>
-            <tr><td>부채꼴 전 타입</td><td>0.5</td></tr>
-            <tr><td>중공원형 전 타입</td><td>0.5</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <!-- Nozzle 타입별 기준압력/지수 전체표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 노즐 타입별 기준압력 및 지수(n) 전체 참고표</div>
+        <div class="section-title">📋 노즐 타입별 기준압력 및 지수(n) 참고표</div>
         <div class="section-body">
           <div class="scroll-x">
             <table class="compact-table">
-              <tr><th>적용 Inlet</th><th>노즐 시리즈</th><th>기준압력 (kgf/cm²)</th><th>지수 n</th><th>예시 Part No.</th></tr>
-              <tr><td>1/8" ~ 1/2"</td><td>Full Cone / Fulljet (HH,H,G,GG,GA,GGA) · Teejet (TG)</td><td>0.703</td><td>0.46</td><td>1/8HH-SS</td></tr>
-              <tr><td>3/4" ~ 10"</td><td>Full Cone / Fulljet (HH,H,G) · Teejet (TG)</td><td>0.492</td><td>0.46</td><td>1-1/4HH-SS</td></tr>
-              <tr><td>1/8" ~ 1/2"</td><td>Full Cone W-Type (HH-W,H-W,G-W) · Teejet (TG-W)</td><td>0.703</td><td>0.44</td><td>1/8HH-W-SS</td></tr>
-              <tr><td>3/4" ~ 4"</td><td>Full Cone W-Type</td><td>0.492</td><td>0.44</td><td>1HH-W-SS</td></tr>
-              <tr><td>1/8" ~ 6"</td><td>Full Cone SQ (G-SQ,GG-SQ,H-SQ,HH-SQ)</td><td>0.703</td><td>0.46</td><td>1/2HH-SQ</td></tr>
-              <tr><td>1/8" ~ 5"</td><td>Full Cone Angle 15~30°</td><td>2.812</td><td>0.50</td><td>3/4H-SS 15</td></tr>
-              <tr><td>1/4" ~ 1/2"</td><td>Fulljet (GANV,GGANV)</td><td>0.703</td><td>0.50</td><td>3/4GANV-SS</td></tr>
-              <tr><td>1/4" ~ 4"</td><td>Spiraljet (HHSJ,HHSJX,BSJ)</td><td>0.703</td><td>0.50</td><td>1HHSJ-SS 90</td></tr>
-              <tr><td>2" ~ 10"</td><td>Distribojet (R,RR,RF)</td><td>0.211</td><td>0.46</td><td>3R-SS</td></tr>
-              <tr><td>1/8" ~ 2"</td><td>Veejet (H-VV,H-U,U) · Teejet (TPU)</td><td>2.812</td><td>0.50</td><td>H1/2U-SS</td></tr>
-              <tr><td>1/8" ~ 1"</td><td>Floodjet (K) · Teejet (TK)</td><td>0.703</td><td>0.50</td><td>3/8K-SS</td></tr>
-              <tr><td>1/8" ~ 3/4"</td><td>Flatjet (P)</td><td>2.812</td><td>0.50</td><td>3/8P-SS 40</td></tr>
-              <tr><td>1/8" ~ 3/4"</td><td>Whirljet (A,AX,B,BX) W-Type</td><td>0.703</td><td>0.46</td><td>1/2AX-SS</td></tr>
-              <tr><td>1/2" ~ 6"</td><td>Whirljet (C,CX,CF,CRC)</td><td>0.492</td><td>0.50</td><td>2C-SS</td></tr>
+              <tr><th>적용 Inlet</th><th>노즐 시리즈</th><th>기준압 (kgf/cm²)</th><th>지수 n</th></tr>
+              <tr><td>1/8"~1/2"</td><td>Full Cone HH,H,G,GG,GA,GGA / Teejet TG</td><td>0.703</td><td>0.46</td></tr>
+              <tr><td>3/4"~10"</td><td>Full Cone HH,H,G / Teejet TG</td><td>0.492</td><td>0.46</td></tr>
+              <tr><td>1/8"~1/2"</td><td>Full Cone W-Type (HH-W,H-W,G-W) / Teejet TG-W</td><td>0.703</td><td>0.44</td></tr>
+              <tr><td>3/4"~4"</td><td>Full Cone W-Type</td><td>0.492</td><td>0.44</td></tr>
+              <tr><td>1/8"~6"</td><td>Full Cone SQ (G-SQ,GG-SQ,H-SQ,HH-SQ)</td><td>0.703</td><td>0.46</td></tr>
+              <tr><td>1/8"~5"</td><td>Full Cone Angle 15~30°</td><td>2.812</td><td>0.50</td></tr>
+              <tr><td>1/4"~1/2"</td><td>Fulljet GANV, GGANV</td><td>0.703</td><td>0.50</td></tr>
+              <tr><td>1/4"~4"</td><td>Spiraljet (HHSJ, HHSJX, BSJ)</td><td>0.703</td><td>0.50</td></tr>
+              <tr><td>2"~10"</td><td>Distribojet (R, RR, RF)</td><td>0.211</td><td>0.46</td></tr>
+              <tr><td>1/8"~2"</td><td>Veejet (H-VV,H-U,U) / Teejet TPU</td><td>2.812</td><td>0.50</td></tr>
+              <tr><td>1/8"~1"</td><td>Floodjet (K) / Teejet TK</td><td>0.703</td><td>0.50</td></tr>
+              <tr><td>1/8"~3/4"</td><td>Flatjet (P)</td><td>2.812</td><td>0.50</td></tr>
+              <tr><td>1/8"~3/4"</td><td>Whirljet (A,AX,B,BX) W-Type</td><td>0.703</td><td>0.46</td></tr>
+              <tr><td>1/2"~6"</td><td>Whirljet (C,CX,CF,CRC)</td><td>0.492</td><td>0.50</td></tr>
             </table>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
@@ -2373,9 +2409,6 @@
           </div>
         </div>
       </div>
-
-
-      
 
     </div>
 
@@ -3529,202 +3562,26 @@ function calcPipeWeight() {
 
 // ========== P5: NOZZLE NO. ==========
 function calcNozzleNo() {
-  const P1 = parseFloat(document.getElementById('nn_p1').value);
-  const Q1 = parseFloat(document.getElementById('nn_q1').value);
+  const P1    = parseFloat(document.getElementById('nn_p1').value);
+  const Q1    = parseFloat(document.getElementById('nn_q1').value);
   const Pbase = parseFloat(document.getElementById('nn_pbase').value);
-  const n = parseFloat(document.getElementById('nn_n').value);
-  // Nozzle No. = 현재 현장 유량을 카탈로그 기준압력 기준으로 환산
-  // 공식: Q_catalog = Q_field × (P_field / P_base)^n
-  const Qbase = Q1 * Math.pow(Pbase / P1, n);  // Q ∝ P^n
+  const n     = parseFloat(document.getElementById('nn_n').value);
+  const sel   = document.getElementById('nn_series');
+  const mult  = parseFloat(sel.dataset.mult || '10');
+
+  if ([P1,Q1,Pbase,n].some(v=>isNaN(v)||v<=0)) {
+    document.getElementById('nn_result').innerHTML = '<div class="rp-empty">유효한 값을 입력하세요.</div>';
+    return;
+  }
+
+  // Nozzle No. = (Pbase/P현장)^n × Q현장(L/min) × 0.26418 × 승수
+  const nozzleNo = Math.pow(Pbase/P1, n) * Q1 * 0.26418 * mult;
+  // 참고: 기준압에서의 L/min 환산
+  const qBase = Q1 * Math.pow(Pbase/P1, n);
+
   showResults('nn_result', [
-    {label:'📌 기준압 환산 유량', value:fmt(Qbase, 3), unit:`L/min @ ${Pbase} kgf/cm²`},
-    {label:'현장 유량', value:fmt(Q1, 3), unit:`L/min @ ${P1} kgf/cm²`},
-    {label:'압력 비율', value:fmt(P1/Pbase, 3), unit:`현장÷기준`},
-    {label:'유량 보정 계수', value:fmt(Math.pow(Pbase/P1, n), 4), unit:`(P_base/P_field)^${n}`},
+    {label:'Nozzle No.', value:fmt(nozzleNo,1), unit:''},
   ]);
-}
-
-// ========== P6: 유량계수·오리피스 ==========
-const KF = 14.96; // simplified: Cd*pi/4*sqrt(2g*rho) lumped constant for water, bar input
-
-function calcNozzleFlow() {
-  const P = parseFloat(document.getElementById('or_p').value);
-  const d = parseFloat(document.getElementById('or_d').value);
-  const Cd = parseFloat(document.getElementById('or_cd').value);
-  // Q = Cd * (pi/4*d²mm) * sqrt(2g*P_pa) → L/min
-  const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
-  const P_pa = P * 1e5;
-  const v = Math.sqrt(2 * 9.81 * P_pa / 1000); // m/s for water (rho=1000)
-  const Q_m3s = Cd * A_m2 * v;
-  const Q_lmin = Q_m3s * 1000 * 60;
-  showResults('or_flow_result', [
-    {label:'분사 유량', value:fmt(Q_lmin, 4), unit:'L/min'},
-    {label:'분사 유량', value:fmt(Q_lmin * 60 / 1000, 5), unit:'m³/hr'},
-    {label:'유속', value:fmt(v, 2), unit:'m/s'},
-    {label:'오리피스 단면적', value:fmt(A_m2 * 1e6, 3), unit:'mm²'},
-  ]);
-}
-
-function calcNozzlePres() {
-  const Q = parseFloat(document.getElementById('orp_q').value);
-  const d = parseFloat(document.getElementById('orp_d').value);
-  const Cd = parseFloat(document.getElementById('orp_cd').value);
-  const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
-  const Q_m3s = Q / 1000 / 60;
-  const v = Q_m3s / (Cd * A_m2);
-  const P_pa = 1000 * v * v / 2;
-  const P_bar = P_pa / 1e5;
-  showResults('or_pres_result', [
-    {label:'필요 압력', value:fmt(P_bar, 4), unit:'bar'},
-    {label:'필요 압력', value:fmt(P_bar * 10.197, 4), unit:'kgf/cm²'},
-    {label:'토출 유속', value:fmt(v, 2), unit:'m/s'},
-  ]);
-}
-
-function calcOrifice() {
-  const P = parseFloat(document.getElementById('ori_p').value);
-  const Q = parseFloat(document.getElementById('ori_q').value);
-  const Cd = parseFloat(document.getElementById('ori_cd').value);
-  const v = Math.sqrt(2 * 9.81 * P * 1e5 / 1000);
-  const Q_m3s = Q / 1000 / 60;
-  const A = Q_m3s / (Cd * v);
-  const d_mm = Math.sqrt(4 * A / Math.PI) * 1000;
-  showResults('or_ori_result', [
-    {label:'오리피스 구경', value:fmt(d_mm, 4), unit:'mm'},
-    {label:'오리피스 단면적', value:fmt(A * 1e6, 4), unit:'mm²'},
-    {label:'토출 유속', value:fmt(v, 2), unit:'m/s'},
-  ]);
-}
-
-function calcCv() {
-  const Q = parseFloat(document.getElementById('cv_q').value);
-  const P = parseFloat(document.getElementById('cv_p').value);
-  const d = parseFloat(document.getElementById('cv_d').value);
-  const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
-  const Q_m3s = Q / 1000 / 60;
-  const v_ideal = Math.sqrt(2 * 9.81 * P * 1e5 / 1000);
-  const Cd = Q_m3s / (A_m2 * v_ideal);
-  showResults('cv_result', [
-    {label:'유량계수 Cd', value:fmt(Cd, 6), unit:''},
-    {label:'이론 토출 유속', value:fmt(v_ideal, 2), unit:'m/s (이상 유속)'},
-    {label:'실제 유량', value:fmt(Q), unit:'L/min'},
-  ]);
-}
-
-// ========== P7: 노즐수량·피치 ==========
-function calcNozzlePitch() {
-  const W = parseFloat(document.getElementById('nz_w').value);     // 피도물 폭
-  const H = parseFloat(document.getElementById('nz_h').value);     // 분사 거리
-  const ang = parseFloat(document.getElementById('nz_ang').value); // 분사각도
-  const tilt = parseFloat(document.getElementById('nz_tilt').value); // 조립각도(편각)
-  const ov = parseFloat(document.getElementById('nz_ov').value);   // overlap %
-  const fp = parseFloat(document.getElementById('nz_fp').value);   // 설계 피치
-
-  const rad = ang * Math.PI / 180;
-  const A_theor = 2 * H * Math.tan(rad / 2);   // 이론 분사폭
-  const B_actual = A_theor * Math.cos(tilt * Math.PI / 180); // 실제 분사폭 = A × cos(조립각도)
-  const C_overlap = B_actual * ov / 100;         // 중첩 치수
-  const D_out = B_actual / 2 - W / 2 > 0 ? B_actual / 2 - W / 2 : 0;
-  const pitch_calc = B_actual - C_overlap;       // 계산 피치
-  const cnt = Math.ceil(W / fp) || 1;
-  const G = fp * (cnt - 1) + B_actual;           // 총 커버 범위
-
-  showResults('nz_pitch_result', [
-    {label:'이론 분사폭 A', value:fmt(A_theor, 1), unit:'mm'},
-    {label:'실제 분사폭 B', value:fmt(B_actual, 1), unit:'mm'},
-    {label:'중첩 치수 C', value:fmt(C_overlap, 1), unit:'mm (편방향)'},
-    {label:'계산 피치', value:fmt(pitch_calc, 1), unit:'mm'},
-    {label:'노즐 수량', value:String(cnt), unit:'EA'},
-    {label:'설계 피치', value:fmt(fp), unit:'mm'},
-    {label:'총 커버 범위', value:fmt(G, 1), unit:'mm'},
-  ]);
-}
-
-// ========== P8: AIR 분사량 ==========
-function calcAirFlow() {
-  const d = parseFloat(document.getElementById('air_d').value);     // mm
-  const P = parseFloat(document.getElementById('air_pres').value);  // bar → kgcm2 approx
-  const T = parseFloat(document.getElementById('air_temp').value);  // °C
-  // 경험식: Qa = 237.6/1.2 × (π/4 × d²_mm²) × (P_kgcm2 + 1.033) / √(T+273)
-  // d를 mm² 그대로 사용 (SSC 내부 경험식 계수 포함)
-  const P_kgcm2 = P / 0.980665;
-  const A_mm2 = Math.PI / 4 * d * d; // mm² (단위환산 없이 경험식)
-  const Qa = (237.6 / 1.2) * A_mm2 * (P_kgcm2 + 1.033) / Math.sqrt(T + 273);
-  showResults('air_flow_result', [
-    {label:'분사 유량', value:fmt(Qa, 2), unit:'L/min'},
-    {label:'분사 유량', value:fmt(Qa*60/1000, 3), unit:'Nm³/hr'},
-  ]);
-}
-
-// ========== P9: 유량 보정 ==========
-function calcFlowCorr() {
-  const Q1 = parseFloat(document.getElementById('fc_q1').value);
-  const P1 = parseFloat(document.getElementById('fc_p1').value);
-  const P2 = parseFloat(document.getElementById('fc_p2').value);
-  const n = parseFloat(document.getElementById('fc_n').value);
-  const Q2 = Q1 * Math.pow(P2 / P1, n);
-  showResults('fc_q_result', [
-    {label:'적용 후 유량 Q₂', value:fmt(Q2, 4), unit:'L/min'},
-    {label:'유량 변화량', value:(Q2>Q1?'+':'')+fmt(Q2-Q1, 3), unit:'L/min'},
-  ]);
-}
-
-function calcPresCorr() {
-  const P1 = parseFloat(document.getElementById('fp_p1').value);
-  const Q1 = parseFloat(document.getElementById('fp_q1').value);
-  const Q2 = parseFloat(document.getElementById('fp_q2').value);
-  const n = parseFloat(document.getElementById('fp_n').value);
-  const P2 = P1 * Math.pow(Q2 / Q1, 1 / n);
-  showResults('fp_result', [
-    {label:'필요 압력 P₂', value:fmt(P2, 4), unit:'bar'},
-    {label:'압력 변화량', value:(P2>P1?'+':'')+fmt(P2-P1, 3), unit:'bar'},
-  ]);
-}
-
-function calcSGFlow() {
-  const Qw = parseFloat(document.getElementById('sg_qw').value);
-  const sg = parseFloat(document.getElementById('sg_sg').value);
-  const rho = parseFloat(document.getElementById('sg_rho').value);
-  const Q_liq = Qw / Math.sqrt(sg);
-  const Q_liq2 = Qw * Math.sqrt(1000 / rho);
-  showResults('sg_result', [
-    {label:'액체 분사 유량', value:fmt(Q_liq, 4), unit:'L/min'},
-    {label:'유량 보정 계수', value:fmt(1/Math.sqrt(sg),4), unit:`(1/√${fmt(sg,3)})`},
-  ]);
-}
-
-// ========== P10: 분사 각도 ==========
-function calcSprayAngle() {
-  const H = parseFloat(document.getElementById('sp_h').value);
-  const ang = parseFloat(document.getElementById('sp_ang').value);
-  const P = parseFloat(document.getElementById('sp_pitch').value);
-  const W = 2 * H * Math.tan(ang / 2 * Math.PI / 180);
-  const Z = Math.max(0, W - P);
-  const overlapPct = P > 0 ? Z / W * 100 : 100;
-  showResults('sp_result', [
-    {label:'이론 분사 범위 W', value:fmt(W, 2), unit:'mm'},
-    {label:'중첩 범위 Z', value:fmt(Z, 2), unit:'mm'},
-    {label:'중첩률', value:fmt(overlapPct, 2), unit:'%'},
-    {label:'분사 반경', value:fmt(W/2, 2), unit:'mm (편방향)'},
-  ]);
-}
-
-function buildSprayTable() {
-  const angles = [15,25,30,40,50,65,80,95,110,120,130];
-  const dists = [50,100,200,300,400,500,600,700,800,900,1000];
-  let html = '<thead><tr><th>각도(°)</th>';
-  dists.forEach(d => html += `<th>${d}mm</th>`);
-  html += '</tr></thead><tbody>';
-  angles.forEach(a => {
-    html += `<tr><td>${a}°</td>`;
-    dists.forEach(d => {
-      const w = 2 * d * Math.tan(a / 2 * Math.PI / 180);
-      html += `<td>${w.toFixed(1)}</td>`;
-    });
-    html += '</tr>';
-  });
-  html += '</tbody>';
-  document.getElementById('spray_ref_table').innerHTML = html;
 }
 
 // ========== P11: 충격력 ==========
@@ -4017,6 +3874,217 @@ function toggleMobileRecent(btn) {
   const collapsed = body.classList.toggle('collapsed');
   btn.textContent = collapsed ? '▼' : '▲';
 }
+
+// ========== P5: 노즐 시리즈 선택 ==========
+function nnSelectSeries(sel) {
+  const val   = sel.value;
+  const pb    = document.getElementById('nn_pbase');
+  const nn    = document.getElementById('nn_n');
+  const badge = document.getElementById('nn_auto_badge');
+  const disp  = document.getElementById('nn_mult_display');
+  if (!val || val === 'custom') {
+    pb.readOnly = false; nn.readOnly = false;
+    pb.style.background = ''; nn.style.background = '';
+    if (badge) badge.style.display = 'none';
+    if (disp)  disp.textContent = '';
+    return;
+  }
+  const [pbase, n, mult] = val.split('|');
+  pb.value = pbase; nn.value = n;
+  pb.readOnly = true; nn.readOnly = true;
+  pb.style.background = 'var(--blue-pale)';
+  nn.style.background = 'var(--blue-pale)';
+  if (badge) badge.style.display = 'inline';
+  if (disp)  disp.textContent = mult === '10'
+    ? '※ 소구경 (1/8"~1/2") — 승수 ×10 적용'
+    : '※ 대구경 (3/4" 이상) — 승수 ×1 적용';
+  // 내부 승수 저장
+  sel.dataset.mult = mult;
+}
+
+
+// ========== P6: 유량계수·오리피스 ==========
+const KF = 14.96;
+
+function calcNozzleFlow() {
+  const P = parseFloat(document.getElementById('or_p').value);
+  const d = parseFloat(document.getElementById('or_d').value);
+  const Cd = parseFloat(document.getElementById('or_cd').value);
+  const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
+  const P_pa = P * 1e5;
+  const v = Math.sqrt(2 * 9.81 * P_pa / 1000);
+  const Q_m3s = Cd * A_m2 * v;
+  const Q_lmin = Q_m3s * 1000 * 60;
+  showResults('or_flow_result', [
+    {label:'분사 유량', value:fmt(Q_lmin, 4), unit:'L/min'},
+    {label:'분사 유량', value:fmt(Q_lmin*60/1000, 5), unit:'m³/hr'},
+    {label:'유속', value:fmt(v, 2), unit:'m/s'},
+    {label:'오리피스 단면적', value:fmt(A_m2*1e6, 3), unit:'mm²'},
+  ]);
+}
+
+function calcNozzlePres() {
+  const Q = parseFloat(document.getElementById('orp_q').value);
+  const d = parseFloat(document.getElementById('orp_d').value);
+  const Cd = parseFloat(document.getElementById('orp_cd').value);
+  const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
+  const Q_m3s = Q / 1000 / 60;
+  const v = Q_m3s / (Cd * A_m2);
+  const P_pa = 1000 * v * v / 2;
+  const P_bar = P_pa / 1e5;
+  showResults('or_pres_result', [
+    {label:'필요 압력', value:fmt(P_bar, 4), unit:'bar'},
+    {label:'필요 압력', value:fmt(P_bar*10.197, 4), unit:'kgf/cm²'},
+    {label:'토출 유속', value:fmt(v, 2), unit:'m/s'},
+  ]);
+}
+
+function calcOrifice() {
+  const P = parseFloat(document.getElementById('ori_p').value);
+  const Q = parseFloat(document.getElementById('ori_q').value);
+  const Cd = parseFloat(document.getElementById('ori_cd').value);
+  const v = Math.sqrt(2 * 9.81 * P * 1e5 / 1000);
+  const Q_m3s = Q / 1000 / 60;
+  const A = Q_m3s / (Cd * v);
+  const d_mm = Math.sqrt(4 * A / Math.PI) * 1000;
+  showResults('or_ori_result', [
+    {label:'오리피스 구경', value:fmt(d_mm, 4), unit:'mm'},
+    {label:'오리피스 단면적', value:fmt(A*1e6, 4), unit:'mm²'},
+    {label:'토출 유속', value:fmt(v, 2), unit:'m/s'},
+  ]);
+}
+
+function calcCv() {
+  const Q = parseFloat(document.getElementById('cv_q').value);
+  const P = parseFloat(document.getElementById('cv_p').value);
+  const d = parseFloat(document.getElementById('cv_d').value);
+  const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
+  const Q_m3s = Q / 1000 / 60;
+  const v_ideal = Math.sqrt(2 * 9.81 * P * 1e5 / 1000);
+  const Cd = Q_m3s / (A_m2 * v_ideal);
+  showResults('cv_result', [
+    {label:'유량계수 Cd', value:fmt(Cd, 6), unit:''},
+    {label:'이론 토출 유속', value:fmt(v_ideal, 2), unit:'m/s'},
+    {label:'실제 유량', value:fmt(Q), unit:'L/min'},
+  ]);
+}
+
+// ========== P7: 노즐수량·피치 ==========
+function calcNozzlePitch() {
+  const W   = parseFloat(document.getElementById('nz_w').value);
+  const H   = parseFloat(document.getElementById('nz_h').value);
+  const ang = parseFloat(document.getElementById('nz_ang').value);
+  const tilt= parseFloat(document.getElementById('nz_tilt').value);
+  const ov  = parseFloat(document.getElementById('nz_ov').value);
+  const fp  = parseFloat(document.getElementById('nz_fp').value);
+  const A_theor  = 2 * H * Math.tan(ang / 2 * Math.PI / 180);
+  const B_actual = A_theor * (1 - tilt / 100);
+  const C_overlap= B_actual * ov / 100;
+  const pitch_calc = B_actual - C_overlap;
+  const cnt = Math.ceil(W / fp) || 1;
+  const G = fp * (cnt - 1) + B_actual;
+  showResults('nz_pitch_result', [
+    {label:'이론 분사폭 A', value:fmt(A_theor, 1), unit:'mm'},
+    {label:'실제 분사폭 B', value:fmt(B_actual, 1), unit:'mm'},
+    {label:'중첩 치수 C',   value:fmt(C_overlap, 1), unit:'mm'},
+    {label:'계산 피치',     value:fmt(pitch_calc, 1), unit:'mm'},
+    {label:'노즐 수량',     value:String(cnt), unit:'EA'},
+    {label:'설계 피치',     value:fmt(fp), unit:'mm'},
+    {label:'총 커버 범위',  value:fmt(G, 1), unit:'mm'},
+  ]);
+}
+
+// ========== P8: AIR 분사량 ==========
+function calcAirFlow() {
+  const d = parseFloat(document.getElementById('air_d').value);
+  const P = parseFloat(document.getElementById('air_pres').value);
+  const T = parseFloat(document.getElementById('air_temp').value);
+  const P_kgcm2 = P / 0.980665;
+  const A_cm2 = Math.PI / 4 * Math.pow(d / 10, 2);
+  const Qa = (237.6 / 1.2) * A_cm2 * (P_kgcm2 + 1.033) / Math.sqrt(T + 273);
+  showResults('air_flow_result', [
+    {label:'분사 유량 (표준)', value:fmt(Qa, 2), unit:'L/min'},
+    {label:'분사 유량 (표준)', value:fmt(Qa*60/1000, 4), unit:'Nm³/hr'},
+    {label:'오리피스 단면적', value:fmt(Math.PI/4*d*d, 3), unit:'mm²'},
+    {label:'적용 압력', value:fmt(P_kgcm2, 4), unit:'kgf/cm²'},
+  ]);
+}
+
+// ========== P9: 유량 보정 ==========
+function calcFlowCorr() {
+  const Q1 = parseFloat(document.getElementById('fc_q1').value);
+  const P1 = parseFloat(document.getElementById('fc_p1').value);
+  const P2 = parseFloat(document.getElementById('fc_p2').value);
+  const n  = parseFloat(document.getElementById('fc_n').value);
+  const Q2 = Q1 * Math.pow(P2 / P1, n);
+  showResults('fc_q_result', [
+    {label:'적용 후 유량 Q₂', value:fmt(Q2, 4), unit:'L/min'},
+    {label:'유량 변화율',     value:fmt(Q2/Q1*100, 2), unit:'%'},
+    {label:'유량 증감',       value:fmt(Q2-Q1, 4), unit:'L/min'},
+  ]);
+}
+
+function calcPresCorr() {
+  const P1 = parseFloat(document.getElementById('fp_p1').value);
+  const Q1 = parseFloat(document.getElementById('fp_q1').value);
+  const Q2 = parseFloat(document.getElementById('fp_q2').value);
+  const n  = parseFloat(document.getElementById('fp_n').value);
+  const P2 = P1 * Math.pow(Q2 / Q1, 1 / n);
+  showResults('fp_result', [
+    {label:'필요 압력 P₂', value:fmt(P2, 4), unit:'bar'},
+    {label:'압력 변화율',  value:fmt(P2/P1*100, 2), unit:'%'},
+    {label:'압력 증감',    value:fmt(P2-P1, 4), unit:'bar'},
+  ]);
+}
+
+function calcSGFlow() {
+  const Qw  = parseFloat(document.getElementById('sg_qw').value);
+  const sg  = parseFloat(document.getElementById('sg_sg').value);
+  const rho = parseFloat(document.getElementById('sg_rho').value);
+  const Q_liq  = Qw / Math.sqrt(sg);
+  const Q_liq2 = Qw * Math.sqrt(1000 / rho);
+  showResults('sg_result', [
+    {label:'액체 유량 (비중 기준)', value:fmt(Q_liq, 4), unit:'L/min'},
+    {label:'액체 유량 (밀도 기준)', value:fmt(Q_liq2, 4), unit:'L/min'},
+    {label:'비중', value:fmt(sg), unit:'SG'},
+    {label:'밀도', value:fmt(rho), unit:'kg/m³'},
+    {label:'물 기준 유량', value:fmt(Qw), unit:'L/min'},
+  ]);
+}
+
+// ========== P10: 분사 각도 ==========
+function calcSprayAngle() {
+  const H   = parseFloat(document.getElementById('sp_h').value);
+  const ang = parseFloat(document.getElementById('sp_ang').value);
+  const P   = parseFloat(document.getElementById('sp_pitch').value);
+  const W   = 2 * H * Math.tan(ang / 2 * Math.PI / 180);
+  const Z   = Math.max(0, W - P);
+  const overlapPct = P > 0 ? Z / W * 100 : 100;
+  showResults('sp_result', [
+    {label:'이론 분사 범위 W', value:fmt(W, 2), unit:'mm'},
+    {label:'중첩 범위 Z',      value:fmt(Z, 2), unit:'mm'},
+    {label:'중첩률',           value:fmt(overlapPct, 2), unit:'%'},
+    {label:'분사 반경',        value:fmt(W/2, 2), unit:'mm (편방향)'},
+  ]);
+}
+
+function buildSprayTable() {
+  const angles = [15,25,30,40,50,65,80,95,110,120,130];
+  const dists  = [50,100,200,300,400,500,600,700,800,900,1000];
+  let h = '<thead><tr><th>각도(°)</th>';
+  dists.forEach(d => h += `<th>${d}mm</th>`);
+  h += '</tr></thead><tbody>';
+  angles.forEach(a => {
+    h += `<tr><td>${a}°</td>`;
+    dists.forEach(d => {
+      h += `<td>${(2*d*Math.tan(a/2*Math.PI/180)).toFixed(1)}</td>`;
+    });
+    h += '</tr>';
+  });
+  h += '</tbody>';
+  document.getElementById('spray_ref_table').innerHTML = h;
+}
+
 // ========== INIT ==========
 // unit init handled by DOMContentLoaded above
 </script>
