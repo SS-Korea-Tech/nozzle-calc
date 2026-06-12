@@ -1170,6 +1170,53 @@
 #pw-overlay.hidden { display: none !important; }
 #admin-overlay { display: flex; }
 #admin-overlay.hidden { display: none !important; }
+
+/* 사용자 메뉴 (헤더 우측) */
+.user-menu { position: relative; flex-shrink: 0; }
+.user-menu-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--blue-pale); border: 1px solid var(--blue-light);
+  border-radius: 20px; padding: 6px 12px;
+  cursor: pointer; font-family: inherit;
+  color: var(--blue-primary); font-size: 13px; font-weight: 700;
+  transition: background 0.12s;
+}
+.user-menu-btn:hover { background: var(--blue-light); color: #fff; }
+.user-menu-avatar {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--blue-primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.user-menu-name { max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-menu-caret { font-size: 9px; opacity: 0.6; }
+
+.user-menu-dropdown {
+  position: absolute; top: calc(100% + 6px); right: 0;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  min-width: 180px; padding: 6px; z-index: 500;
+  display: none;
+}
+.user-menu-dropdown.open { display: block; }
+.user-menu-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 9px 12px; border-radius: 7px;
+  font-size: 13px; font-weight: 600; color: var(--text);
+  cursor: pointer; transition: background 0.1s; white-space: nowrap;
+}
+.user-menu-item:hover { background: var(--blue-pale); }
+.user-menu-item.danger { color: #c0392b; }
+.user-menu-item.danger:hover { background: #fff0f0; }
+.user-menu-divider { height: 1px; background: var(--border); margin: 5px 4px; }
+.user-menu-role {
+  font-size: 10px; color: var(--text3); padding: 4px 12px 6px;
+}
+
+@media (max-width: 768px) {
+  .user-menu-name { display: none; }
+  .user-menu-btn { padding: 7px 9px; gap: 0; }
+}
   /* SCROLLBAR */
   /* DIAGRAM */
   .diag-wrap { display: flex; flex-direction: column; gap: 14px; }
@@ -1744,6 +1791,53 @@
 #pw-overlay.hidden { display: none !important; }
 #admin-overlay { display: flex; }
 #admin-overlay.hidden { display: none !important; }
+
+/* 사용자 메뉴 (헤더 우측) */
+.user-menu { position: relative; flex-shrink: 0; }
+.user-menu-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--blue-pale); border: 1px solid var(--blue-light);
+  border-radius: 20px; padding: 6px 12px;
+  cursor: pointer; font-family: inherit;
+  color: var(--blue-primary); font-size: 13px; font-weight: 700;
+  transition: background 0.12s;
+}
+.user-menu-btn:hover { background: var(--blue-light); color: #fff; }
+.user-menu-avatar {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--blue-primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.user-menu-name { max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-menu-caret { font-size: 9px; opacity: 0.6; }
+
+.user-menu-dropdown {
+  position: absolute; top: calc(100% + 6px); right: 0;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  min-width: 180px; padding: 6px; z-index: 500;
+  display: none;
+}
+.user-menu-dropdown.open { display: block; }
+.user-menu-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 9px 12px; border-radius: 7px;
+  font-size: 13px; font-weight: 600; color: var(--text);
+  cursor: pointer; transition: background 0.1s; white-space: nowrap;
+}
+.user-menu-item:hover { background: var(--blue-pale); }
+.user-menu-item.danger { color: #c0392b; }
+.user-menu-item.danger:hover { background: #fff0f0; }
+.user-menu-divider { height: 1px; background: var(--border); margin: 5px 4px; }
+.user-menu-role {
+  font-size: 10px; color: var(--text3); padding: 4px 12px 6px;
+}
+
+@media (max-width: 768px) {
+  .user-menu-name { display: none; }
+  .user-menu-btn { padding: 7px 9px; gap: 0; }
+}
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: #f0f5fa; }
@@ -1764,20 +1858,8 @@
     header .hd-title h1 { font-size: 13px; }
     header .subtitle { display: none; }
     .hd-divider { display: none; }
-    header .badge {
-      display: flex !important;
-      flex-wrap: wrap;
-      gap: 4px;
-      padding: 4px 8px;
-      font-size: 10px;
-      max-width: 140px;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    header .badge span { font-size: 10px !important; }
+    header .badge { display: none; }
     header .logo img { height: 32px; }
-    header .logo .login-title-text,
-    header .hd-title .login-sub-text { display: none; }
 
     /* 사이드바 — 오버레이 방식 */
     .sidebar {
@@ -4601,23 +4683,47 @@ function liShowApp(user) {
   document.getElementById('login-overlay').classList.add('hidden');
   const badge = document.querySelector('.badge');
   if (badge) {
-    const adminBtn = user.role === 'admin'
-      ? `<span style="cursor:pointer;font-size:11px;margin-left:8px;
-           background:var(--blue-pale);border:1px solid var(--border);
-           padding:2px 8px;border-radius:8px;color:var(--blue-dark);font-weight:700;"
-           onclick="adminOpen()">⚙️ 관리</span>`
+    const initial = (user.name || '?').charAt(0);
+    const adminItem = user.role === 'admin'
+      ? `<div class="user-menu-item" onclick="adminOpen(); userMenuClose();">
+           <span>⚙️</span><span>계정 관리</span>
+         </div>`
       : '';
-    badge.innerHTML = `<span style="font-size:12px;font-weight:700;">👤 ${user.name}</span>
-      ${adminBtn}
-      <span style="cursor:pointer;font-size:11px;margin-left:8px;
-        background:var(--blue-pale);border:1px solid var(--border);
-        padding:2px 8px;border-radius:8px;color:var(--blue-dark);font-weight:700;"
-        onclick="pwOpen()">🔑 비밀번호 변경</span>
-      <span style="cursor:pointer;font-size:11px;opacity:0.7;margin-left:6px;"
-        onclick="liLogout()">로그아웃</span>`;
+    badge.outerHTML = `
+      <div class="user-menu" id="user-menu">
+        <button class="user-menu-btn" onclick="userMenuToggle()">
+          <span class="user-menu-avatar">${initial}</span>
+          <span class="user-menu-name">${user.name}</span>
+          <span class="user-menu-caret">▾</span>
+        </button>
+        <div class="user-menu-dropdown" id="user-menu-dropdown">
+          <div class="user-menu-role">${user.email}</div>
+          <div class="user-menu-divider"></div>
+          ${adminItem}
+          <div class="user-menu-item" onclick="pwOpen(); userMenuClose();">
+            <span>🔑</span><span>비밀번호 변경</span>
+          </div>
+          <div class="user-menu-divider"></div>
+          <div class="user-menu-item danger" onclick="liLogout(); userMenuClose();">
+            <span>🚪</span><span>로그아웃</span>
+          </div>
+        </div>
+      </div>`;
   }
   window._currentUser = user;
 }
+
+function userMenuToggle() {
+  document.getElementById('user-menu-dropdown')?.classList.toggle('open');
+}
+function userMenuClose() {
+  document.getElementById('user-menu-dropdown')?.classList.remove('open');
+}
+// 바깥 클릭 시 닫기
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('user-menu');
+  if (menu && !menu.contains(e.target)) userMenuClose();
+});
 
 function liLogout() {
   sessionStorage.removeItem('li_user');
