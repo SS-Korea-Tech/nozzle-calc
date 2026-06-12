@@ -1763,8 +1763,21 @@
     .menu-btn { display: flex !important; }
     header .hd-title h1 { font-size: 13px; }
     header .subtitle { display: none; }
-    header .badge { display: none; }
+    .hd-divider { display: none; }
+    header .badge {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 4px 8px;
+      font-size: 10px;
+      max-width: 140px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    header .badge span { font-size: 10px !important; }
     header .logo img { height: 32px; }
+    header .logo .login-title-text,
+    header .hd-title .login-sub-text { display: none; }
 
     /* 사이드바 — 오버레이 방식 */
     .sidebar {
