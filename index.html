@@ -100,7 +100,7 @@
   }
   header h1 span { color: var(--blue-primary); }
   header .subtitle {
-    font-size: 10px; color: var(--text3); margin-top: 2px;
+    font-size: 12px; color: var(--text3); margin-top: 2px;
     letter-spacing: 0.2px;
   }
 
@@ -108,7 +108,7 @@
     background: var(--blue-pale);
     border: 1px solid var(--blue-light);
     color: var(--blue-primary);
-    font-size: 10px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     padding: 4px 13px; border-radius: 20px;
     letter-spacing: 0.6px;
     white-space: nowrap;
@@ -136,7 +136,7 @@
 
   .sidebar-section {
     padding: 12px 12px 4px;
-    font-size: 9px; font-weight: 800;
+    font-size: 11px; font-weight: 800;
     color: var(--blue-primary);
     letter-spacing: 1.5px; text-transform: uppercase;
     border-top: 1px solid var(--border); margin-top: 2px;
@@ -163,12 +163,12 @@
     width: 19px; height: 19px;
     background: var(--surface2); border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 9px; font-weight: 700; color: var(--text3);
+    font-size: 11px; font-weight: 700; color: var(--text3);
     flex-shrink: 0; font-family: var(--font-mono);
     transition: all 0.1s;
   }
   .nav-icon { display: none; }
-  .nav-label { font-size: 11.5px; color: var(--text2); line-height: 1.3; }
+  .nav-label { font-size: 13px; color: var(--text2); font-weight: 600; line-height: 1.3; }
 
   /* MAIN CONTENT */
   .main {
@@ -192,8 +192,8 @@
   }
 
   .panel-title {
-    font-size: 19px;
-    font-weight: 700;
+    font-size: 21px;
+    font-weight: 800;
     color: var(--text);
     display: flex;
     align-items: center;
@@ -234,8 +234,8 @@
     padding: 8px 16px;
     background: linear-gradient(90deg, var(--blue-pale), #f8fbfe);
     border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 800;
     color: var(--blue-dark);
     display: flex;
     align-items: center;
@@ -243,7 +243,7 @@
     letter-spacing: 0.1px;
   }
 
-  .section-body { padding: 16px 22px; }
+  .section-body { padding: 18px 24px; }
 
   /* GRID */
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -254,8 +254,8 @@
   .field { display: flex; flex-direction: column; gap: 6px; }
 
   .field label {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     color: var(--text2);
     letter-spacing: 0.3px;
     display: flex; align-items: center; gap: 6px;
@@ -266,7 +266,7 @@
     color: var(--accent);
     padding: 1px 6px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 12px;
     font-family: 'JetBrains Mono', monospace;
   }
 
@@ -312,7 +312,7 @@
   }
 
   .result-label {
-    font-size: 10px;
+    font-size: 12px;
     color: var(--text2);
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -343,8 +343,8 @@
     border-radius: var(--radius-sm);
     padding: 7px 22px;
     color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 800;
     cursor: pointer;
     transition: all 0.12s;
     font-family: var(--font-body);
@@ -503,15 +503,15 @@
     border-radius:7px; overflow:hidden; border:1px solid var(--border);
   }
   .compact-table th {
-    background:var(--blue-pale); padding:4px 7px; text-align:center;
-    color:var(--blue-dark); font-weight:700;
+    background:var(--blue-pale); padding:6px 10px; text-align:center;
+    color:var(--blue-dark); font-weight:800;
     border-bottom:2px solid var(--border);
-    border-right:1px solid var(--border); font-size:10px;
+    border-right:1px solid var(--border); font-size:12px;
   }
   .compact-table td {
-    padding:3px 7px; border-bottom:1px solid var(--border);
+    padding:6px 10px; border-bottom:1px solid var(--border);
     border-right:1px solid var(--border);
-    font-family:var(--font-mono); color:var(--text); font-size:11px;
+    font-family:var(--font-mono); color:var(--text); font-size:13px;
     text-align:right;
   }
   .compact-table td:first-child { text-align:left; color:var(--text); font-weight:500; }
@@ -537,7 +537,7 @@
   .sec-badge {
     display:inline-block; background:var(--blue-pale);
     border:1px solid var(--blue-light); color:var(--blue-primary);
-    font-size:9px; padding:2px 8px; border-radius:4px;
+    font-size: 11px; padding:2px 8px; border-radius:4px;
     margin-left:8px; font-weight:700; letter-spacing:0.5px;
     text-transform:uppercase;
   }
@@ -556,7 +556,7 @@
 
   /* LARGE DATA TABLE */
   .data-table-wrap { overflow-x: auto; max-height: 320px; overflow-y: auto; }
-  .data-table { width: 100%; border-collapse: collapse; font-size: 10.5px; white-space: nowrap; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; white-space: nowrap; }
   .data-table th { background: #1c2230; padding: 6px 10px; color: var(--accent); font-weight: 700;
     border: 1px solid var(--border); text-align: center; position: sticky; top: 0; z-index: 1; }
   .data-table td { padding: 4px 10px; border: 1px solid rgba(42,53,71,0.5);
@@ -572,7 +572,7 @@
   .ntype-table tr:hover td { background: rgba(0,212,255,0.04); }
 
   /* SECTION GROUP HEADER */
-  .sec-group { font-size: 10px; font-weight: 700; color: var(--text2); letter-spacing: 1.2px;
+  .sec-group { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: 1.2px;
     text-transform: uppercase; padding: 10px 0 4px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
 
   /* SCROLL BAR */
@@ -586,7 +586,7 @@
     border-radius: 5px;
     padding: 4px 11px;
     color: var(--blue-dark);
-    font-size: 10px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     cursor: pointer;
     font-family: var(--font-body);
     transition: background 0.12s, border-color 0.12s;
@@ -596,7 +596,7 @@
   .formula-toggle-btn .arrow {
     display: inline-block;
     transition: transform 0.22s ease;
-    font-size: 10px;
+    font-size: 12px;
     will-change: transform;
   }
   .formula-toggle-btn.open .arrow { transform: rotate(90deg); }
@@ -611,7 +611,7 @@
     border-radius: var(--radius-sm);
     padding: 0 16px;
     font-family: var(--font-mono);
-    font-size: 11.5px;
+    font-size: 13px;
     color: var(--blue-dark);
     margin-top: 0;
     line-height: 1.9;
@@ -681,7 +681,7 @@
     min-height: 60px; display: flex; align-items: center;
   }
   .unit-sel {
-    width: 100%; padding: 7px 10px; font-size: 13px;
+    width: 100%; padding: 9px 12px; font-size: 14px;
     background: #fff; border: 1px solid var(--border2);
     border-radius: 7px; color: var(--text); outline: none;
     font-family: var(--font-mono);
@@ -717,7 +717,7 @@
     border-radius: 5px; padding: 7px 10px;
   }
   .unit-full-card .ufc-label {
-    font-size: 10px; color: var(--text3); font-weight: 700;
+    font-size: 12px; color: var(--text3); font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
   }
   .unit-full-card .ufc-val {
@@ -770,7 +770,7 @@
     border-top: 1px solid var(--border);
   }
 .rp-section-header {
-    font-size: 10px; font-weight: 800;
+    font-size: 12px; font-weight: 800;
     color: var(--blue-primary);
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -786,7 +786,7 @@
     padding: 10px 12px;
   }
   .rp-section h4 {
-    font-size: 10px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     color: var(--blue-dark);
     margin-bottom: 8px;
     display: flex; align-items: center; gap: 6px;
@@ -808,7 +808,7 @@
     outline: none;
   }
   .rp-conv-row input:focus { border-color: var(--blue-primary); }
-  .rp-conv-row .unit { font-size: 10px; color: var(--text2); min-width: 32px; }
+  .rp-conv-row .unit { font-size: 12px; color: var(--text2); min-width: 32px; }
   .rp-conv-row .arr { color: var(--blue-primary); font-weight: 700; }
   .rp-conv-row .out { color: var(--blue-dark); font-weight: 700; font-family: var(--font-mono); font-size: 11px; }
 
@@ -847,7 +847,7 @@
     box-shadow: 0 2px 8px rgba(0,107,177,0.12);
   }
   .rpi-goto {
-    font-size: 9.5px;
+    font-size: 12px;
     color: var(--blue-primary);
     font-weight: 700;
     margin-top: 4px;
@@ -860,14 +860,14 @@
     align-items: center; margin-bottom: 3px;
   }
   .rpi-section {
-    font-size: 9px; font-weight: 700;
+    font-size: 11px; font-weight: 700;
     color: var(--blue-primary);
     background: var(--blue-pale);
     padding: 1px 6px; border-radius: 3px;
   }
-  .rpi-time { font-size: 9px; color: var(--text3); }
+  .rpi-time { font-size: 11px; color: var(--text3); }
   .rpi-title {
-    color: var(--text2); font-size: 10.5px;
+    color: var(--text2); font-size: 12.5px;
     margin-bottom: 3px;
   }
   .rpi-val {
@@ -875,12 +875,12 @@
     font-size: 13px; font-weight: 700;
   }
   .rpi-unit {
-    font-size: 10px; color: var(--text3);
+    font-size: 12px; color: var(--text3);
     margin-left: 4px; font-family: var(--font-mono);
   }
   .rp-empty {
     text-align: center; padding: 14px 8px;
-    color: var(--text3); font-size: 10.5px;
+    color: var(--text3); font-size: 12.5px;
   }
   .rp-clear-btn {
     margin-top: 6px;
@@ -888,7 +888,7 @@
     background: transparent;
     border: 1px dashed var(--border2);
     border-radius: 4px;
-    color: var(--text3); font-size: 10px;
+    color: var(--text3); font-size: 12px;
     cursor: pointer;
     font-family: var(--font-body);
   }
@@ -909,7 +909,7 @@
     margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
   }
   .rp-help-desc {
-    font-size: 11px; color: var(--text2);
+    font-size: 12.5px; color: var(--text2);
     line-height: 1.65; margin-bottom: 10px;
   }
   .rp-help-tip {
@@ -917,7 +917,7 @@
     border-left: 3px solid var(--blue-primary);
     border-radius: 0 5px 5px 0;
     padding: 7px 10px;
-    font-size: 10.5px; color: var(--blue-dark);
+    font-size: 12px; color: var(--blue-dark);
     line-height: 1.6; margin: 8px 0;
   }
   .rp-help-table {
@@ -926,18 +926,19 @@
     overflow: hidden;
     border: 1px solid var(--border);
     margin: 8px 0;
-    font-size: 10.5px;
+    font-size: 12.5px;
   }
   .rht-row {
     display: flex;
     border-bottom: 1px solid var(--border);
+    font-size: 12px;
   }
   .rht-row:last-child { border-bottom: none; }
   .rht-row.header {
     background: var(--blue-pale);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--blue-dark);
-    font-size: 10px;
+    font-size: 12px;
   }
   .rht-row span {
     flex: 1; padding: 5px 8px;
@@ -1023,6 +1024,152 @@
     font-size: 11px; font-weight: 700; color: var(--blue-dark);
     margin-bottom: 6px; letter-spacing: 0.3px;
   }
+
+/* ── 로그인 오버레이 ── */
+#login-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(135deg, #e8f2fb 0%, #f4f8fd 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+#login-overlay.hidden { display: none; }
+.login-box {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,107,177,0.13);
+  padding: 40px 36px 32px;
+  width: 360px; max-width: 92vw;
+}
+.login-logo { text-align: center; margin-bottom: 20px; }
+.login-logo img { height: 44px; }
+.login-title { font-size: 20px; font-weight: 800; color: #006bb1; text-align: center; margin-bottom: 4px; }
+.login-sub { font-size: 12px; color: #888; text-align: center; margin-bottom: 28px; }
+.login-field { margin-bottom: 14px; }
+.login-field label { display: block; font-size: 13px; font-weight: 700; color: #19628f; margin-bottom: 5px; }
+.login-field input {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid #c8dcea; border-radius: 8px;
+  font-size: 14px; outline: none; box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.login-field input:focus { border-color: #006bb1; }
+.login-check {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: 20px; font-size: 13px; color: #555; cursor: pointer;
+}
+.login-check input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; }
+.login-btn {
+  width: 100%; padding: 13px; background: #006bb1; color: #fff;
+  border: none; border-radius: 8px; font-size: 15px; font-weight: 800;
+  cursor: pointer; font-family: inherit; transition: background 0.12s;
+}
+.login-btn:hover { background: #19628f; }
+.login-error { color: #c0392b; font-size: 12.5px; text-align: center; margin-top: 10px; min-height: 18px; }
+.login-footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 18px; }
+
+/* ── 관리자 화면 ── */
+#admin-overlay {
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+}
+#admin-overlay.hidden { display: none; }
+.admin-box {
+  background: #fff; border-radius: 14px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  width: 540px; max-width: 95vw;
+  max-height: 88vh; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.admin-header {
+  padding: 18px 22px 14px;
+  border-bottom: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--blue-pale);
+}
+.admin-header h2 {
+  font-size: 16px; font-weight: 800; color: var(--blue-dark);
+  margin: 0;
+}
+.admin-close {
+  background: none; border: none; font-size: 20px;
+  cursor: pointer; color: var(--text2); padding: 2px 6px;
+  border-radius: 4px; line-height: 1;
+}
+.admin-close:hover { background: var(--border); }
+.admin-body { padding: 20px 22px; overflow-y: auto; flex: 1; }
+
+/* 계정 목록 */
+.admin-user-list { margin-bottom: 20px; }
+.admin-user-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: 8px;
+  margin-bottom: 8px; background: #fafcfe;
+}
+.admin-user-item:hover { border-color: var(--blue-light); }
+.aui-info { flex: 1; }
+.aui-email { font-size: 13px; font-weight: 700; color: var(--blue-dark); }
+.aui-name  { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.aui-role  {
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 10px; background: var(--blue-pale);
+  color: var(--blue-primary); border: 1px solid var(--border);
+}
+.aui-role.admin { background: #fef3e2; color: #d4830a; border-color: #f5c97a; }
+.aui-del {
+  background: none; border: 1px solid #e0b0b0;
+  color: #c0392b; font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 5px; cursor: pointer;
+}
+.aui-del:hover { background: #fff0f0; }
+
+/* 계정 추가 폼 */
+.admin-add-form {
+  background: var(--blue-pale); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px;
+}
+.admin-add-form h3 {
+  font-size: 13px; font-weight: 800; color: var(--blue-dark);
+  margin: 0 0 12px;
+}
+.admin-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 10px;
+}
+.admin-field label {
+  display: block; font-size: 12px; font-weight: 700;
+  color: var(--text2); margin-bottom: 4px;
+}
+.admin-field input, .admin-field select {
+  width: 100%; padding: 9px 12px;
+  border: 1.5px solid var(--border); border-radius: 6px;
+  font-size: 13px; outline: none; box-sizing: border-box;
+  background: #fff;
+}
+.admin-field input:focus, .admin-field select:focus {
+  border-color: var(--blue-primary);
+}
+.admin-add-btn {
+  width: 100%; padding: 10px;
+  background: var(--blue-primary); color: #fff;
+  border: none; border-radius: 7px;
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  font-family: inherit;
+}
+.admin-add-btn:hover { background: var(--blue-dark); }
+.admin-msg {
+  font-size: 12px; text-align: center;
+  margin-top: 8px; min-height: 16px;
+}
+.admin-msg.ok  { color: var(--green); }
+.admin-msg.err { color: #c0392b; }
+
+#req-overlay { display: flex; }
+#req-overlay.hidden { display: none !important; }
+#pw-overlay { display: flex; }
+#pw-overlay.hidden { display: none !important; }
+#admin-overlay { display: flex; }
+#admin-overlay.hidden { display: none !important; }
   /* SCROLLBAR */
   /* DIAGRAM */
   .diag-wrap { display: flex; flex-direction: column; gap: 14px; }
@@ -1037,7 +1184,7 @@
 
   /* LARGE DATA TABLE */
   .data-table-wrap { overflow-x: auto; max-height: 320px; overflow-y: auto; }
-  .data-table { width: 100%; border-collapse: collapse; font-size: 10.5px; white-space: nowrap; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; white-space: nowrap; }
   .data-table th { background: #1c2230; padding: 6px 10px; color: var(--accent); font-weight: 700;
     border: 1px solid var(--border); text-align: center; position: sticky; top: 0; z-index: 1; }
   .data-table td { padding: 4px 10px; border: 1px solid rgba(42,53,71,0.5);
@@ -1053,7 +1200,7 @@
   .ntype-table tr:hover td { background: rgba(0,212,255,0.04); }
 
   /* SECTION GROUP HEADER */
-  .sec-group { font-size: 10px; font-weight: 700; color: var(--text2); letter-spacing: 1.2px;
+  .sec-group { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: 1.2px;
     text-transform: uppercase; padding: 10px 0 4px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
 
   /* SCROLL BAR */
@@ -1108,7 +1255,7 @@
     min-height: 60px; display: flex; align-items: center;
   }
   .unit-sel {
-    width: 100%; padding: 7px 10px; font-size: 13px;
+    width: 100%; padding: 9px 12px; font-size: 14px;
     background: #fff; border: 1px solid var(--border2);
     border-radius: 7px; color: var(--text); outline: none;
     font-family: var(--font-mono);
@@ -1144,7 +1291,7 @@
     border-radius: 5px; padding: 7px 10px;
   }
   .unit-full-card .ufc-label {
-    font-size: 10px; color: var(--text3); font-weight: 700;
+    font-size: 12px; color: var(--text3); font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
   }
   .unit-full-card .ufc-val {
@@ -1197,7 +1344,7 @@
     border-top: 1px solid var(--border);
   }
 .rp-section-header {
-    font-size: 10px; font-weight: 800;
+    font-size: 12px; font-weight: 800;
     color: var(--blue-primary);
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -1213,7 +1360,7 @@
     padding: 10px 12px;
   }
   .rp-section h4 {
-    font-size: 10px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     color: var(--blue-dark);
     margin-bottom: 8px;
     display: flex; align-items: center; gap: 6px;
@@ -1235,7 +1382,7 @@
     outline: none;
   }
   .rp-conv-row input:focus { border-color: var(--blue-primary); }
-  .rp-conv-row .unit { font-size: 10px; color: var(--text2); min-width: 32px; }
+  .rp-conv-row .unit { font-size: 12px; color: var(--text2); min-width: 32px; }
   .rp-conv-row .arr { color: var(--blue-primary); font-weight: 700; }
   .rp-conv-row .out { color: var(--blue-dark); font-weight: 700; font-family: var(--font-mono); font-size: 11px; }
 
@@ -1274,7 +1421,7 @@
     box-shadow: 0 2px 8px rgba(0,107,177,0.12);
   }
   .rpi-goto {
-    font-size: 9.5px;
+    font-size: 12px;
     color: var(--blue-primary);
     font-weight: 700;
     margin-top: 4px;
@@ -1287,14 +1434,14 @@
     align-items: center; margin-bottom: 3px;
   }
   .rpi-section {
-    font-size: 9px; font-weight: 700;
+    font-size: 11px; font-weight: 700;
     color: var(--blue-primary);
     background: var(--blue-pale);
     padding: 1px 6px; border-radius: 3px;
   }
-  .rpi-time { font-size: 9px; color: var(--text3); }
+  .rpi-time { font-size: 11px; color: var(--text3); }
   .rpi-title {
-    color: var(--text2); font-size: 10.5px;
+    color: var(--text2); font-size: 12.5px;
     margin-bottom: 3px;
   }
   .rpi-val {
@@ -1302,12 +1449,12 @@
     font-size: 13px; font-weight: 700;
   }
   .rpi-unit {
-    font-size: 10px; color: var(--text3);
+    font-size: 12px; color: var(--text3);
     margin-left: 4px; font-family: var(--font-mono);
   }
   .rp-empty {
     text-align: center; padding: 14px 8px;
-    color: var(--text3); font-size: 10.5px;
+    color: var(--text3); font-size: 12.5px;
   }
   .rp-clear-btn {
     margin-top: 6px;
@@ -1315,7 +1462,7 @@
     background: transparent;
     border: 1px dashed var(--border2);
     border-radius: 4px;
-    color: var(--text3); font-size: 10px;
+    color: var(--text3); font-size: 12px;
     cursor: pointer;
     font-family: var(--font-body);
   }
@@ -1336,7 +1483,7 @@
     margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
   }
   .rp-help-desc {
-    font-size: 11px; color: var(--text2);
+    font-size: 12.5px; color: var(--text2);
     line-height: 1.65; margin-bottom: 10px;
   }
   .rp-help-tip {
@@ -1344,7 +1491,7 @@
     border-left: 3px solid var(--blue-primary);
     border-radius: 0 5px 5px 0;
     padding: 7px 10px;
-    font-size: 10.5px; color: var(--blue-dark);
+    font-size: 12px; color: var(--blue-dark);
     line-height: 1.6; margin: 8px 0;
   }
   .rp-help-table {
@@ -1353,18 +1500,19 @@
     overflow: hidden;
     border: 1px solid var(--border);
     margin: 8px 0;
-    font-size: 10.5px;
+    font-size: 12.5px;
   }
   .rht-row {
     display: flex;
     border-bottom: 1px solid var(--border);
+    font-size: 12px;
   }
   .rht-row:last-child { border-bottom: none; }
   .rht-row.header {
     background: var(--blue-pale);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--blue-dark);
-    font-size: 10px;
+    font-size: 12px;
   }
   .rht-row span {
     flex: 1; padding: 5px 8px;
@@ -1450,6 +1598,152 @@
     font-size: 11px; font-weight: 700; color: var(--blue-dark);
     margin-bottom: 6px; letter-spacing: 0.3px;
   }
+
+/* ── 로그인 오버레이 ── */
+#login-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(135deg, #e8f2fb 0%, #f4f8fd 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+#login-overlay.hidden { display: none; }
+.login-box {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,107,177,0.13);
+  padding: 40px 36px 32px;
+  width: 360px; max-width: 92vw;
+}
+.login-logo { text-align: center; margin-bottom: 20px; }
+.login-logo img { height: 44px; }
+.login-title { font-size: 20px; font-weight: 800; color: #006bb1; text-align: center; margin-bottom: 4px; }
+.login-sub { font-size: 12px; color: #888; text-align: center; margin-bottom: 28px; }
+.login-field { margin-bottom: 14px; }
+.login-field label { display: block; font-size: 13px; font-weight: 700; color: #19628f; margin-bottom: 5px; }
+.login-field input {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid #c8dcea; border-radius: 8px;
+  font-size: 14px; outline: none; box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.login-field input:focus { border-color: #006bb1; }
+.login-check {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: 20px; font-size: 13px; color: #555; cursor: pointer;
+}
+.login-check input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; }
+.login-btn {
+  width: 100%; padding: 13px; background: #006bb1; color: #fff;
+  border: none; border-radius: 8px; font-size: 15px; font-weight: 800;
+  cursor: pointer; font-family: inherit; transition: background 0.12s;
+}
+.login-btn:hover { background: #19628f; }
+.login-error { color: #c0392b; font-size: 12.5px; text-align: center; margin-top: 10px; min-height: 18px; }
+.login-footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 18px; }
+
+/* ── 관리자 화면 ── */
+#admin-overlay {
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+}
+#admin-overlay.hidden { display: none; }
+.admin-box {
+  background: #fff; border-radius: 14px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  width: 540px; max-width: 95vw;
+  max-height: 88vh; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.admin-header {
+  padding: 18px 22px 14px;
+  border-bottom: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--blue-pale);
+}
+.admin-header h2 {
+  font-size: 16px; font-weight: 800; color: var(--blue-dark);
+  margin: 0;
+}
+.admin-close {
+  background: none; border: none; font-size: 20px;
+  cursor: pointer; color: var(--text2); padding: 2px 6px;
+  border-radius: 4px; line-height: 1;
+}
+.admin-close:hover { background: var(--border); }
+.admin-body { padding: 20px 22px; overflow-y: auto; flex: 1; }
+
+/* 계정 목록 */
+.admin-user-list { margin-bottom: 20px; }
+.admin-user-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: 8px;
+  margin-bottom: 8px; background: #fafcfe;
+}
+.admin-user-item:hover { border-color: var(--blue-light); }
+.aui-info { flex: 1; }
+.aui-email { font-size: 13px; font-weight: 700; color: var(--blue-dark); }
+.aui-name  { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.aui-role  {
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 10px; background: var(--blue-pale);
+  color: var(--blue-primary); border: 1px solid var(--border);
+}
+.aui-role.admin { background: #fef3e2; color: #d4830a; border-color: #f5c97a; }
+.aui-del {
+  background: none; border: 1px solid #e0b0b0;
+  color: #c0392b; font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 5px; cursor: pointer;
+}
+.aui-del:hover { background: #fff0f0; }
+
+/* 계정 추가 폼 */
+.admin-add-form {
+  background: var(--blue-pale); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px;
+}
+.admin-add-form h3 {
+  font-size: 13px; font-weight: 800; color: var(--blue-dark);
+  margin: 0 0 12px;
+}
+.admin-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-bottom: 10px;
+}
+.admin-field label {
+  display: block; font-size: 12px; font-weight: 700;
+  color: var(--text2); margin-bottom: 4px;
+}
+.admin-field input, .admin-field select {
+  width: 100%; padding: 9px 12px;
+  border: 1.5px solid var(--border); border-radius: 6px;
+  font-size: 13px; outline: none; box-sizing: border-box;
+  background: #fff;
+}
+.admin-field input:focus, .admin-field select:focus {
+  border-color: var(--blue-primary);
+}
+.admin-add-btn {
+  width: 100%; padding: 10px;
+  background: var(--blue-primary); color: #fff;
+  border: none; border-radius: 7px;
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  font-family: inherit;
+}
+.admin-add-btn:hover { background: var(--blue-dark); }
+.admin-msg {
+  font-size: 12px; text-align: center;
+  margin-top: 8px; min-height: 16px;
+}
+.admin-msg.ok  { color: var(--green); }
+.admin-msg.err { color: #c0392b; }
+
+#req-overlay { display: flex; }
+#req-overlay.hidden { display: none !important; }
+#pw-overlay { display: flex; }
+#pw-overlay.hidden { display: none !important; }
+#admin-overlay { display: flex; }
+#admin-overlay.hidden { display: none !important; }
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: #f0f5fa; }
@@ -1556,8 +1850,201 @@
     header h1 { font-size: 12px !important; }
   }
 </style>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
+
+
+<!-- ══ 관리자 화면 ══ -->
+<div id="admin-overlay" class="hidden">
+  <div class="admin-box">
+    <div class="admin-header">
+      <h2>⚙️ 계정 관리</h2>
+      <button class="admin-close" onclick="adminClose()">✕</button>
+    </div>
+    <div class="admin-body">
+
+      <!-- 대기 중인 가입 요청 -->
+      <div id="admin-pending-wrap" style="margin-bottom:18px;display:none;">
+        <div style="font-size:13px;font-weight:800;color:#d4830a;margin-bottom:8px;">
+          ⏳ 승인 대기 중인 요청
+        </div>
+        <div id="admin-pending-list"></div>
+      </div>
+
+      <div style="font-size:13px;font-weight:800;color:var(--blue-dark);margin-bottom:10px;">
+        👥 등록된 계정
+      </div>
+      <div class="admin-user-list" id="admin-user-list">
+        <!-- JS로 렌더링 -->
+      </div>
+
+      <div class="admin-add-form">
+        <h3>➕ 새 계정 추가</h3>
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>이메일</label>
+            <input type="email" id="adm-email" placeholder="user@spray.co.kr">
+          </div>
+          <div class="admin-field">
+            <label>이름</label>
+            <input type="text" id="adm-name" placeholder="홍길동">
+          </div>
+          <div class="admin-field">
+            <label>비밀번호</label>
+            <input type="text" id="adm-pw" placeholder="초기 비밀번호">
+          </div>
+          <div class="admin-field">
+            <label>권한</label>
+            <select id="adm-role">
+              <option value="user">일반 사용자</option>
+              <option value="admin">관리자</option>
+            </select>
+          </div>
+        </div>
+        <button class="admin-add-btn" onclick="adminAddUser()">계정 추가</button>
+        <div class="admin-msg" id="adm-msg"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 가입 요청 화면 ══ -->
+<div id="req-overlay" class="hidden" style="
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,0.5);
+  align-items:center;justify-content:center;">
+  <div style="
+    background:#fff;border-radius:14px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.2);
+    width:380px;max-width:94vw;padding:32px 28px;">
+    <div style="font-size:18px;font-weight:800;color:var(--blue-dark);margin-bottom:4px;">📋 가입 요청</div>
+    <div style="font-size:12px;color:#888;margin-bottom:22px;">관리자 승인 후 계정이 활성화됩니다</div>
+
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">이름</label>
+      <input type="text" id="req-name" placeholder="홍길동" style="
+        width:100%;padding:10px 13px;border:1.5px solid var(--border);
+        border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
+    </div>
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">이메일</label>
+      <input type="email" id="req-email" placeholder="user@spray.co.kr" style="
+        width:100%;padding:10px 13px;border:1.5px solid var(--border);
+        border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">소속·직책</label>
+      <input type="text" id="req-dept" placeholder="영업부 / 엔지니어" style="
+        width:100%;padding:10px 13px;border:1.5px solid var(--border);
+        border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
+    </div>
+    <button onclick="reqSubmit()" style="
+      width:100%;padding:12px;background:var(--blue-primary);color:#fff;
+      border:none;border-radius:8px;font-size:14px;font-weight:800;
+      cursor:pointer;font-family:inherit;">요청 보내기</button>
+    <button onclick="reqClose()" style="
+      width:100%;padding:9px;margin-top:8px;background:none;
+      border:1px solid var(--border);border-radius:8px;font-size:13px;
+      cursor:pointer;color:var(--text2);font-family:inherit;">취소</button>
+    <div id="req-msg" style="font-size:12px;text-align:center;margin-top:10px;min-height:16px;"></div>
+  </div>
+</div>
+
+
+<!-- ══ 비밀번호 변경 ══ -->
+<div id="pw-overlay" class="hidden" style="
+  position:fixed;inset:0;z-index:10001;
+  background:rgba(0,0,0,0.5);
+  align-items:center;justify-content:center;">
+  <div style="
+    background:#fff;border-radius:14px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.2);
+    width:360px;max-width:94vw;padding:32px 28px;">
+    <div style="font-size:18px;font-weight:800;color:var(--blue-dark);margin-bottom:4px;">🔑 비밀번호 변경</div>
+    <div style="font-size:12px;color:#888;margin-bottom:22px;" id="pw-account-label"></div>
+
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">현재 비밀번호</label>
+      <input type="password" id="pw-old" autocomplete="current-password" style="
+        width:100%;padding:10px 13px;border:1.5px solid var(--border);
+        border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
+    </div>
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">새 비밀번호</label>
+      <input type="password" id="pw-new1" autocomplete="new-password" style="
+        width:100%;padding:10px 13px;border:1.5px solid var(--border);
+        border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">새 비밀번호 확인</label>
+      <input type="password" id="pw-new2" autocomplete="new-password"
+        onkeydown="if(event.key==='Enter') pwSubmit()" style="
+        width:100%;padding:10px 13px;border:1.5px solid var(--border);
+        border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
+    </div>
+
+    <button onclick="pwSubmit()" style="
+      width:100%;padding:12px;background:var(--blue-primary);color:#fff;
+      border:none;border-radius:8px;font-size:14px;font-weight:800;
+      cursor:pointer;font-family:inherit;">변경하기</button>
+    <button onclick="pwClose()" style="
+      width:100%;padding:9px;margin-top:8px;background:none;
+      border:1px solid var(--border);border-radius:8px;font-size:13px;
+      cursor:pointer;color:var(--text2);font-family:inherit;">취소</button>
+    <div id="pw-msg" style="font-size:12px;text-align:center;margin-top:10px;min-height:16px;"></div>
+  </div>
+</div>
+
+<div id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="data:image/png;base64,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" alt="Spraying Systems Co.">
+    </div>
+    <div class="login-title">노즐·배관 계산 프로그램</div>
+    <div class="login-sub">Spraying Systems Co., Korea &nbsp;|&nbsp; 사내 전용</div>
+
+    <div class="login-field">
+      <label>이메일 주소</label>
+      <input type="email" id="li-email" placeholder="example@spray.co.kr"
+             autocomplete="email" oninput="liClear()">
+    </div>
+    <div class="login-field">
+      <label>비밀번호</label>
+      <input type="password" id="li-pw" placeholder="비밀번호 입력"
+             autocomplete="current-password" oninput="liClear()"
+             onkeydown="if(event.key==='Enter') liLogin()">
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <label class="login-check">
+        <input type="checkbox" id="li-remember"> 이메일 저장
+      </label>
+      <label class="login-check">
+        <input type="checkbox" id="li-autologin"> 자동 로그인
+      </label>
+    </div>
+
+    <button class="login-btn" onclick="liLogin()">로그인</button>
+    <div class="login-error" id="li-error"></div>
+
+    <div style="text-align:center;margin-top:16px;">
+      <button onclick="reqOpen()" style="
+        width:100%;padding:11px;
+        background:#fff;border:1.5px solid var(--blue-primary);
+        border-radius:8px;color:var(--blue-primary);
+        font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">
+        계정 등록 요청
+      </button>
+    </div>
+
+    <div class="login-footer">승인된 계정만 접근 가능합니다<br>문의: ycjung@spray.co.kr</div>
+  </div>
+</div>
+
 
 <header>
   <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()" aria-label="메뉴 열기">☰</button>
@@ -1980,18 +2467,6 @@
             <div class="result-grid" id="air_size_result"></div>
           </div>
         </div>
-        <div class="calc-section">
-          <div class="section-title">📊 AIR 배관 장려유속 참고표</div>
-          <div class="section-body">
-            <table class="ref-table">
-              <tr><th>사용 개소</th><th>권장 유속 (m/sec)</th></tr>
-              <tr><td>흡입측</td><td>10 ~ 20</td></tr>
-              <tr><td>저압 토출관</td><td>20 ~ 30</td></tr>
-              <tr><td>고압 토출관</td><td>10 ~ 15</td></tr>
-              <tr><td>최대 허용유속</td><td>120</td></tr>
-            </table>
-          </div>
-        </div>
       </div>
 
       <div id="air-vel" class="tab-panel">
@@ -2092,20 +2567,6 @@
             <div class="result-grid" id="wat_size_result"></div>
           </div>
         </div>
-        <div class="calc-section">
-          <div class="section-title">📊 WATER 배관 장려유속 참고표</div>
-          <div class="section-body">
-            <table class="ref-table">
-              <tr><th>사용 개소</th><th>권장 유속 (m/sec)</th></tr>
-              <tr><td>펌프 토출측</td><td>2 ~ 4</td></tr>
-              <tr><td>펌프 흡입측</td><td>1 ~ 2</td></tr>
-              <tr><td>헤더</td><td>1</td></tr>
-              <tr><td>헤더 공급관</td><td>1.5 ~ 3</td></tr>
-              <tr><td>수직 배관</td><td>1 ~ 3</td></tr>
-              <tr><td>일반 장치</td><td>1.5 ~ 3</td></tr>
-            </table>
-          </div>
-        </div>
       </div>
 
       <div id="water-vel" class="tab-panel">
@@ -2169,42 +2630,6 @@
             </div>
             <button class="calc-btn" onclick="calcWaterLoss()">⚡ 계산하기</button>
             <div class="result-grid" id="watloss_result"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 표면조도 C값 + 장려유속표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 관의 표면조도 계수(C값) 및 배관 장려유속</div>
-        <div class="section-body">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-            <div>
-              <div class="diag-label">▶ 관 표면조도 C값 (Hazen-Williams)</div>
-              <table class="compact-table">
-                <tr><th>배관 재질</th><th>C 값</th></tr>
-                <tr><td>Unlined Cast / Ductile Iron</td><td>100</td></tr>
-                <tr><td>Black Steel (Dry, Pre-action)</td><td>100</td></tr>
-                <tr><td>Black Steel (Wet, Deluge)</td><td>120</td></tr>
-                <tr><td>Galvanized (All)</td><td>120</td></tr>
-                <tr><td>Plastic Underground</td><td>150</td></tr>
-                <tr><td>Cement Lined Cast Iron</td><td>140</td></tr>
-                <tr><td>Copper Tube</td><td>150</td></tr>
-              </table>
-              <div style="font-size:10px;color:var(--text2);margin-top:6px;">※ NFPA Fire Code 인용</div>
-            </div>
-            <div>
-              <div class="diag-label">▶ WATER 배관 장려유속</div>
-              <table class="compact-table">
-                <tr><th>사용 개소</th><th>유속 (m/sec)</th></tr>
-                <tr><td>펌프 토출측</td><td>2 ~ 4</td></tr>
-                <tr><td>펌프 흡입측</td><td>1 ~ 2</td></tr>
-                <tr><td>헤더</td><td>1</td></tr>
-                <tr><td>헤더 공급관</td><td>1.5 ~ 3</td></tr>
-                <tr><td>수직 배관</td><td>1 ~ 3</td></tr>
-                <tr><td>일반 장치</td><td>1.5 ~ 3</td></tr>
-                <tr><td>냉각수</td><td>1 ~ 2.5</td></tr>
-              </table>
-            </div>
           </div>
         </div>
       </div>
@@ -2817,35 +3242,6 @@
       </div>
 
       <!-- 압력별 유량 성능 참조표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 노즐 타입별 압력-유량 성능 참조표 <span class="sec-badge">단위: L/min</span></div>
-        <div class="section-body">
-          <div class="diag-label">▶ Veejet / Full Cone (Vanless 15°·30°) / Spiraljet / Floodjet 계열 (예: Q₁=12.1 L/min @ 7 kgf/cm²)</div>
-          <div class="scroll-x">
-            <table class="compact-table">
-              <tr><th>압력 (kgf/cm²)</th><th>0.5</th><th>1.0</th><th>1.5</th><th>2.0</th><th>2.5</th><th>3.0</th><th>4.0</th><th>5.0</th><th>7.0</th><th>10.0</th></tr>
-              <tr><td>유량 (L/min)</td><td>4.43</td><td>6.26</td><td>7.66</td><td>8.85</td><td>9.90</td><td>10.84</td><td>12.52</td><td>14.00</td><td>16.56</td><td>19.79</td></tr>
-            </table>
-          </div>
-          <div class="diag-label" style="margin-top:12px;">▶ Fulljet Standard / Square / Angle / Oval 계열 (예: Q₁=273 L/min @ 1 kgf/cm²)</div>
-          <div class="scroll-x">
-            <table class="compact-table">
-              <tr><th>압력 (kgf/cm²)</th><th>0.5</th><th>1.0</th><th>1.5</th><th>2.0</th><th>3.0</th><th>5.0</th><th>7.0</th><th>10.0</th><th>12.0</th><th>15.0</th></tr>
-              <tr><td>유량 (L/min)</td><td>198.5</td><td>273.0</td><td>329.0</td><td>375.5</td><td>452.5</td><td>572.4</td><td>668.2</td><td>787.3</td><td>856.2</td><td>948.8</td></tr>
-            </table>
-          </div>
-          <div class="diag-label" style="margin-top:12px;">▶ Fulljet Wide / Wide Square / Wide Angle 계열 (예: Q₁=6.2 L/min @ 1 kgf/cm²)</div>
-          <div class="scroll-x">
-            <table class="compact-table">
-              <tr><th>압력 (kgf/cm²)</th><th>0.5</th><th>1.0</th><th>1.5</th><th>2.0</th><th>3.0</th><th>5.0</th><th>7.0</th><th>10.0</th><th>12.0</th><th>15.0</th></tr>
-              <tr><td>유량 (L/min)</td><td>4.57</td><td>6.20</td><td>7.41</td><td>8.41</td><td>10.05</td><td>12.59</td><td>14.60</td><td>17.08</td><td>18.50</td><td>20.41</td></tr>
-            </table>
-          </div>
-          <div style="font-size:10px;color:var(--text2);margin-top:8px;">
-            ※ 위 표는 엑셀 원본 성능 데이터 참조값입니다. 비중 보정: Q_liquid = Q_water / √SG
-          </div>
-        </div>
-      </div>
 
 
       
@@ -3013,21 +3409,6 @@ Zx = h × b² / 6  (약축)  &nbsp;[cm³]</div>
         </div>
 
         <!-- 단면 형상별 I,Z 참조표 -->
-        <div class="calc-section">
-          <div class="section-title">📋 단면 형상별 I · Z 공식 참조표</div>
-          <div class="section-body">
-            <table class="compact-table">
-              <tr><th>단면 형상</th><th>단면2차모멘트 I [cm⁴]</th><th>단면계수 Z [cm³]</th><th>비고</th></tr>
-              <tr><td>사각형 (b×h)</td><td>b·h³ / 12</td><td>b·h² / 6</td><td>강축 (h 방향)</td></tr>
-              <tr><td>사각형 (b×h) 약축</td><td>h·b³ / 12</td><td>h·b² / 6</td><td>약축 (b 방향)</td></tr>
-              <tr><td>원형 (직경 D)</td><td>π·D⁴ / 64</td><td>π·D³ / 32</td><td>—</td></tr>
-              <tr><td>중공원형 (D₂,D₁)</td><td>π(D₂⁴−D₁⁴) / 64</td><td>I / (D₂/2)</td><td>D₂=외경, D₁=내경</td></tr>
-              <tr><td>원형 (극, 비틀림)</td><td>Ip = π·D⁴ / 32</td><td>Zp = π·D³ / 16</td><td>극단면계수</td></tr>
-              <tr><td>삼각형 (b×h)</td><td>b·h³ / 36</td><td>b·h² / 24</td><td>무게중심축 기준</td></tr>
-              <tr><td>중공사각 (B×H, b×h)</td><td>(B·H³ − b·h³) / 12</td><td>I / (H/2)</td><td>외형 B×H, 내형 b×h</td></tr>
-            </table>
-          </div>
-        </div>
       </div>
 
       <!-- ② 원형·중공원형 단면 -->
@@ -3463,7 +3844,6 @@ function swapUnit(cat) {
 }
 
 // 초기화
-window.addEventListener('DOMContentLoaded', ()=>{ calcUnit('pressure'); });
 
 
 // ========== P2: AIR 배관 ==========
@@ -4084,6 +4464,391 @@ function buildSprayTable() {
   h += '</tbody>';
   document.getElementById('spray_ref_table').innerHTML = h;
 }
+
+
+// ══════════ Firebase 초기화 ══════════
+const firebaseConfig = {
+  apiKey: "AIzaSyA0FW5bjWOtm3kZESpFGXTLosOa1UCjO4s",
+  authDomain: "nozzle-calc.firebaseapp.com",
+  projectId: "nozzle-calc",
+  storageBucket: "nozzle-calc.firebasestorage.app",
+  messagingSenderId: "823973346627",
+  appId: "1:823973346627:web:f81b71f84f7be4b82c43f6"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// 기본 관리자 계정 (DB에 없을 경우 자동 생성됨)
+const DEFAULT_ADMIN = { email: 'ycjung@spray.co.kr', pw: 'Spray2024!', name: '정유찬', role: 'admin' };
+
+// ══════════ 계정 DB (Firestore) ══════════
+async function liGetAllAccounts() {
+  const snap = await db.collection('accounts').get();
+  const accounts = {};
+  snap.forEach(doc => { accounts[doc.id] = doc.data(); });
+  // 관리자 기본 계정이 없으면 자동 생성
+  if (!accounts[DEFAULT_ADMIN.email]) {
+    const { email, ...data } = DEFAULT_ADMIN;
+    await db.collection('accounts').doc(email).set(data);
+    accounts[email] = data;
+  }
+  return accounts;
+}
+
+async function liSetAccount(email, data) {
+  await db.collection('accounts').doc(email).set(data);
+}
+async function liDeleteAccount(email) {
+  await db.collection('accounts').doc(email).delete();
+}
+
+// ══════════ 가입 요청 DB (Firestore) ══════════
+async function liGetPending() {
+  const snap = await db.collection('pendingRequests').get();
+  const pending = {};
+  snap.forEach(doc => { pending[doc.id] = doc.data(); });
+  return pending;
+}
+async function liAddPending(email, data) {
+  await db.collection('pendingRequests').doc(email).set(data);
+}
+async function liDeletePending(email) {
+  await db.collection('pendingRequests').doc(email).delete();
+}
+
+// ══════════ 로그인 ══════════
+function liInit() {
+  // 자동 로그인 (로컬에 저장된 세션 정보)
+  const autoSaved = localStorage.getItem('li_auto');
+  const sessSaved = sessionStorage.getItem('li_user');
+  const saved = autoSaved || sessSaved;
+
+  if (saved) {
+    try {
+      const u = JSON.parse(saved);
+      liGetAllAccounts().then(accounts => {
+        if (accounts[u.email] && accounts[u.email].pw === u.pw) {
+          liShowApp(u);
+        } else {
+          liShowLogin();
+        }
+      });
+      return;
+    } catch(e) {}
+  }
+  liShowLogin();
+}
+
+function liShowLogin() {
+  const remEmail = localStorage.getItem('li_email');
+  if (remEmail) {
+    document.getElementById('li-email').value = remEmail;
+    document.getElementById('li-remember').checked = true;
+  }
+  const autoOn = localStorage.getItem('li_autologin') === '1';
+  if (autoOn) document.getElementById('li-autologin').checked = true;
+  document.getElementById('login-overlay').classList.remove('hidden');
+}
+
+async function liLogin() {
+  const email    = document.getElementById('li-email').value.trim().toLowerCase();
+  const pw       = document.getElementById('li-pw').value;
+  const rem      = document.getElementById('li-remember').checked;
+  const autoOn   = document.getElementById('li-autologin').checked;
+  const btn = document.querySelector('.login-btn');
+  btn.textContent = '확인 중...'; btn.disabled = true;
+
+  try {
+    const accounts = await liGetAllAccounts();
+    const acc = accounts[email];
+    if (!acc)          { liError('등록되지 않은 계정입니다.'); return; }
+    if (acc.pw !== pw) { liError('비밀번호가 올바르지 않습니다.'); return; }
+
+    if (rem) localStorage.setItem('li_email', email);
+    else     localStorage.removeItem('li_email');
+
+    if (autoOn) localStorage.setItem('li_autologin', '1');
+    else        localStorage.removeItem('li_autologin');
+
+    const userData = JSON.stringify({ email, pw, name: acc.name, role: acc.role });
+    sessionStorage.setItem('li_user', userData);
+    if (autoOn) localStorage.setItem('li_auto', userData);
+    else        localStorage.removeItem('li_auto');
+
+    liShowApp({ email, name: acc.name, role: acc.role, pw });
+  } catch(e) {
+    liError('접속 중 오류가 발생했습니다. 인터넷 연결을 확인하세요.');
+    console.error(e);
+  } finally {
+    btn.textContent = '로그인'; btn.disabled = false;
+  }
+}
+
+function liShowApp(user) {
+  document.getElementById('login-overlay').classList.add('hidden');
+  const badge = document.querySelector('.badge');
+  if (badge) {
+    const adminBtn = user.role === 'admin'
+      ? `<span style="cursor:pointer;font-size:11px;margin-left:8px;
+           background:var(--blue-pale);border:1px solid var(--border);
+           padding:2px 8px;border-radius:8px;color:var(--blue-dark);font-weight:700;"
+           onclick="adminOpen()">⚙️ 관리</span>`
+      : '';
+    badge.innerHTML = `<span style="font-size:12px;font-weight:700;">👤 ${user.name}</span>
+      ${adminBtn}
+      <span style="cursor:pointer;font-size:11px;margin-left:8px;
+        background:var(--blue-pale);border:1px solid var(--border);
+        padding:2px 8px;border-radius:8px;color:var(--blue-dark);font-weight:700;"
+        onclick="pwOpen()">🔑 비밀번호 변경</span>
+      <span style="cursor:pointer;font-size:11px;opacity:0.7;margin-left:6px;"
+        onclick="liLogout()">로그아웃</span>`;
+  }
+  window._currentUser = user;
+}
+
+function liLogout() {
+  sessionStorage.removeItem('li_user');
+  localStorage.removeItem('li_auto');
+  document.getElementById('li-pw').value = '';
+  document.getElementById('li-error').textContent = '';
+  document.getElementById('login-overlay').classList.remove('hidden');
+}
+
+function liError(msg) {
+  document.getElementById('li-error').textContent = msg;
+}
+function liClear() {
+  document.getElementById('li-error').textContent = '';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  liInit();
+  calcUnit('pressure');
+});
+
+
+// ══════════ 관리자 — 계정 관리 ══════════
+
+function adminOpen() {
+  if (!window._currentUser || window._currentUser.role !== 'admin') return;
+  adminRenderPending();
+  adminRenderList();
+  document.getElementById('admin-overlay').classList.remove('hidden');
+}
+function adminClose() {
+  document.getElementById('admin-overlay').classList.add('hidden');
+  document.getElementById('adm-msg').textContent = '';
+}
+
+async function adminRenderList() {
+  const el = document.getElementById('admin-user-list');
+  el.innerHTML = '<div style="text-align:center;color:var(--text3);padding:14px;font-size:12px;">불러오는 중...</div>';
+  const accounts = await liGetAllAccounts();
+  el.innerHTML = Object.entries(accounts).map(([email, acc]) => {
+    const isDefault = email === DEFAULT_ADMIN.email;
+    return `<div class="admin-user-item">
+      <div class="aui-info">
+        <div class="aui-email">${email}</div>
+        <div class="aui-name">${acc.name}</div>
+      </div>
+      <span class="aui-role ${acc.role}">${acc.role === 'admin' ? '관리자' : '사용자'}</span>
+      ${!isDefault
+        ? `<button class="aui-del" onclick="adminDelUser('${email}')">삭제</button>`
+        : `<span style="font-size:10px;color:var(--text3);padding:4px 8px;">기본</span>`}
+    </div>`;
+  }).join('');
+}
+
+async function adminAddUser() {
+  const email = document.getElementById('adm-email').value.trim().toLowerCase();
+  const name  = document.getElementById('adm-name').value.trim();
+  const pw    = document.getElementById('adm-pw').value;
+  const role  = document.getElementById('adm-role').value;
+  const msg   = document.getElementById('adm-msg');
+
+  if (!email || !name || !pw) {
+    msg.className = 'admin-msg err'; msg.textContent = '모든 항목을 입력하세요.'; return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    msg.className = 'admin-msg err'; msg.textContent = '유효한 이메일 형식이 아닙니다.'; return;
+  }
+
+  msg.className = 'admin-msg'; msg.textContent = '추가 중...';
+  const all = await liGetAllAccounts();
+  if (all[email]) {
+    msg.className = 'admin-msg err'; msg.textContent = '이미 등록된 이메일입니다.'; return;
+  }
+
+  await liSetAccount(email, { pw, name, role });
+
+  ['adm-email','adm-name','adm-pw'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('adm-role').value = 'user';
+
+  msg.className = 'admin-msg ok';
+  msg.textContent = `✅ ${name} (${email}) 계정이 추가되었습니다.`;
+  adminRenderList();
+}
+
+async function adminDelUser(email) {
+  if (!confirm(`'${email}' 계정을 삭제하시겠습니까?`)) return;
+  await liDeleteAccount(email);
+  adminRenderList();
+  document.getElementById('adm-msg').className = 'admin-msg ok';
+  document.getElementById('adm-msg').textContent = `삭제되었습니다.`;
+}
+
+
+// ══════════ 가입 요청 ══════════
+
+function reqOpen() {
+  document.getElementById('req-overlay').classList.remove('hidden');
+  document.getElementById('req-msg').textContent = '';
+}
+function reqClose() {
+  document.getElementById('req-overlay').classList.add('hidden');
+}
+
+async function reqSubmit() {
+  const name  = document.getElementById('req-name').value.trim();
+  const email = document.getElementById('req-email').value.trim().toLowerCase();
+  const dept  = document.getElementById('req-dept').value.trim();
+  const msg   = document.getElementById('req-msg');
+
+  if (!name || !email || !dept) {
+    msg.style.color='#c0392b'; msg.textContent='모든 항목을 입력하세요.'; return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    msg.style.color='#c0392b'; msg.textContent='이메일 형식을 확인해주세요.'; return;
+  }
+
+  msg.style.color='#888'; msg.textContent='확인 중...';
+
+  const all = await liGetAllAccounts();
+  if (all[email]) {
+    msg.style.color='#c0392b'; msg.textContent='이미 등록된 이메일입니다.'; return;
+  }
+  const pending = await liGetPending();
+  if (pending[email]) {
+    msg.style.color='#d4830a'; msg.textContent='이미 요청이 접수되었습니다. 관리자 승인을 기다려 주세요.'; return;
+  }
+
+  await liAddPending(email, { name, dept, requestedAt: new Date().toLocaleDateString('ko-KR') });
+
+  msg.style.color='#1a7a40';
+  msg.textContent='✅ 요청이 접수되었습니다. 관리자 승인 후 이용 가능합니다.';
+  setTimeout(() => { reqClose(); }, 2200);
+}
+
+// 관리자 화면 — 대기 목록 렌더링
+async function adminRenderPending() {
+  const wrap = document.getElementById('admin-pending-wrap');
+  const list = document.getElementById('admin-pending-list');
+  const pending = await liGetPending();
+  const keys = Object.keys(pending);
+  if (keys.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  list.innerHTML = keys.map(email => {
+    const r = pending[email];
+    return `<div style="
+      display:flex;align-items:center;gap:10px;
+      padding:10px 14px;border:1.5px solid #f5c97a;
+      border-radius:8px;margin-bottom:8px;background:#fffbf0;">
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:700;color:#5a3e00;">${r.name}</div>
+        <div style="font-size:11px;color:#888;">${email} &nbsp;|&nbsp; ${r.dept}</div>
+        <div style="font-size:10px;color:#aaa;margin-top:1px;">요청일: ${r.requestedAt}</div>
+      </div>
+      <button onclick="adminApprove('${email}')" style="
+        background:#1a7a40;color:#fff;border:none;
+        border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;
+        cursor:pointer;">승인</button>
+      <button onclick="adminReject('${email}')" style="
+        background:none;color:#c0392b;border:1px solid #e0b0b0;
+        border-radius:6px;padding:6px 10px;font-size:12px;font-weight:700;
+        cursor:pointer;">거절</button>
+    </div>`;
+  }).join('');
+}
+
+// 승인 — 비밀번호 설정 후 계정 활성화
+async function adminApprove(email) {
+  const pending = await liGetPending();
+  const req = pending[email];
+  if (!req) return;
+
+  const pw = prompt(`[${req.name}] 초기 비밀번호를 설정하세요:`, '');
+  if (!pw) return;
+
+  await liSetAccount(email, { pw, name: req.name, role: 'user' });
+  await liDeletePending(email);
+
+  adminRenderPending();
+  adminRenderList();
+
+  document.getElementById('adm-msg').className = 'admin-msg ok';
+  document.getElementById('adm-msg').textContent =
+    `✅ ${req.name} (${email}) 승인 완료. 초기 비밀번호: ${pw}`;
+}
+
+// 거절
+async function adminReject(email) {
+  const pending = await liGetPending();
+  const req = pending[email];
+  if (!confirm(`'${req?.name || email}' 요청을 거절하시겠습니까?`)) return;
+  await liDeletePending(email);
+  adminRenderPending();
+}
+
+
+// ══════════ 비밀번호 변경 ══════════
+function pwOpen() {
+  if (!window._currentUser) return;
+  document.getElementById('pw-account-label').textContent = window._currentUser.email;
+  document.getElementById('pw-old').value  = '';
+  document.getElementById('pw-new1').value = '';
+  document.getElementById('pw-new2').value = '';
+  document.getElementById('pw-msg').textContent = '';
+  document.getElementById('pw-overlay').classList.remove('hidden');
+}
+function pwClose() {
+  document.getElementById('pw-overlay').classList.add('hidden');
+}
+
+async function pwSubmit() {
+  const oldPw = document.getElementById('pw-old').value;
+  const new1  = document.getElementById('pw-new1').value;
+  const new2  = document.getElementById('pw-new2').value;
+  const msg   = document.getElementById('pw-msg');
+  const email = window._currentUser.email;
+
+  const accounts = await liGetAllAccounts();
+  const acc = accounts[email];
+
+  if (acc.pw !== oldPw) {
+    msg.style.color='#c0392b'; msg.textContent='현재 비밀번호가 일치하지 않습니다.'; return;
+  }
+  if (!new1 || new1.length < 4) {
+    msg.style.color='#c0392b'; msg.textContent='새 비밀번호는 4자 이상이어야 합니다.'; return;
+  }
+  if (new1 !== new2) {
+    msg.style.color='#c0392b'; msg.textContent='새 비밀번호가 일치하지 않습니다.'; return;
+  }
+  if (new1 === oldPw) {
+    msg.style.color='#c0392b'; msg.textContent='기존 비밀번호와 동일합니다.'; return;
+  }
+
+  await liSetAccount(email, { pw: new1, name: acc.name, role: acc.role });
+
+  window._currentUser.pw = new1;
+  const userData = JSON.stringify({ email, pw: new1, name: acc.name, role: acc.role });
+  sessionStorage.setItem('li_user', userData);
+  if (localStorage.getItem('li_auto')) localStorage.setItem('li_auto', userData);
+
+  msg.style.color='#1a7a40';
+  msg.textContent='✅ 비밀번호가 변경되었습니다.';
+  setTimeout(() => { pwClose(); }, 1200);
+}
+
 
 // ========== INIT ==========
 // unit init handled by DOMContentLoaded above
