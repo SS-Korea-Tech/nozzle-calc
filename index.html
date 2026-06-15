@@ -291,20 +291,21 @@
   .field select option { background: var(--surface); }
 
   /* RESULT */
-  .result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+  .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, max-content)); gap: 10px; margin-top: 16px; }
 
   .result-card {
     background: var(--result-bg);
     border: 1px solid var(--border);
     border-top: 3px solid var(--blue-primary);
     border-radius: var(--radius-sm);
-    padding: 12px 14px;
+    padding: 10px 14px;
     position: relative;
     transition: box-shadow 0.12s;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
-    min-height: 76px;
+    text-align: left;
   }
 
   .result-card::before {
@@ -319,9 +320,13 @@
     font-size: 12px;
     color: var(--text2);
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     margin-bottom: 6px;
     text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .result-value {
@@ -337,6 +342,9 @@
     color: var(--accent);
     margin-top: 4px;
     font-family: 'JetBrains Mono', monospace;
+    white-space: normal;
+    word-break: keep-all;
+    max-width: 100%;
   }
 
   /* CALC BTN */
@@ -3226,11 +3234,17 @@
             <div></div>
           </div>
           <button class="calc-btn" onclick="calcNozzlePitch()">⚡ 계산하기</button>
-          <div class="result-grid" id="nz_pitch_result" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))"></div>
+          <div class="result-grid" id="nz_pitch_result" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr))"></div>
 
           <!-- 계산 결과 도면 (동적, 계산값 바로 아래) -->
           <div class="diag-label" style="margin-top:18px;">▶ 정면도 — 분사 거리(H) · 분사 범위(A,B) · 중첩(C)</div>
           <div id="nz_front_svg" style="margin:8px auto;max-width:560px;"></div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;font-size:11px;color:#333;margin-top:6px;">
+            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:14px;height:0;border-top:1.5px dashed #90caf9;"></span>A (이론, 점선)</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:12px;background:rgba(0,107,177,0.10);border:1px solid #006bb1;"></span>B (실제, 노즐1)</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:12px;background:rgba(230,126,34,0.10);border:1px solid #e67e22;"></span>B (실제, 노즐2)</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;"><span style="display:inline-block;width:12px;height:10px;background:rgba(192,57,43,0.35);"></span>C (중첩 영역)</span>
+          </div>
 
           <div class="diag-label" style="margin-top:18px;">▶ 평면도 — 노즐 배치 · 피치(F) · 전체 커버범위(E)</div>
           <div id="nz_plan_svg" style="margin:8px auto;max-width:680px;"></div>
@@ -3296,7 +3310,7 @@
             </div>
           </div>
           <button class="calc-btn" onclick="calcAirFlow()">⚡ 계산하기</button>
-          <div class="result-grid" id="air_flow_result" style="grid-template-columns: minmax(220px, 320px); justify-content:center;"></div>
+          <div class="result-grid" id="air_flow_result"></div>
         </div>
       </div>
 
@@ -4254,11 +4268,13 @@ function calcParallel() {
 
 
 
-// 최근 계산 기록 (메모리 내 휘발성)
-const rpRecent = [];
+// 최근 계산 기록 — 로그인 사용자별 Firestore에 영구 저장
+let rpRecent = [];
+
 function rpAddRecent(title, value, unit) {
   if (!value || value === '—') return;
   const time = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+  const dateStr = new Date().toLocaleDateString('ko-KR',{month:'2-digit',day:'2-digit'});
 
   // 현재 활성 패널 + 탭
   const activePanel = document.querySelector('.panel.active');
@@ -4270,13 +4286,41 @@ function rpAddRecent(title, value, unit) {
     activePanel.querySelectorAll('input[id], select[id]').forEach(el => {
       snapshot[el.id] = el.value;
     });
-    // 활성 탭패널도 기록 (calc-section 안 tab-panel active)
     const activeTab = activePanel.querySelector('.tab-panel.active');
     snapshot._activeTab = activeTab ? activeTab.id : '';
   }
 
-  rpRecent.unshift({time, panel, title, value, unit, snapshot});
+  const record = {time, date: dateStr, panel, title, value, unit, snapshot, ts: Date.now()};
+  rpRecent.unshift(record);
   if (rpRecent.length > 20) rpRecent.pop();
+  rpRenderRecent();
+  rpSaveToCloud();
+}
+
+// Firestore에 현재 기록 목록 저장 (디바운스)
+let _rpSaveTimer = null;
+function rpSaveToCloud() {
+  if (!window._currentUser) return;
+  clearTimeout(_rpSaveTimer);
+  _rpSaveTimer = setTimeout(async () => {
+    try {
+      const email = window._currentUser.email;
+      await db.collection('history').doc(email).set({ records: rpRecent });
+    } catch(e) { console.error('기록 저장 실패', e); }
+  }, 400);
+}
+
+// Firestore에서 현재 사용자의 기록 불러오기
+async function rpLoadFromCloud() {
+  if (!window._currentUser) return;
+  try {
+    const email = window._currentUser.email;
+    const doc = await db.collection('history').doc(email).get();
+    rpRecent = (doc.exists && doc.data().records) ? doc.data().records : [];
+  } catch(e) {
+    console.error('기록 불러오기 실패', e);
+    rpRecent = [];
+  }
   rpRenderRecent();
 }
 function rpRenderRecent() {
@@ -4349,6 +4393,7 @@ function rpRestoreRecord(idx) {
 function rpClearRecent() {
   rpRecent.length = 0;
   rpRenderRecent();
+  rpSaveToCloud();
 }
 
 // showResults 후킹 — 첫 번째 결과를 자동으로 최근 기록에 추가
@@ -4584,7 +4629,7 @@ function calcNozzlePitch() {
     {label:'이론 분사폭 A', value:fmt(A_theor, 1), unit:'mm'},
     {label:'실제 분사폭 B', value:fmt(B_actual, 1), unit:'mm'},
     {label:'중첩 치수 C',   value:fmt(C_overlap, 1), unit:'mm'},
-    {label:'권장 피치',     value:fmt(pitch_calc, 1), unit:`mm (OVERLAP ${ov}% 기준)`},
+    {label:'권장 피치',     value:fmt(pitch_calc, 1), unit:`mm (OV${ov}%)`},
     {label:'노즐 수량',     value:String(cnt), unit:'EA'},
     {label:'설계 피치',     value:fmt(fp), unit:'mm'},
     {label:'총 커버 범위',  value:fmt(G, 1), unit:'mm'},
@@ -4830,6 +4875,7 @@ function liShowApp(user) {
       </div>`;
   }
   window._currentUser = user;
+  rpLoadFromCloud();
 }
 
 function userMenuToggle() {
@@ -5111,12 +5157,12 @@ function drawNozzleDiagrams(d) {
 // 정면도: 분사거리(H), 분사범위(A/B), 중첩(C)
 function drawNozzleFront(d, targetId) {
   targetId = targetId || 'nz_front_svg';
-  const W = 640, H_svg = 440;
+  const W = 640, H_svg = 350;
   const nozzleY = 60;
   const planeY  = 220;
 
-  // 두 노즐(피치 F)의 분사삼각형이 화면에 들어오도록 스케일 — A(이론)가 가장 큼
-  const totalMM = d.fp + d.A_theor;
+  // 스케일 기준: 두 노즐 사이 거리(F) + 양쪽 분사폭(A) 절반씩 — 항상 전체가 보이도록
+  const totalMM = Math.max(d.fp + d.A_theor, d.A_theor * 1.6);
   const scale = (W - 140) / totalMM;
 
   const bPx  = d.B_actual * scale;
@@ -5128,37 +5174,41 @@ function drawNozzleFront(d, targetId) {
   const n1x = W/2 - fpPx/2;
   const n2x = W/2 + fpPx/2;
 
-  // 두 분사삼각형(B 기준)의 교차점 (중첩 영역 꼭짓점)
-  const t = fpPx / bPx;             // 0~1: 1보다 작으면 겹침 발생
-  const overlap = t < 1;
-  const yCross = nozzleY + t * (planeY - nozzleY);
-  const xCross = n1x + halfB * t;
+  // 실제 중첩폭 (mm) = max(0, B - F) — 결과 카드와 동일한 정의
+  const overlapMM = Math.max(0, d.B_actual - d.fp);
+  const overlap = overlapMM > 0;
+  const overlapPx = overlapMM * scale;
 
-  const overlapPoly = overlap
-    ? `<polygon points="${xCross},${yCross} ${n2x-halfB},${planeY} ${n1x+halfB},${planeY}"
-         fill="rgba(192,57,43,0.35)"/>`
-    : '';
+  // 중첩 영역 polygon: 노즐1 우측변 ∩ 노즐2 좌측변의 교차점부터 바닥까지
+  // F < B 이면 항상 두 변이 교차함 (t = F/B)
+  let overlapPoly = '';
+  if (overlap) {
+    const t = fpPx / bPx; // 0~1
+    const yCross = nozzleY + Math.min(t, 1) * (planeY - nozzleY);
+    const xCross = n1x + halfB * Math.min(t, 1);
+    overlapPoly = `<polygon points="${xCross},${yCross} ${n2x-halfB},${planeY} ${n1x+halfB},${planeY}"
+         fill="rgba(192,57,43,0.35)"/>`;
+  }
 
   // ── 치수선 Y좌표 (피도물 아래쪽으로 차곡차곡 배치) ──
   const productBottom = planeY + 14;
   const yB = productBottom + 22;   // B 치수선
-  const yA = yB + 32;              // A 치수선 (그 아래)
-  const yC = yA + 36;              // C 치수선 (가장 아래)
+  const yA = yB + 32;              // A 치수선
+  const yC = yA + 36;              // C 치수선
 
-  // H 치수선의 정확한 중앙 (nozzleY ~ planeY)
+  // H 치수선의 정확한 중앙
   const hMidY = (nozzleY + planeY) / 2;
 
+  // 좌측 한계선(피도물/도형 가장 왼쪽 끝)
+  const leftMost = Math.min(n1x - halfA, n1x - halfB, n2x - halfB);
+  const rightMost = Math.max(n2x + halfB, n1x + halfA, n1x + halfB);
+
   const svg = `
-<svg viewBox="-40 0 ${W+50} ${H_svg}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:#fbfdff;border:1px solid #c8dcea;border-radius:8px;">
+<svg viewBox="${leftMost-90} 0 ${rightMost-leftMost+120} ${H_svg}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:#fbfdff;border:1px solid #c8dcea;border-radius:8px;">
 
   <!-- 헤더 파이프 -->
-  <line x1="${n1x-50}" y1="${nozzleY-18}" x2="${n2x+50}" y2="${nozzleY-18}" stroke="#90a4ae" stroke-width="5"/>
-  <text x="${n1x-50}" y="${nozzleY-26}" font-size="10" fill="#888">HEADER</text>
-
-  <!-- 노즐 1·2 -->
-  <rect x="${n1x-7}" y="${nozzleY-9}" width="14" height="14" fill="#5a6b7a" rx="2"/>
-  <rect x="${n2x-7}" y="${nozzleY-9}" width="14" height="14" fill="#5a6b7a" rx="2"/>
-  <text x="${n1x}" y="${nozzleY+22}" text-anchor="middle" font-size="9" fill="#888">θ=${Math.round(d.ang)}°</text>
+  <line x1="${leftMost-20}" y1="${nozzleY-18}" x2="${rightMost+20}" y2="${nozzleY-18}" stroke="#90a4ae" stroke-width="5"/>
+  <text x="${leftMost-20}" y="${nozzleY-26}" font-size="10" fill="#888">HEADER</text>
 
   <!-- A(이론 분사폭) — 노즐1 점선 삼각형 -->
   <polygon points="${n1x},${nozzleY} ${n1x-halfA},${planeY} ${n1x+halfA},${planeY}"
@@ -5172,17 +5222,22 @@ function drawNozzleFront(d, targetId) {
 
   ${overlapPoly}
 
+  <!-- 노즐 1·2 (분사영역 위에 그려서 항상 보이도록) -->
+  <rect x="${n1x-7}" y="${nozzleY-9}" width="14" height="14" fill="#5a6b7a" rx="2"/>
+  <rect x="${n2x-7}" y="${nozzleY-9}" width="14" height="14" fill="#5a6b7a" rx="2"/>
+  <text x="${n1x}" y="${nozzleY+22}" text-anchor="middle" font-size="9" fill="#888">θ=${Math.round(d.ang)}°</text>
+
   <!-- 피도물 -->
-  <rect x="${n1x-halfA-15}" y="${planeY}" width="${(n2x+halfB)-(n1x-halfA)+30}" height="14" fill="#cfd8dc" stroke="#90a4ae"/>
-  <text x="${(n1x+n2x)/2}" y="${planeY+10}" text-anchor="middle" font-size="10" fill="#546e7a">피도물 (PRODUCT)</text>
+  <rect x="${leftMost-10}" y="${planeY}" width="${rightMost-leftMost+20}" height="14" fill="#cfd8dc" stroke="#90a4ae"/>
+  <text x="${(leftMost+rightMost)/2}" y="${planeY+10}" text-anchor="middle" font-size="10" fill="#546e7a">피도물 (PRODUCT)</text>
 
   <!-- H 치수선 (좌측, 치수선 전체 높이의 정확한 중앙에 라벨) -->
-  <line x1="${n1x-halfA-35}" y1="${nozzleY}" x2="${n1x-halfA-35}" y2="${planeY}" stroke="#c0392b" stroke-width="1"/>
-  <line x1="${n1x-halfA-40}" y1="${nozzleY}" x2="${n1x-halfA-30}" y2="${nozzleY}" stroke="#c0392b" stroke-width="1"/>
-  <line x1="${n1x-halfA-40}" y1="${planeY}" x2="${n1x-halfA-30}" y2="${planeY}" stroke="#c0392b" stroke-width="1"/>
-  <rect x="${n1x-halfA-70}" y="${hMidY-16}" width="32" height="28" fill="#fbfdff" opacity="0.92"/>
-  <text x="${n1x-halfA-44}" y="${hMidY-2}" text-anchor="end" font-size="12" font-weight="700" fill="#c0392b">H</text>
-  <text x="${n1x-halfA-44}" y="${hMidY+12}" text-anchor="end" font-size="10" fill="#c0392b">${Math.round(d.H)}</text>
+  <line x1="${leftMost-35}" y1="${nozzleY}" x2="${leftMost-35}" y2="${planeY}" stroke="#c0392b" stroke-width="1"/>
+  <line x1="${leftMost-40}" y1="${nozzleY}" x2="${leftMost-30}" y2="${nozzleY}" stroke="#c0392b" stroke-width="1"/>
+  <line x1="${leftMost-40}" y1="${planeY}" x2="${leftMost-30}" y2="${planeY}" stroke="#c0392b" stroke-width="1"/>
+  <rect x="${leftMost-72}" y="${hMidY-16}" width="34" height="28" fill="#fbfdff" opacity="0.92"/>
+  <text x="${leftMost-44}" y="${hMidY-2}" text-anchor="end" font-size="12" font-weight="700" fill="#c0392b">H</text>
+  <text x="${leftMost-44}" y="${hMidY+12}" text-anchor="end" font-size="10" fill="#c0392b">${Math.round(d.H)}</text>
 
   <!-- F(피치) 치수선 (노즐 사이, 상단) -->
   <line x1="${n1x}" y1="${nozzleY-36}" x2="${n2x}" y2="${nozzleY-36}" stroke="#1a7a40" stroke-width="1.5"/>
@@ -5204,25 +5259,14 @@ function drawNozzleFront(d, targetId) {
 
   <!-- C 중첩 치수선 (가장 아래, 세번째) -->
   ${overlap ? `
-  <line x1="${n2x-halfB}" y1="${yC}" x2="${n1x+halfB}" y2="${yC}" stroke="#c0392b" stroke-width="1.5"/>
-  <line x1="${n2x-halfB}" y1="${yC-5}" x2="${n2x-halfB}" y2="${yC+5}" stroke="#c0392b" stroke-width="1.5"/>
+  <line x1="${n1x+halfB-overlapPx}" y1="${yC}" x2="${n1x+halfB}" y2="${yC}" stroke="#c0392b" stroke-width="1.5"/>
+  <line x1="${n1x+halfB-overlapPx}" y1="${yC-5}" x2="${n1x+halfB-overlapPx}" y2="${yC+5}" stroke="#c0392b" stroke-width="1.5"/>
   <line x1="${n1x+halfB}" y1="${yC-5}" x2="${n1x+halfB}" y2="${yC+5}" stroke="#c0392b" stroke-width="1.5"/>
-  <text x="${(n1x+n2x)/2}" y="${yC+17}" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">C (중첩) = ${fmt((n1x+halfB-(n2x-halfB))/scale,1)} mm</text>
+  <text x="${n1x+halfB-overlapPx/2}" y="${yC+17}" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">C (중첩) = ${fmt(overlapMM,1)} mm</text>
   ` : `
   <text x="${(n1x+n2x)/2}" y="${yC+5}" text-anchor="middle" font-size="11" fill="#888">중첩 없음 (인접 분사영역 미접촉)</text>
   `}
 
-  <!-- 범례 -->
-  <g transform="translate(${W-150}, 8)">
-    <line x1="0" y1="6" x2="14" y2="6" stroke="#90caf9" stroke-width="1.5" stroke-dasharray="5,4"/>
-    <text x="18" y="10" font-size="9" fill="#333">A (이론, 점선)</text>
-    <rect x="0" y="16" width="12" height="12" fill="rgba(0,107,177,0.10)" stroke="#006bb1"/>
-    <text x="18" y="26" font-size="9" fill="#333">B (실제, 노즐1)</text>
-    <rect x="0" y="32" width="12" height="12" fill="rgba(230,126,34,0.10)" stroke="#e67e22"/>
-    <text x="18" y="42" font-size="9" fill="#333">B (실제, 노즐2)</text>
-    <rect x="0" y="48" width="12" height="10" fill="rgba(192,57,43,0.35)"/>
-    <text x="18" y="57" font-size="9" fill="#333">C (중첩 영역)</text>
-  </g>
 </svg>`;
 
   document.getElementById(targetId).innerHTML = svg;
