@@ -4340,7 +4340,7 @@ function rpRenderRecent() {
     `<div class="rp-recent-item" onclick="rpRestoreRecord(${idx})" title="클릭하면 해당 섹션으로 이동합니다">
       <div class="rpi-meta">
         <span class="rpi-section">${sectionNames[r.panel]||r.panel||'—'}</span>
-        <span class="rpi-time">${r.time}</span>
+        <span class="rpi-time">${r.date||''} ${r.time}</span>
       </div>
       <div class="rpi-title">${r.title}</div>
       <div class="rpi-val">${r.value}<span class="rpi-unit">${r.unit||''}</span></div>
