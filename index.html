@@ -1032,6 +1032,34 @@
       overflow: hidden;
     }
   }
+
+  /* 모바일 도움말 패널 (최근 결과와 동일 패턴) */
+  .mobile-help-wrap {
+    display: none;  /* 데스크탑: 숨김 */
+  }
+  @media (max-width: 1000px) {
+    .mobile-help-wrap {
+      display: block;
+      margin: 16px 0 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,107,177,0.06);
+    }
+    .mobile-help-body {
+      padding: 10px 14px 12px;
+      max-height: 360px;
+      overflow-y: auto;
+      transition: max-height 0.25s ease, padding 0.2s ease;
+    }
+    .mobile-help-body.collapsed {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+  }
   .nn-step-label {
     font-size: 11px; font-weight: 700; color: var(--blue-dark);
     margin-bottom: 6px; letter-spacing: 0.3px;
@@ -1647,6 +1675,34 @@
       transition: max-height 0.25s ease, padding 0.2s ease;
     }
     .mobile-recent-body.collapsed {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+  }
+
+  /* 모바일 도움말 패널 (최근 결과와 동일 패턴) */
+  .mobile-help-wrap {
+    display: none;  /* 데스크탑: 숨김 */
+  }
+  @media (max-width: 1000px) {
+    .mobile-help-wrap {
+      display: block;
+      margin: 16px 0 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,107,177,0.06);
+    }
+    .mobile-help-body {
+      padding: 10px 14px 12px;
+      max-height: 360px;
+      overflow-y: auto;
+      transition: max-height 0.25s ease, padding 0.2s ease;
+    }
+    .mobile-help-body.collapsed {
       max-height: 0;
       padding-top: 0;
       padding-bottom: 0;
@@ -3737,6 +3793,17 @@ y   : X축 → X'축 거리 [cm]</div>
     </div>
 
 
+    <!-- 모바일 전용: 도움말 (우측 패널 대신) -->
+    <div class="mobile-help-wrap" id="mobileHelpWrap">
+      <div class="mobile-recent-header">
+        <span>💡 도움말</span>
+        <button class="mobile-recent-toggle" onclick="toggleMobileHelp(this)" aria-label="펼치기">▼</button>
+      </div>
+      <div class="mobile-help-body collapsed" id="mobileHelpBody">
+        <div class="rp-empty">도움말 내용이 여기 표시됩니다</div>
+      </div>
+    </div>
+
     <!-- 모바일 전용: 최근 계산 결과 (우측 패널 대신) -->
     <div class="mobile-recent-wrap" id="mobileRecentWrap">
       <div class="mobile-recent-header">
@@ -4429,6 +4496,17 @@ function updateRPHelp(panelId) {
   document.querySelectorAll('.rp-help-item').forEach(el => el.classList.remove('active'));
   const target = document.querySelector(`.rp-help-item[data-panel="${panelId}"]`);
   if (target) target.classList.add('active');
+  // 모바일 도움말 카드에도 같은 내용 동기화
+  const mobileBody = document.getElementById('mobileHelpBody');
+  if (mobileBody && target) mobileBody.innerHTML = target.innerHTML;
+}
+
+// 모바일 도움말 카드 접기/펼치기
+function toggleMobileHelp(btn) {
+  const body = document.getElementById('mobileHelpBody');
+  const collapsed = body.classList.toggle('collapsed');
+  btn.textContent = collapsed ? '▼' : '▲';
+  btn.setAttribute('aria-label', collapsed ? '펼치기' : '접기');
 }
 
 // showPanel 에 도움말 연동 추가
