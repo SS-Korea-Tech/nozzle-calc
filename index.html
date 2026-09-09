@@ -1032,34 +1032,6 @@
       overflow: hidden;
     }
   }
-
-  /* 모바일 도움말 패널 (최근 결과와 동일 패턴) */
-  .mobile-help-wrap {
-    display: none;  /* 데스크탑: 숨김 */
-  }
-  @media (max-width: 1000px) {
-    .mobile-help-wrap {
-      display: block;
-      margin: 16px 0 0;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,107,177,0.06);
-    }
-    .mobile-help-body {
-      padding: 10px 14px 12px;
-      max-height: 360px;
-      overflow-y: auto;
-      transition: max-height 0.25s ease, padding 0.2s ease;
-    }
-    .mobile-help-body.collapsed {
-      max-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      overflow: hidden;
-    }
-  }
   .nn-step-label {
     font-size: 11px; font-weight: 700; color: var(--blue-dark);
     margin-bottom: 6px; letter-spacing: 0.3px;
@@ -1681,34 +1653,6 @@
       overflow: hidden;
     }
   }
-
-  /* 모바일 도움말 패널 (최근 결과와 동일 패턴) */
-  .mobile-help-wrap {
-    display: none;  /* 데스크탑: 숨김 */
-  }
-  @media (max-width: 1000px) {
-    .mobile-help-wrap {
-      display: block;
-      margin: 16px 0 0;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,107,177,0.06);
-    }
-    .mobile-help-body {
-      padding: 10px 14px 12px;
-      max-height: 360px;
-      overflow-y: auto;
-      transition: max-height 0.25s ease, padding 0.2s ease;
-    }
-    .mobile-help-body.collapsed {
-      max-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      overflow: hidden;
-    }
-  }
   .nn-step-label {
     font-size: 11px; font-weight: 700; color: var(--blue-dark);
     margin-bottom: 6px; letter-spacing: 0.3px;
@@ -2015,7 +1959,60 @@
 </style>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-</head>
+<style>input[aria-invalid="true"]{border:2px solid #c53030;background:#fff5f5}</style>
+<style id="ux-revision">
+/* UX revision: readable engineering workspace */
+:root{--bg:#f3f6fa;--text:#172d43;--text2:#486078;--text3:#60758a;--border:#d9e2ec;--blue-primary:#006bb1;--radius:12px}
+body{font-family:var(--font-body);font-size:16px;line-height:1.55}
+header{height:68px;padding:0 24px;border-bottom:1px solid var(--border);box-shadow:none}
+header h1{font-size:18px}header .subtitle{font-size:12px;color:#536a7f}
+.sidebar{width:248px;padding:16px 10px;background:#fff}.sidebar-section{font-size:12px;letter-spacing:0;padding:18px 12px 7px;border:0;color:#60758a}
+.nav-item{min-height:44px;border-radius:7px;margin:3px 0;padding:10px;gap:10px}.nav-label{font-size:14px;line-height:1.5}.nav-num{width:24px;height:24px;font-size:12px}.nav-item.active{background:#e9f3fc;border-left-color:#006bb1}
+.main{padding:28px;min-width:0}.main-wrap{min-width:0}.panel-title{font-size:25px}.panel-desc{font-size:14px!important;line-height:1.7}.panel-header{border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:22px}
+.calc-section{border:1px solid var(--border);border-radius:12px;box-shadow:0 3px 12px #173b5e05;overflow:hidden;margin-bottom:22px}.section-title{font-size:16px;padding:16px 20px;background:#f9fbfd;color:#233e58}.section-body{padding:22px}
+.field label,.login-field label{font-size:14px;line-height:1.5;margin-bottom:7px}.field input,.field select,.login-field input{font-family:inherit;font-size:16px!important;min-height:46px;padding:10px 12px;border:1px solid #b8c8d8;border-radius:7px;background:#fff;color:#172d43;width:100%}.field .unit{font-size:13px;color:#536a7f}
+input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outline:3px solid #78b9ec;outline-offset:2px}input[aria-invalid=true]{border-color:#b42318;background:#fff7f5}
+.calc-btn{font-size:15px;min-height:46px;padding:11px 24px;border-radius:7px;box-shadow:none;background:#006bb1}.tabs{gap:6px;flex-wrap:wrap}.tab-btn{font-size:14px;padding:11px 15px;min-height:44px}.tab-btn.active{background:#006bb1;color:white}
+.result-grid{gap:12px;margin-top:20px}.result-card{padding:18px;border:1px solid #d9e6f2;border-radius:9px;background:#f2f8fe}.result-value{font-size:27px;line-height:1.4;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.result-label{font-size:14px;color:#415b72}.result-unit{font-size:13px;color:#536a7f}.result-grid.ux-stale .result-card{opacity:.55}
+.formula-toggle-btn{font-size:13px;min-height:36px}.formula-content{font-size:14px;line-height:1.8;overflow-wrap:anywhere}.ref-table th,.ref-table td{font-size:13px;padding:10px}.rp-help-desc,.rp-help-tip,.rp-help-table{font-size:13px;line-height:1.7}.rp-help-title{font-size:15px}.rp-empty{font-size:13px}.right-panel{width:260px;background:#fff;border-left:1px solid var(--border)}
+.ux-search{width:100%;padding:11px;border:1px solid #c7d5e3;border-radius:7px;font:14px var(--font-body);background:#f7f9fc}.ux-empty{padding:14px;font-size:14px;color:#60758a}.ux-result-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;font-size:13px;color:#536a7f}.ux-result-tools button,.ux-password-toggle{border:1px solid #c4d3e1;background:#fff;color:#234e72;border-radius:6px;padding:8px 12px;cursor:pointer;font:14px var(--font-body)}.ux-result-tools button:disabled{opacity:.45;cursor:default}.ux-status{color:#936116}.ux-password-wrap{position:relative}.ux-password-wrap input{padding-right:74px}.ux-password-toggle{position:absolute;right:7px;top:7px;border:0;padding:5px 8px}.ux-caps{font-size:13px;color:#936116;margin-top:6px}
+#login-overlay{background:linear-gradient(135deg,#e9f2fa,#f6f8fb 60%,#e1edf7);padding:24px;overflow:auto;align-items:safe center}.login-box{width:440px;max-width:100%;padding:36px;border-radius:18px;border:1px solid #d8e4ef;box-shadow:0 24px 70px #163c6017}.login-title{font-size:25px;line-height:1.4;letter-spacing:-.6px}.login-sub{font-size:14px;margin-bottom:28px}.login-btn{min-height:48px;font-size:16px;border-radius:8px}.login-check{font-size:13px}.login-footer{font-size:13px;line-height:1.8}.login-error{font-size:14px;line-height:1.6}.login-field{margin-bottom:18px}.login-logo{margin-bottom:20px}
+@media(min-width:769px){.sidebar{position:sticky;top:68px;height:calc(100vh - 68px)} }
+@media(max-width:1200px){.right-panel{display:none}.main{padding:22px}.sidebar{width:230px}}
+@media(max-width:768px){header{height:60px;padding:0 14px;gap:10px}header .hd-title h1{font-size:15px}header .subtitle{display:none}.sidebar{width:280px!important;left:-300px;top:60px!important;height:calc(100dvh - 60px)!important;padding:14px 10px}.main{padding:16px!important}.panel-title{font-size:21px}.panel-desc{margin-left:0!important}.section-body{padding:16px}.section-title{padding:14px 16px}.grid2,.grid3,.grid4{grid-template-columns:1fr!important}.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.result-value{font-size:23px}.calc-btn{width:100%}.login-box{padding:26px 22px}.login-title{font-size:23px}.tab-btn{flex:1;white-space:normal}.ux-result-tools{flex-wrap:wrap}}
+@media(max-width:380px){.result-grid{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style><style id="mobile-usability-fixes">
+@media(max-width:768px){
+ header .hd-title h1{font-size:15px!important;line-height:1.4}
+ header .logo img{max-width:100px;object-fit:contain}
+ .tab-btn{font-size:14px!important;padding:10px 12px!important;min-height:44px}
+ .section-body{padding:16px!important}
+ .section-title{flex-wrap:wrap;overflow-wrap:anywhere}
+ .panel-title{overflow-wrap:anywhere}
+ .grid2>*,.grid3>*,.grid4>*,.field,.unit-conv-box{min-width:0}
+ .field select,.unit-sel{max-width:100%;font-size:16px!important;min-height:44px}
+ .unit-conv-layout{flex-direction:column;align-items:stretch;gap:12px}
+ .unit-conv-box,.unit-conv-box:first-child,.unit-conv-box:last-child{padding:0;border:0}
+ .unit-arrow-col{flex-direction:row;justify-content:center;padding:0}
+ .unit-arrow{display:none}.unit-conv-label{font-size:14px}
+ .unit-big-result,.unit-full-card .ufc-val{overflow-wrap:anywhere;min-width:0}
+ .unit-cat-bar{flex-wrap:wrap}.unit-cat-btn{min-height:44px;font-size:14px}
+ .unit-full-table{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .result-label{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.5}
+ .result-card{min-width:0}.result-unit{overflow-wrap:anywhere}
+ .scroll-x{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+ .section-body img{max-width:100%;height:auto}
+ .menu-btn,.sidebar-close button,.ux-password-toggle,.unit-swap-btn,.ux-result-tools button{min-height:44px;min-width:44px}
+ .ux-password-toggle{top:1px;right:3px}.ux-password-wrap input{min-height:48px}
+ .login-check{min-height:44px;gap:7px}.login-check input{width:18px;height:18px;flex-shrink:0}
+ #login-overlay{padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+ .login-box{margin-block:auto;flex-shrink:0}.login-field input{font-size:16px!important}
+ .sidebar{max-width:calc(100vw - 32px);padding-bottom:max(20px,env(safe-area-inset-bottom));height:calc(100vh - 60px)!important;height:calc(100dvh - 60px)!important}
+}
+@media(max-width:420px){.result-grid{grid-template-columns:minmax(0,1fr)!important}.login-title{font-size:22px}.login-box{padding:24px 18px}}
+@media(max-height:560px){#login-overlay{align-items:flex-start}.login-box{margin-block:0}}
+</style></head>
 <body>
 
 
@@ -2205,7 +2202,7 @@
     </div>
 
     <button class="login-btn" onclick="liLogin()">로그인</button>
-    <div class="login-error" id="li-error"></div>
+    <div class="login-error" id="li-error" role="alert" aria-live="polite"></div>
 
     <div style="text-align:center;margin-top:16px;">
       <button onclick="reqOpen()" style="
@@ -2230,7 +2227,7 @@
   <div class="hd-divider"></div>
   <div class="hd-title">
     <h1><span>노즐·배관</span> 통합 계산 프로그램</h1>
-    <div class="subtitle">Spraying Systems Co., Korea · 계산식 통합 Ver 1.0</div>
+    <div class="subtitle">Spraying Systems Co., Korea · 설계 계산 도구</div>
   </div>
   <div class="badge">12 계산 모듈</div>
 </header>
@@ -2255,23 +2252,23 @@
     <div class="nav-item" onclick="showPanel('p2', this)">
       <div class="nav-num">2</div>
       <span class="nav-icon">💨</span>
-      <div class="nav-label">AIR 배관 계산</div>
+      <div class="nav-label">공기 배관 계산</div>
     </div>
     <div class="nav-item" onclick="showPanel('p3', this)">
       <div class="nav-num">3</div>
       <span class="nav-icon">💧</span>
-      <div class="nav-label">WATER 배관 계산</div>
+      <div class="nav-label">물 배관 계산</div>
     </div>
     <div class="nav-item" onclick="showPanel('p4', this)">
       <div class="nav-num">4</div>
       <span class="nav-icon">⚖️</span>
-      <div class="nav-label">배관 WEIGHT 계산</div>
+      <div class="nav-label">배관 무게 계산</div>
     </div>
     <div class="sidebar-section">노즐 선정</div>
     <div class="nav-item" onclick="showPanel('p5', this)">
       <div class="nav-num">5</div>
       <span class="nav-icon">🏷️</span>
-      <div class="nav-label">Nozzle No. Maker</div>
+      <div class="nav-label">노즐 번호 선정</div>
     </div>
     <div class="nav-item" onclick="showPanel('p6', this)">
       <div class="nav-num">6</div>
@@ -2287,7 +2284,7 @@
     <div class="nav-item" onclick="showPanel('p8', this)">
       <div class="nav-num">8</div>
       <span class="nav-icon">🌬️</span>
-      <div class="nav-label">노즐 AIR 분사량</div>
+      <div class="nav-label">노즐 공기 분사량</div>
     </div>
     <div class="nav-item" onclick="showPanel('p9', this)">
       <div class="nav-num">9</div>
@@ -2599,10 +2596,10 @@
       </div>
     </div>
 
-    <!-- ============ P2: AIR 배관 계산 ============ -->
+    <!-- ============ P2: 공기 배관 계산 ============ -->
     <div id="p2" class="panel">
       <div class="panel-header">
-        <div class="panel-title"><div class="icon">💨</div>AIR 배관 계산 (유속·배관 사이즈)</div>
+        <div class="panel-title"><div class="icon">💨</div>공기 배관 계산 (유속·배관 사이즈)</div>
         <div class="panel-desc">압력, 유량, 유속 조건에 따른 압축 공기 배관 내경을 계산합니다.</div>
       </div>
 
@@ -2734,10 +2731,10 @@
 
     </div>
 
-    <!-- ============ P3: WATER 배관 계산 ============ -->
+    <!-- ============ P3: 물 배관 계산 ============ -->
     <div id="p3" class="panel">
       <div class="panel-header">
-        <div class="panel-title"><div class="icon">💧</div>WATER 배관 계산</div>
+        <div class="panel-title"><div class="icon">💧</div>물 배관 계산</div>
         <div class="panel-desc">물 배관의 내경, 유속, 압력손실을 계산합니다. (Hazen-Williams 공식 적용)</div>
       </div>
 
@@ -2901,7 +2898,7 @@
     <!-- ============ P4: 배관 WEIGHT ============ -->
     <div id="p4" class="panel">
       <div class="panel-header">
-        <div class="panel-title"><div class="icon">⚖️</div>배관 WEIGHT 계산</div>
+        <div class="panel-title"><div class="icon">⚖️</div>배관 무게 계산</div>
         <div class="panel-desc">PIPE 및 FITTING류의 무게를 계산합니다.</div>
       </div>
 
@@ -2998,7 +2995,7 @@
     <!-- ============ P5: NOZZLE NO. MAKER ============ -->
     <div id="p5" class="panel">
       <div class="panel-header">
-        <div class="panel-title"><div class="icon">🏷️</div>Nozzle No. Maker</div>
+        <div class="panel-title"><div class="icon">🏷️</div>노즐 번호 선정</div>
         <div class="panel-desc" style="margin-left:44px;">현장 압력·유량 조건으로 카탈로그 기준 Nozzle No.를 생성합니다.</div>
       </div>
 
@@ -3115,7 +3112,7 @@
     </div>
 
     <!-- ============ P6: 유량계수·오리피스 ============ -->
-    <div id="p6" class="panel">
+    <div id="p6" class="panel"><div class="result-card" style="margin-bottom:16px">계산식 수정판 · 물(밀도 1000 kg/m³), 비압축성 액체 기준. 압력은 노즐 전후 차압입니다. Cd는 해당 노즐의 실측값을 사용하세요. <a href="https://www.grc.nasa.gov/www/k-12/airplane/bern.html" target="_blank" rel="noopener">계산 근거</a></div>
       <div class="panel-header">
         <div class="panel-title"><div class="icon">📐</div>노즐 유량계수·오리피스 계산</div>
         <div class="panel-desc">유량계수(Cv), 오리피스 구경, 노즐 구경에 따른 물 기준 유량 및 압력을 계산합니다.</div>
@@ -3136,8 +3133,7 @@
           <button class="formula-toggle-btn" onclick="toggleFormula('fml8',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml8">Q (L/min) = Cd × π/4 × d² × √(2 × g × P × 10⁴) / 1000<br>
-            = Cd × 14.96 × d² × √P (단순 근사식, Cd=1 기준)</div>
+          <div class="formula-content" id="fml8">Q = Cd × A × √(2ΔP/ρ) [m³/s]<br>Q [L/min] ≈ 0.666432 × Cd × d² × √ΔP<br>물 ρ=1000 kg/m³ · d: mm · ΔP: bar · 입구와 출구의 차압 기준</div>
         </div>
             <div class="grid3">
               <div class="field">
@@ -3167,7 +3163,7 @@
           <button class="formula-toggle-btn" onclick="toggleFormula('fml9',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml9">P (bar) = (Q / (Cd × 14.96 × d²))²</div>
+          <div class="formula-content" id="fml9">P (bar) = (Q / (Cd × 0.666432 × d²))²</div>
         </div>
             <div class="grid3">
               <div class="field">
@@ -3197,7 +3193,7 @@
           <button class="formula-toggle-btn" onclick="toggleFormula('fml10',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml10">d (mm) = √( Q / (Cd × 14.96 × √P) )</div>
+          <div class="formula-content" id="fml10">d (mm) = √( Q / (Cd × 0.666432 × √P) )</div>
         </div>
             <div class="grid3">
               <div class="field">
@@ -3227,7 +3223,7 @@
           <button class="formula-toggle-btn" onclick="toggleFormula('fml11',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml11">Cd = Q / (14.96 × d² × √P)</div>
+          <div class="formula-content" id="fml11">Cd = Q / (0.666432 × d² × √P)</div>
         </div>
             <div class="grid3">
               <div class="field">
@@ -3332,10 +3328,10 @@
       </div>
     </div>
 
-    <!-- ============ P8: 노즐 AIR 분사량 ============ -->
+    <!-- ============ P8: 노즐 공기 분사량 ============ -->
     <div id="p8" class="panel">
       <div class="panel-header">
-        <div class="panel-title"><div class="icon">🌬️</div>노즐 AIR 분사량 계산</div>
+        <div class="panel-title"><div class="icon">🌬️</div>노즐 공기 분사량 계산</div>
         <div class="panel-desc">노즐 구경, 압력, 온도 조건에 따른 압축 공기 분사량을 계산합니다.</div>
       </div>
 
@@ -3669,8 +3665,8 @@
                   </button>
                   <div class="formula-content" id="fml_r">I  = b × h³ / 12 &nbsp;[cm⁴]
 Z  = b × h² / 6  &nbsp;[cm³]
-Ix = h × b³ / 12 (약축)  &nbsp;[cm⁴]
-Zx = h × b² / 6  (약축)  &nbsp;[cm³]</div>
+Ix = h × b³ / 12 (b 방향 높이)  &nbsp;[cm⁴]
+Zx = h × b² / 6  (b 방향 높이)  &nbsp;[cm³]</div>
                 </div>
                 <div class="grid2" style="margin-top:16px;">
                   <div class="field">
@@ -3793,17 +3789,6 @@ y   : X축 → X'축 거리 [cm]</div>
     </div>
 
 
-    <!-- 모바일 전용: 도움말 (우측 패널 대신) -->
-    <div class="mobile-help-wrap" id="mobileHelpWrap">
-      <div class="mobile-recent-header">
-        <span>💡 도움말</span>
-        <button class="mobile-recent-toggle" onclick="toggleMobileHelp(this)" aria-label="펼치기">▼</button>
-      </div>
-      <div class="mobile-help-body collapsed" id="mobileHelpBody">
-        <div class="rp-empty">도움말 내용이 여기 표시됩니다</div>
-      </div>
-    </div>
-
     <!-- 모바일 전용: 최근 계산 결과 (우측 패널 대신) -->
     <div class="mobile-recent-wrap" id="mobileRecentWrap">
       <div class="mobile-recent-header">
@@ -3853,7 +3838,7 @@ y   : X축 → X'축 거리 [cm]</div>
         <div class="rp-help-tip">💡 AIR 배관내 장려유속 참고표 (m/sec 기준)</div>
       </div>
       <div class="rp-help-item" data-panel="p3">
-        <div class="rp-help-title">💧 WATER 배관 계산</div>
+        <div class="rp-help-title">💧 물 배관 계산</div>
         <div class="rp-help-desc">Hazen-Williams 공식으로 압력 손실을 계산합니다.</div>
         <div class="rp-help-table">
           <div class="rht-row header"><span>사용 계소</span><span>유속 (m/sec)</span></div>
@@ -3885,7 +3870,7 @@ y   : X축 → X'축 거리 [cm]</div>
         </div>
       </div>
       <div class="rp-help-item" data-panel="p5">
-        <div class="rp-help-title">🔢 Nozzle No. Maker</div>
+        <div class="rp-help-title">🔢 노즐 번호 선정</div>
         <div class="rp-help-desc">현장 압력·유량 조건에서 카탈로그 기준 압력으로 유량을 환산합니다.</div>
         <div class="rp-help-table">
           <div class="rht-row header"><span>노즐 유형</span><span>기준압</span><span>n값</span></div>
@@ -3920,7 +3905,7 @@ y   : X축 → X'축 거리 [cm]</div>
         <div class="rp-help-tip">💡 중첩 부족 → 미분사 구간 / 중첩 과다 → 에너지 낭비</div>
       </div>
       <div class="rp-help-item" data-panel="p8">
-        <div class="rp-help-title">💨 노즐 AIR 분사량</div>
+        <div class="rp-help-title">💨 노즐 공기 분사량</div>
         <div class="rp-help-desc">오리피스 구경과 게이지 압력으로 공기 분사량(L/min)을 계산합니다.</div>
         <div class="rp-help-tip">💡 V = (237.6/1.2) × A(mm²) × (P+1.033) / √(T+273)</div>
         <div class="rp-help-table">
@@ -4144,6 +4129,12 @@ function swapUnit(cat) {
 
 // ========== P2: AIR 배관 ==========
 function calcAirPipeSize() {
+  let bad=false;
+  {const e=document.getElementById('air_p'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('air_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('air_v'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('air_size_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P = parseFloat(document.getElementById('air_p').value);     // bar
   const Q = parseFloat(document.getElementById('air_q').value);     // L/min
   const v = parseFloat(document.getElementById('air_v').value);     // m/s
@@ -4162,6 +4153,12 @@ function calcAirPipeSize() {
 }
 
 function calcAirVelocity() {
+  let bad=false;
+  {const e=document.getElementById('airv_p'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('airv_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('airv_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('airv_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P = parseFloat(document.getElementById('airv_p').value);
   const Q = parseFloat(document.getElementById('airv_q').value);
   const d = parseFloat(document.getElementById('airv_d').value);
@@ -4178,6 +4175,11 @@ function calcAirVelocity() {
 
 // ========== P3: WATER 배관 ==========
 function calcWaterSize() {
+  let bad=false;
+  {const e=document.getElementById('wat_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('wat_v'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('wat_size_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Q = parseFloat(document.getElementById('wat_q').value);
   const v = parseFloat(document.getElementById('wat_v').value);
   const d = Math.sqrt(Q / 1000 / 60 / (Math.PI / 4 * v)) * 1000;
@@ -4189,6 +4191,11 @@ function calcWaterSize() {
 }
 
 function calcWaterVelocity() {
+  let bad=false;
+  {const e=document.getElementById('watv_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('watv_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('watv_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Q = parseFloat(document.getElementById('watv_q').value);
   const d = parseFloat(document.getElementById('watv_d').value);
   const A = Math.PI / 4 * Math.pow(d / 1000, 2);
@@ -4196,11 +4203,18 @@ function calcWaterVelocity() {
   showResults('watv_result', [
     {label:'배관내 유속', value:fmt(v, 3), unit:'m/sec'},
     {label:'배관 단면적', value:fmt(A * 1e6, 2), unit:'mm²'},
-    {label:'유속 판정', value: v<=4?'✅ 정상':'⚠️ 장려유속 초과', unit: v<=1?'낮음':v<=4?'적정':'높음'},
+    {label:'유속 판정', value:fmt(v, 3), unit:'m/s · 허용 유속은 용도·압력손실 기준으로 판단'},
   ]);
 }
 
 function calcWaterLoss() {
+  let bad=false;
+  {const e=document.getElementById('watloss_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('watloss_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('watloss_c'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('watloss_l'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('watloss_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Q = parseFloat(document.getElementById('watloss_q').value);   // L/min
   const d = parseFloat(document.getElementById('watloss_d').value);   // mm
   const C = parseFloat(document.getElementById('watloss_c').value);
@@ -4221,6 +4235,13 @@ function calcWaterLoss() {
 
 // ========== P4: 배관 WEIGHT ==========
 function calcPipeWeight() {
+  let bad=false;
+  {const e=document.getElementById('wt_od'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('wt_t'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('wt_len'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('wt_material'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}if(Number(document.getElementById('wt_t').value)*2>Number(document.getElementById('wt_od').value))bad=true;
+  if(bad){document.getElementById('wt_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const OD = parseFloat(document.getElementById('wt_od').value);
   const t = parseFloat(document.getElementById('wt_t').value);
   const L = parseFloat(document.getElementById('wt_len').value);
@@ -4238,6 +4259,13 @@ function calcPipeWeight() {
 
 // ========== P5: NOZZLE NO. ==========
 function calcNozzleNo() {
+  let bad=false;
+  {const e=document.getElementById('nn_p1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nn_q1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nn_pbase'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nn_n'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('nn_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P1    = parseFloat(document.getElementById('nn_p1').value);
   const Q1    = parseFloat(document.getElementById('nn_q1').value);
   const Pbase = parseFloat(document.getElementById('nn_pbase').value);
@@ -4262,6 +4290,12 @@ function calcNozzleNo() {
 
 // ========== P11: 충격력 ==========
 function calcImpact() {
+  let bad=false;
+  {const e=document.getElementById('imp_p'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('imp_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('imp_eff'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0 || v > 100){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('imp_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P = parseFloat(document.getElementById('imp_p').value);
   const Q = parseFloat(document.getElementById('imp_q').value);
   const eff = parseFloat(document.getElementById('imp_eff').value) / 100;
@@ -4276,6 +4310,11 @@ function calcImpact() {
 
 // ========== P12: 단면2차모멘트·단면계수 ==========
 function calcRect() {
+  let bad=false;
+  {const e=document.getElementById('r_h'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('r_b'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('rect_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const h = parseFloat(document.getElementById('r_h').value);
   const b = parseFloat(document.getElementById('r_b').value);
   if (!isFinite(h)||!isFinite(b)||h<=0||b<=0) return;
@@ -4284,14 +4323,19 @@ function calcRect() {
   const Ix = h * Math.pow(b,3) / 12;
   const Zx = h * Math.pow(b,2) / 6;
   showResults('rect_result', [
-    {label:'단면2차모멘트 I (강축)', value:fmt(I,4), unit:'cm⁴'},
-    {label:'단면계수 Z (강축)',       value:fmt(Z,4), unit:'cm³'},
-    {label:'단면2차모멘트 Ix (약축)', value:fmt(Ix,4), unit:'cm⁴'},
-    {label:'단면계수 Zx (약축)',      value:fmt(Zx,4), unit:'cm³'},
+    {label:'단면2차모멘트 I (h 방향 높이)', value:fmt(I,4), unit:'cm⁴'},
+    {label:'단면계수 Z (h 방향 높이)',       value:fmt(Z,4), unit:'cm³'},
+    {label:'단면2차모멘트 Ix (b 방향 높이)', value:fmt(Ix,4), unit:'cm⁴'},
+    {label:'단면계수 Zx (b 방향 높이)',      value:fmt(Zx,4), unit:'cm³'},
   ]);
 }
 
 function calcCircleIZ() {
+  let bad=false;
+  {const e=document.getElementById('c_d1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('c_d2'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('circle_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const D1 = parseFloat(document.getElementById('c_d1').value) || 0;
   const D2 = parseFloat(document.getElementById('c_d2').value);
   if (!isFinite(D2)||D2<=0||D1<0||D1>=D2) {
@@ -4312,12 +4356,20 @@ function calcCircleIZ() {
 }
 
 function calcParallel() {
+  let bad=false;
+  {const e=document.getElementById('pa_ix'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('pa_iy'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('pa_a'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('pa_x'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v)){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('pa_y'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v)){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('parallel_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Ix = parseFloat(document.getElementById('pa_ix').value);
   const Iy = parseFloat(document.getElementById('pa_iy').value);
   const A  = parseFloat(document.getElementById('pa_a').value);
   const x  = parseFloat(document.getElementById('pa_x').value);
   const y  = parseFloat(document.getElementById('pa_y').value);
-  if ([Ix,Iy,A,x,y].some(v=>!isFinite(v)||v<0)) return;
+  if ([Ix,Iy,A,x,y].some(v=>!isFinite(v)) || Ix<0 || Iy<0 || A<=0) return;
   const Ixp = Ix + A * y * y;
   const Iyp = Iy + A * x * x;
   showResults('parallel_result', [
@@ -4407,7 +4459,7 @@ function rpRenderRecent() {
     `<div class="rp-recent-item" onclick="rpRestoreRecord(${idx})" title="클릭하면 해당 섹션으로 이동합니다">
       <div class="rpi-meta">
         <span class="rpi-section">${sectionNames[r.panel]||r.panel||'—'}</span>
-        <span class="rpi-time">${r.date||''} ${r.time}</span>
+        <span class="rpi-time">${r.time}</span>
       </div>
       <div class="rpi-title">${r.title}</div>
       <div class="rpi-val">${r.value}<span class="rpi-unit">${r.unit||''}</span></div>
@@ -4496,17 +4548,6 @@ function updateRPHelp(panelId) {
   document.querySelectorAll('.rp-help-item').forEach(el => el.classList.remove('active'));
   const target = document.querySelector(`.rp-help-item[data-panel="${panelId}"]`);
   if (target) target.classList.add('active');
-  // 모바일 도움말 카드에도 같은 내용 동기화
-  const mobileBody = document.getElementById('mobileHelpBody');
-  if (mobileBody && target) mobileBody.innerHTML = target.innerHTML;
-}
-
-// 모바일 도움말 카드 접기/펼치기
-function toggleMobileHelp(btn) {
-  const body = document.getElementById('mobileHelpBody');
-  const collapsed = body.classList.toggle('collapsed');
-  btn.textContent = collapsed ? '▼' : '▲';
-  btn.setAttribute('aria-label', collapsed ? '펼치기' : '접기');
 }
 
 // showPanel 에 도움말 연동 추가
@@ -4539,7 +4580,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const sectionNames = {
     p1:'단위 환산', p2:'AIR 배관 내경', p3:'WATER 배관', p4:'배관 Weight',
     p5:'Nozzle No.', p6:'유량계수·오리피스', p7:'헤더 노즐 수량·피치',
-    p8:'노즐 AIR 분사량', p9:'유량 보정', p10:'분사 각도',
+    p8:'노즐 공기 분사량', p9:'유량 보정', p10:'분사 각도',
     p11:'분사 충격력', p12:'단면 2차 모멘트'
   };
 
@@ -4622,15 +4663,21 @@ function nnSelectSeries(sel) {
 
 
 // ========== P6: 유량계수·오리피스 ==========
-const KF = 14.96;
+const KF = 0.666432;
 
 function calcNozzleFlow() {
+  let bad=false;
+  {const e=document.getElementById('or_p'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('or_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('or_cd'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0 || v > 1){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('or_flow_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P = parseFloat(document.getElementById('or_p').value);
   const d = parseFloat(document.getElementById('or_d').value);
   const Cd = parseFloat(document.getElementById('or_cd').value);
   const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
   const P_pa = P * 1e5;
-  const v = Math.sqrt(2 * 9.81 * P_pa / 1000);
+  const v = Math.sqrt(2 * P_pa / 1000);
   const Q_m3s = Cd * A_m2 * v;
   const Q_lmin = Q_m3s * 1000 * 60;
   showResults('or_flow_result', [
@@ -4642,6 +4689,12 @@ function calcNozzleFlow() {
 }
 
 function calcNozzlePres() {
+  let bad=false;
+  {const e=document.getElementById('orp_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('orp_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('orp_cd'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0 || v > 1){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('or_pres_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Q = parseFloat(document.getElementById('orp_q').value);
   const d = parseFloat(document.getElementById('orp_d').value);
   const Cd = parseFloat(document.getElementById('orp_cd').value);
@@ -4652,16 +4705,22 @@ function calcNozzlePres() {
   const P_bar = P_pa / 1e5;
   showResults('or_pres_result', [
     {label:'필요 압력', value:fmt(P_bar, 4), unit:'bar'},
-    {label:'필요 압력', value:fmt(P_bar*10.197, 4), unit:'kgf/cm²'},
+    {label:'필요 압력', value:fmt(P_bar/0.980665, 4), unit:'kgf/cm²'},
     {label:'토출 유속', value:fmt(v, 2), unit:'m/s'},
   ]);
 }
 
 function calcOrifice() {
+  let bad=false;
+  {const e=document.getElementById('ori_p'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('ori_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('ori_cd'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0 || v > 1){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('or_ori_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P = parseFloat(document.getElementById('ori_p').value);
   const Q = parseFloat(document.getElementById('ori_q').value);
   const Cd = parseFloat(document.getElementById('ori_cd').value);
-  const v = Math.sqrt(2 * 9.81 * P * 1e5 / 1000);
+  const v = Math.sqrt(2 * P * 1e5 / 1000);
   const Q_m3s = Q / 1000 / 60;
   const A = Q_m3s / (Cd * v);
   const d_mm = Math.sqrt(4 * A / Math.PI) * 1000;
@@ -4673,12 +4732,18 @@ function calcOrifice() {
 }
 
 function calcCv() {
+  let bad=false;
+  {const e=document.getElementById('cv_q'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('cv_p'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('cv_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('cv_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Q = parseFloat(document.getElementById('cv_q').value);
   const P = parseFloat(document.getElementById('cv_p').value);
   const d = parseFloat(document.getElementById('cv_d').value);
   const A_m2 = Math.PI / 4 * Math.pow(d / 1000, 2);
   const Q_m3s = Q / 1000 / 60;
-  const v_ideal = Math.sqrt(2 * 9.81 * P * 1e5 / 1000);
+  const v_ideal = Math.sqrt(2 * P * 1e5 / 1000);
   const Cd = Q_m3s / (A_m2 * v_ideal);
   showResults('cv_result', [
     {label:'유량계수 Cd', value:fmt(Cd, 6), unit:''},
@@ -4689,6 +4754,15 @@ function calcCv() {
 
 // ========== P7: 노즐수량·피치 ==========
 function calcNozzlePitch() {
+  let bad=false;
+  {const e=document.getElementById('nz_w'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nz_h'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nz_ang'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0 || v >= 180){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nz_tilt'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0 || v >= 100){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nz_ov'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0 || v >= 100){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('nz_fp'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('nz_pitch_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const W   = parseFloat(document.getElementById('nz_w').value);
   const H   = parseFloat(document.getElementById('nz_h').value);
   const ang = parseFloat(document.getElementById('nz_ang').value);
@@ -4716,6 +4790,12 @@ function calcNozzlePitch() {
 
 // ========== P8: AIR 분사량 ==========
 function calcAirFlow() {
+  let bad=false;
+  {const e=document.getElementById('air_d'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('air_pres'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('air_temp'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= -273.15){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('air_flow_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const d = parseFloat(document.getElementById('air_d').value);
   const P = parseFloat(document.getElementById('air_pres').value);
   const T = parseFloat(document.getElementById('air_temp').value);
@@ -4729,6 +4809,13 @@ function calcAirFlow() {
 
 // ========== P9: 유량 보정 ==========
 function calcFlowCorr() {
+  let bad=false;
+  {const e=document.getElementById('fc_q1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('fc_p1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('fc_p2'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('fc_n'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('fc_q_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Q1 = parseFloat(document.getElementById('fc_q1').value);
   const P1 = parseFloat(document.getElementById('fc_p1').value);
   const P2 = parseFloat(document.getElementById('fc_p2').value);
@@ -4736,12 +4823,19 @@ function calcFlowCorr() {
   const Q2 = Q1 * Math.pow(P2 / P1, n);
   showResults('fc_q_result', [
     {label:'적용 후 유량 Q₂', value:fmt(Q2, 4), unit:'L/min'},
-    {label:'유량 변화율',     value:fmt(Q2/Q1*100, 2), unit:'%'},
+    {label:'기준 대비 유량 비율',     value:fmt(Q2/Q1*100, 2), unit:'%'},
     {label:'유량 증감',       value:fmt(Q2-Q1, 4), unit:'L/min'},
   ]);
 }
 
 function calcPresCorr() {
+  let bad=false;
+  {const e=document.getElementById('fp_p1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('fp_q1'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('fp_q2'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('fp_n'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('fp_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const P1 = parseFloat(document.getElementById('fp_p1').value);
   const Q1 = parseFloat(document.getElementById('fp_q1').value);
   const Q2 = parseFloat(document.getElementById('fp_q2').value);
@@ -4749,12 +4843,18 @@ function calcPresCorr() {
   const P2 = P1 * Math.pow(Q2 / Q1, 1 / n);
   showResults('fp_result', [
     {label:'필요 압력 P₂', value:fmt(P2, 4), unit:'bar'},
-    {label:'압력 변화율',  value:fmt(P2/P1*100, 2), unit:'%'},
+    {label:'기준 대비 압력 비율',  value:fmt(P2/P1*100, 2), unit:'%'},
     {label:'압력 증감',    value:fmt(P2-P1, 4), unit:'bar'},
   ]);
 }
 
 function calcSGFlow() {
+  let bad=false;
+  {const e=document.getElementById('sg_qw'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('sg_sg'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('sg_rho'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('sg_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const Qw  = parseFloat(document.getElementById('sg_qw').value);
   const sg  = parseFloat(document.getElementById('sg_sg').value);
   const rho = parseFloat(document.getElementById('sg_rho').value);
@@ -4771,6 +4871,12 @@ function calcSGFlow() {
 
 // ========== P10: 분사 각도 ==========
 function calcSprayAngle() {
+  let bad=false;
+  {const e=document.getElementById('sp_h'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('sp_ang'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v <= 0 || v >= 180){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  {const e=document.getElementById('sp_pitch'),v=e.value.trim()===''?NaN:Number(e.value);if(!Number.isFinite(v) || v < 0){e.setAttribute('aria-invalid','true');bad=true;}else{e.removeAttribute('aria-invalid');}}
+  if(bad){document.getElementById('sp_result').innerHTML='<div class="result-card" role="alert">입력값을 확인하세요. 빈칸·허용 범위 밖의 값으로는 계산할 수 없습니다.</div>';return;}
+
   const H   = parseFloat(document.getElementById('sp_h').value);
   const ang = parseFloat(document.getElementById('sp_ang').value);
   const P   = parseFloat(document.getElementById('sp_pitch').value);
@@ -4869,7 +4975,7 @@ function liInit() {
         } else {
           liShowLogin();
         }
-      });
+      }).catch(() => { liShowLogin(); liError('자동 로그인에 실패했습니다. 연결 상태를 확인하고 다시 로그인해 주세요.'); });
       return;
     } catch(e) {}
   }
@@ -4888,6 +4994,10 @@ function liShowLogin() {
 }
 
 async function liLogin() {
+  const emailField=document.getElementById('li-email'),passwordField=document.getElementById('li-pw');
+  if(!emailField.value.trim() || !emailField.checkValidity()){liError('이메일 주소를 확인해 주세요.');emailField.focus();return;}
+  if(!passwordField.value){liError('비밀번호를 입력해 주세요.');passwordField.focus();return;}
+
   const email    = document.getElementById('li-email').value.trim().toLowerCase();
   const pw       = document.getElementById('li-pw').value;
   const rem      = document.getElementById('li-remember').checked;
@@ -5458,5 +5568,27 @@ function drawNozzleReferenceDiagrams() {
 // unit init handled by DOMContentLoaded above
 </script>
 
-</body>
+<script id="ux-behavior">
+window.addEventListener('DOMContentLoaded',()=>{
+  const $=s=>document.querySelector(s);
+  document.querySelectorAll('.field,.login-field').forEach(f=>{const l=f.querySelector('label'),i=f.querySelector('input,select');if(l&&i&&i.id)l.htmlFor=i.id;});
+  const email=$('#li-email');email.required=true;email.addEventListener('keydown',e=>{if(e.key==='Enter'){$('#li-pw').focus();e.preventDefault();}});
+  const pw=$('#li-pw'),wrap=document.createElement('div');wrap.className='ux-password-wrap';pw.before(wrap);wrap.append(pw);
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='ux-password-toggle';toggle.textContent='표시';toggle.setAttribute('aria-label','비밀번호 표시');toggle.setAttribute('aria-pressed','false');wrap.append(toggle);
+  toggle.onclick=()=>{const show=pw.type==='password';pw.type=show?'text':'password';toggle.textContent=show?'숨김':'표시';toggle.setAttribute('aria-label',show?'비밀번호 숨기기':'비밀번호 표시');toggle.setAttribute('aria-pressed',String(show));};
+  const caps=document.createElement('div');caps.className='ux-caps';caps.hidden=true;caps.textContent='Caps Lock이 켜져 있습니다.';wrap.after(caps);pw.addEventListener('keyup',e=>caps.hidden=!e.getModifierState('CapsLock'));
+  const search=document.createElement('input');search.type='search';search.className='ux-search';search.placeholder='계산기 찾기';search.setAttribute('aria-label','계산기 검색');$('#sidebar .sidebar-close').after(search);
+  const empty=document.createElement('p');empty.className='ux-empty';empty.hidden=true;empty.textContent='검색 결과가 없습니다.';search.after(empty);
+  const nav=[...document.querySelectorAll('.nav-item')];
+  nav.forEach(n=>{n.tabIndex=0;n.setAttribute('role','button');n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();n.click();}});});
+  search.oninput=()=>{const q=search.value.trim().toLowerCase();let count=0;nav.forEach(n=>{const keywords={p2:'air 압축공기',p3:'water 압력손실',p4:'weight 질량',p5:'nozzle no',p6:'cd 유량 압력 구경',p12:'강성 관성 모멘트'};const id=n.getAttribute('onclick').match(/p\d+/)?.[0];n.hidden=!(n.textContent+' '+(keywords[id]||'')).toLowerCase().includes(q);n.style.display=n.hidden?'none':'';if(!n.hidden)count++;});empty.hidden=count!==0;document.querySelectorAll('.sidebar-section').forEach(h=>h.style.display=q?'none':'');};
+  search.onkeydown=e=>{if(e.key==='Enter')nav.find(n=>!n.hidden)?.click();if(e.key==='Escape'){search.value='';search.oninput();}};
+  document.querySelectorAll('.calc-btn').forEach(b=>{b.textContent='계산하기';const area=b.closest('.section-body');if(!area)return;area.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('input')){e.preventDefault();b.click();}});});
+  const original=window.showResults;
+  window.showResults=function(id,results){original(id,results);const r=document.getElementById(id);if(!r)return;r.classList.remove('ux-stale');r.setAttribute('aria-live','polite');let tools=r.nextElementSibling;if(!tools?.classList.contains('ux-result-tools')){tools=document.createElement('div');tools.className='ux-result-tools';r.after(tools);}tools.replaceChildren();const status=document.createElement('span');status.textContent='현재 입력값으로 계산한 결과';tools.append(status);const copy=document.createElement('button');copy.type='button';copy.textContent='결과 복사';tools.append(copy);copy.onclick=async()=>{const area=r.closest('.section-body'),title=r.closest('.panel')?.querySelector('.panel-title')?.textContent||'';const inputs=[...(area?.querySelectorAll('.field')||[])].map(f=>{const i=f.querySelector('input,select');return i?f.querySelector('label')?.textContent.trim()+': '+(i.tagName==='SELECT'?i.selectedOptions[0].textContent:i.value):'';}).filter(Boolean);const text=[title,...inputs,'',...results.map(x=>x.label+': '+x.value+' '+(x.unit||''))].join('\n');try{await navigator.clipboard.writeText(text);copy.textContent='복사 완료';}catch(e){const a=document.createElement('textarea');a.value=text;tools.append(a);a.select();copy.textContent='선택된 내용을 복사하세요';}};};
+  document.querySelectorAll('.section-body').forEach(area=>{const stale=()=>{area.querySelectorAll('.result-grid').forEach(r=>{if(!r.children.length)return;r.classList.add('ux-stale');const t=r.nextElementSibling;if(t?.classList.contains('ux-result-tools')){t.querySelector('span').textContent='입력값이 바뀌었습니다. 다시 계산해 주세요.';t.querySelector('span').className='ux-status';t.querySelector('button').disabled=true;}});};area.addEventListener('input',stale);area.addEventListener('change',stale);});
+  document.querySelectorAll('.result-grid').forEach(r=>{if(!r.children.length){r.setAttribute('aria-label','계산 결과');}});
+  document.addEventListener('click',e=>{const b=e.target.closest('.calc-btn');if(!b)return;const area=b.closest('.section-body'),invalid=area?.querySelector('[aria-invalid=true]');if(invalid){invalid.focus();const r=area.querySelector('[role=alert]');if(r){const label=invalid.closest('.field')?.querySelector('label')?.textContent.trim();r.textContent=(label?label+': ':'')+'입력값과 허용 범위를 확인해 주세요.';}}});
+});
+</script></body>
 </html>
