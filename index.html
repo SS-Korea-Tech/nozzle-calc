@@ -2227,7 +2227,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
   <div class="hd-divider"></div>
   <div class="hd-title">
     <h1><span>노즐·배관</span> 통합 계산 프로그램</h1>
-    <div class="subtitle">Spraying Systems Co., Korea · 설계 계산 도구</div>
+    <div class="subtitle">Spraying Systems Co., Korea · 점검판 2026.09.09</div>
   </div>
   <div class="badge">12 계산 모듈</div>
 </header>
@@ -2620,7 +2620,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           <button class="formula-toggle-btn" onclick="toggleFormula('fml1',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml1">배관 내경 (mm) = √( Q × 1000 / (60 × π/4 × v) × (101.325 / (P + 101.325)) )</div>
+          <div class="formula-content" id="fml1">Q선압 [m³/s] = Q기준 [L/min] / 60000 × 101.325 / (100P + 101.325)<br>d [mm] = 1000 × √(4Q선압 / (πv))<br>P: 게이지압 bar · 기준압 101.325 kPa · 기준과 배관 온도가 같다고 가정</div>
         </div>
             <div class="grid3">
               <div class="field">
@@ -2650,7 +2650,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           <button class="formula-toggle-btn" onclick="toggleFormula('fml2',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml2">유속 (m/sec) = Q × (P + 101.325) / (101.325 × 60 × π/4 × d² / 1000000)</div>
+          <div class="formula-content" id="fml2">v [m/s] = (Q기준 / 60000) × 101.325 / (100P + 101.325) ÷ (πd² / 4,000,000)<br>P: 게이지압 bar · d: 내경 mm · 기준과 배관 온도가 같다고 가정</div>
         </div>
             <div class="grid3">
               <div class="field">
@@ -2677,27 +2677,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
         <div class="section-title">📋 스테인리스 배관 규격표 <span class="sec-badge">ASME B36.19</span></div>
         <div class="section-body">
           <div class="grid2" style="align-items:start;gap:18px;">
-            <div><div class="diag-label">▶ KS D 3576 / JIS G3459</div>
-          <div class="scroll-x">
-            <table class="compact-table">
-              <tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>5S</th><th>10S</th><th>40</th><th>80</th></tr>
-              <tr><td>6A (1/8")</td><td>10.3</td><td>1.24</td><td>1.24</td><td>1.73</td><td>2.41</td></tr>
-<tr><td>8A (1/4")</td><td>13.7</td><td>1.65</td><td>1.65</td><td>2.24</td><td>3.02</td></tr>
-<tr><td>10A (3/8")</td><td>17.1</td><td>1.65</td><td>1.65</td><td>2.31</td><td>3.2</td></tr>
-<tr><td>15A (1/2")</td><td>21.3</td><td>1.65</td><td>2.11</td><td>2.77</td><td>3.73</td></tr>
-<tr><td>20A (3/4")</td><td>26.7</td><td>1.65</td><td>2.11</td><td>2.87</td><td>3.91</td></tr>
-<tr><td>25A (1")</td><td>33.4</td><td>1.65</td><td>2.77</td><td>3.38</td><td>4.55</td></tr>
-<tr><td>32A (1-1/4")</td><td>42.2</td><td>1.65</td><td>2.77</td><td>3.56</td><td>4.85</td></tr>
-<tr><td>40A (1-1/2")</td><td>48.3</td><td>1.65</td><td>2.77</td><td>3.68</td><td>5.08</td></tr>
-<tr><td>50A (2")</td><td>60.3</td><td>1.65</td><td>2.77</td><td>3.91</td><td>5.54</td></tr>
-<tr><td>65A (2-1/2")</td><td>73.0</td><td>2.11</td><td>3.05</td><td>5.16</td><td>7.01</td></tr>
-<tr><td>80A (3")</td><td>88.9</td><td>2.11</td><td>3.05</td><td>5.49</td><td>7.62</td></tr>
-<tr><td>100A (4")</td><td>114.3</td><td>2.11</td><td>3.05</td><td>6.02</td><td>8.56</td></tr>
-<tr><td>125A (5")</td><td>141.3</td><td>2.77</td><td>3.4</td><td>6.55</td><td>9.53</td></tr>
-<tr><td>150A (6")</td><td>168.3</td><td>2.77</td><td>3.4</td><td>7.11</td><td>10.97</td></tr>
-<tr><td>200A (8")</td><td>219.1</td><td>2.77</td><td>3.76</td><td>8.18</td><td>12.7</td></tr>
-            </table>
-          </div></div>
+            <div><div class="diag-label">KS / JIS 배관 확인</div><p style="font-size:14px;line-height:1.8">KS/JIS와 ASME는 동일 호칭이어도 외경이 다를 수 있습니다. 예: JIS 15A 외경 21.7 mm, 아래 ASME 표 15A 외경 21.3 mm. 구매 규격의 외경·두께로 내경을 계산하세요. 기존 KS/JIS 표는 수치 검증 전까지 제외했습니다.</p><a href="https://www.nipponsteel.com/product/catalog_download/pdf/P007en.pdf" target="_blank" rel="noopener">제조사 치수 자료</a></div>
             <div><div class="diag-label">▶ ASME B36.19</div>
           <div class="scroll-x">
             <table class="compact-table">
@@ -2721,7 +2701,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           </div></div>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
-            ※ 두께(mm) 기준 — KS D 3576 / JIS G3459 / ASME B36.19 동일 규격, 호칭경은 A(mm) · inch 함께 표기
+            ※ 두께(mm) 기준 — 규격별 외경·두께가 다르므로 KS/JIS와 ASME를 구분하여 적용, 호칭경은 A(mm) · inch 함께 표기
           </div>
         </div>
       </div>
@@ -2804,7 +2784,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           <button class="formula-toggle-btn" onclick="toggleFormula('fml5',this)">
             <span class="arrow">▶</span><span class="lbl">계산 공식 보기</span>
           </button>
-          <div class="formula-content" id="fml5">hf = 10.67 × Q^1.852 / (C^1.852 × d^4.87) × L</div>
+          <div class="formula-content" id="fml5">hf [m] = 10.67 × L × Q^1.852 / (C^1.852 × d^4.87)<br>식 내부 단위: Q m³/s · d m · L m (입력값은 자동 환산)<br>물의 난류 마찰손실 추정식. 에탄올·고점도액에는 적용하지 마세요. 고저차·노즐 필요압력은 포함하지 않습니다.</div>
         </div>
             <div class="grid4">
               <div class="field">
@@ -2816,7 +2796,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
                 <input type="number" id="watloss_d" value="65.9" step="any">
               </div>
               <div class="field">
-                <label>표면조도 C값</label>
+                <label>Hazen–Williams 계수 C</label>
                 <select id="watloss_c">
                   <option value="100">100 – Cast Iron</option>
                   <option value="120" selected>120 – Steel (Wet)</option>
@@ -2840,27 +2820,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
         <div class="section-title">📋 스테인리스 배관 규격표 <span class="sec-badge">ASME B36.19</span></div>
         <div class="section-body">
           <div class="grid2" style="align-items:start;gap:18px;">
-            <div><div class="diag-label">▶ KS D 3576 / JIS G3459</div>
-          <div class="scroll-x">
-            <table class="compact-table">
-              <tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>5S</th><th>10S</th><th>40</th><th>80</th></tr>
-              <tr><td>6A (1/8")</td><td>10.3</td><td>1.24</td><td>1.24</td><td>1.73</td><td>2.41</td></tr>
-<tr><td>8A (1/4")</td><td>13.7</td><td>1.65</td><td>1.65</td><td>2.24</td><td>3.02</td></tr>
-<tr><td>10A (3/8")</td><td>17.1</td><td>1.65</td><td>1.65</td><td>2.31</td><td>3.2</td></tr>
-<tr><td>15A (1/2")</td><td>21.3</td><td>1.65</td><td>2.11</td><td>2.77</td><td>3.73</td></tr>
-<tr><td>20A (3/4")</td><td>26.7</td><td>1.65</td><td>2.11</td><td>2.87</td><td>3.91</td></tr>
-<tr><td>25A (1")</td><td>33.4</td><td>1.65</td><td>2.77</td><td>3.38</td><td>4.55</td></tr>
-<tr><td>32A (1-1/4")</td><td>42.2</td><td>1.65</td><td>2.77</td><td>3.56</td><td>4.85</td></tr>
-<tr><td>40A (1-1/2")</td><td>48.3</td><td>1.65</td><td>2.77</td><td>3.68</td><td>5.08</td></tr>
-<tr><td>50A (2")</td><td>60.3</td><td>1.65</td><td>2.77</td><td>3.91</td><td>5.54</td></tr>
-<tr><td>65A (2-1/2")</td><td>73.0</td><td>2.11</td><td>3.05</td><td>5.16</td><td>7.01</td></tr>
-<tr><td>80A (3")</td><td>88.9</td><td>2.11</td><td>3.05</td><td>5.49</td><td>7.62</td></tr>
-<tr><td>100A (4")</td><td>114.3</td><td>2.11</td><td>3.05</td><td>6.02</td><td>8.56</td></tr>
-<tr><td>125A (5")</td><td>141.3</td><td>2.77</td><td>3.4</td><td>6.55</td><td>9.53</td></tr>
-<tr><td>150A (6")</td><td>168.3</td><td>2.77</td><td>3.4</td><td>7.11</td><td>10.97</td></tr>
-<tr><td>200A (8")</td><td>219.1</td><td>2.77</td><td>3.76</td><td>8.18</td><td>12.7</td></tr>
-            </table>
-          </div></div>
+            <div><div class="diag-label">KS / JIS 배관 확인</div><p style="font-size:14px;line-height:1.8">KS/JIS와 ASME는 동일 호칭이어도 외경이 다를 수 있습니다. 예: JIS 15A 외경 21.7 mm, 아래 ASME 표 15A 외경 21.3 mm. 구매 규격의 외경·두께로 내경을 계산하세요. 기존 KS/JIS 표는 수치 검증 전까지 제외했습니다.</p><a href="https://www.nipponsteel.com/product/catalog_download/pdf/P007en.pdf" target="_blank" rel="noopener">제조사 치수 자료</a></div>
             <div><div class="diag-label">▶ ASME B36.19</div>
           <div class="scroll-x">
             <table class="compact-table">
@@ -2884,7 +2844,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           </div></div>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
-            ※ 두께(mm) 기준 — KS D 3576 / JIS G3459 / ASME B36.19 동일 규격, 호칭경은 A(mm) · inch 함께 표기
+            ※ 두께(mm) 기준 — 규격별 외경·두께가 다르므로 KS/JIS와 ASME를 구분하여 적용, 호칭경은 A(mm) · inch 함께 표기
           </div>
         </div>
       </div>
@@ -2942,27 +2902,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
         <div class="section-title">📋 스테인리스 배관 단위 무게표 <span class="sec-badge">SCH 40S / 80S</span></div>
         <div class="section-body">
           <div class="grid2" style="align-items:start;gap:18px;">
-            <div><div class="diag-label">▶ KS D 3576 / JIS G3459</div>
-          <div class="scroll-x">
-            <table class="ref-table">
-              <tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>SCH40 (kg/m)</th><th>SCH80 (kg/m)</th></tr>
-              <tr><td>6A (1/8")</td><td>10.3</td><td>0.37</td><td>0.48</td></tr>
-<tr><td>8A (1/4")</td><td>13.7</td><td>0.64</td><td>0.81</td></tr>
-<tr><td>10A (3/8")</td><td>17.1</td><td>0.86</td><td>1.12</td></tr>
-<tr><td>15A (1/2")</td><td>21.3</td><td>1.29</td><td>1.64</td></tr>
-<tr><td>20A (3/4")</td><td>26.7</td><td>1.71</td><td>2.23</td></tr>
-<tr><td>25A (1")</td><td>33.4</td><td>2.54</td><td>3.29</td></tr>
-<tr><td>32A (1-1/4")</td><td>42.2</td><td>3.45</td><td>4.54</td></tr>
-<tr><td>40A (1-1/2")</td><td>48.3</td><td>4.12</td><td>5.5</td></tr>
-<tr><td>50A (2")</td><td>60.3</td><td>5.53</td><td>7.61</td></tr>
-<tr><td>65A (2-1/2")</td><td>73.0</td><td>8.78</td><td>11.6</td></tr>
-<tr><td>80A (3")</td><td>88.9</td><td>11.48</td><td>15.53</td></tr>
-<tr><td>100A (4")</td><td>114.3</td><td>16.34</td><td>22.69</td></tr>
-<tr><td>125A (5")</td><td>141.3</td><td>22.13</td><td>31.48</td></tr>
-<tr><td>150A (6")</td><td>168.3</td><td>28.73</td><td>43.27</td></tr>
-<tr><td>200A (8")</td><td>219.1</td><td>43.25</td><td>65.72</td></tr>
-            </table>
-          </div></div>
+            <div><div class="diag-label">KS / JIS 배관 확인</div><p style="font-size:14px;line-height:1.8">KS/JIS와 ASME는 동일 호칭이어도 외경이 다를 수 있습니다. 예: JIS 15A 외경 21.7 mm, 아래 ASME 표 15A 외경 21.3 mm. 구매 규격의 외경·두께로 내경을 계산하세요. 기존 KS/JIS 표는 수치 검증 전까지 제외했습니다.</p><a href="https://www.nipponsteel.com/product/catalog_download/pdf/P007en.pdf" target="_blank" rel="noopener">제조사 치수 자료</a></div>
             <div><div class="diag-label">▶ ASME B36.19</div>
           <div class="scroll-x">
             <table class="ref-table">
@@ -2986,7 +2926,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           </div></div>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
-            ※ 밀도 7980 kg/m³ (SUS304) 기준 — KS D 3576 / JIS G3459 / ASME B36.19 동일 규격, 호칭경은 A(mm) · inch 함께 표기
+            ※ 밀도 7980 kg/m³ (SUS304) 기준 — 규격별 외경·두께가 다르므로 KS/JIS와 ASME를 구분하여 적용, 호칭경은 A(mm) · inch 함께 표기
           </div>
         </div>
       </div>
@@ -3270,13 +3210,13 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
               <input type="number" id="nz_ang" value="25" step="any">
             </div>
             <div class="field">
-              <label>조립 각도(편각) <span class="unit">°</span></label>
+              <label>분사폭 감소율 <span class="unit">%</span></label>
               <input type="number" id="nz_tilt" value="15" step="any">
             </div>
           </div>
           <div class="grid3" style="margin-top:12px">
             <div class="field">
-              <label>OVERLAP 비율(편각) <span class="unit">%</span></label>
+              <label>목표 중첩률 <span class="unit">%</span></label>
               <input type="number" id="nz_ov" value="20" step="any">
             </div>
             <div class="field">
@@ -3317,7 +3257,7 @@ input:focus,select:focus,button:focus-visible,[role=button]:focus-visible{outlin
           <table class="compact-table">
             <tr><th>기호</th><th>명칭</th><th>설명</th><th>관련 계산</th></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;border:1.5px dashed #5a9fd4;background:none;margin-right:5px;vertical-align:middle;"></span>A</td><td>이론 분사폭</td><td>분사 거리(H)와 분사각도(θ)만으로 계산한 분사 폭</td><td>A = 2 × H × tan(θ/2)</td></tr>
-            <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#006bb1;margin-right:5px;vertical-align:middle;"></span>B</td><td>실제 분사폭</td><td>A에 조립각도(편각) 보정을 적용한 실제 분사 폭</td><td>B = A × (1 − 조립각도 비율)</td></tr>
+            <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#006bb1;margin-right:5px;vertical-align:middle;"></span>B</td><td>보정 분사폭</td><td>이론 분사폭에 사용자가 지정한 감소율을 적용한 추정 폭</td><td>B = A × (1 − 감소율 / 100)</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#c0392b;margin-right:5px;vertical-align:middle;"></span>C</td><td>중첩 폭</td><td>인접 두 노즐의 분사 영역이 겹치는 폭</td><td>피치(F) &lt; 분사폭(B) 일 때 발생</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#006bb1;margin-right:5px;vertical-align:middle;"></span>E</td><td>전체 커버범위</td><td>전체 노즐이 커버하는 가로 범위</td><td>E = F × (N−1) + B</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#1a7a40;margin-right:5px;vertical-align:middle;"></span>F</td><td>노즐 설계 피치</td><td>인접 노즐 사이의 간격</td><td>사용자 입력값</td></tr>
@@ -4032,7 +3972,7 @@ function showResults(containerId, results) {
   el.innerHTML = results.map(r => `
     <div class="result-card">
       <div class="result-label">${r.label}</div>
-      <div class="result-value">${r.value}</div>
+      <div class="result-value">${escapeHistory(r.value)}</div>
       ${r.unit ? `<div class="result-unit">${r.unit}</div>` : ''}
     </div>
   `).join('');
@@ -4094,8 +4034,9 @@ function calcUnit(cat) {
   const val = parseFloat(document.getElementById('uval-'+cat).value);
   const from = document.getElementById('ufrom-'+cat).value;
   const to   = document.getElementById('uto-'+cat).value;
-  if (!isFinite(val)) { document.getElementById('ures-'+cat).textContent='—'; return; }
+  if (!isFinite(val)) { document.getElementById('ures-'+cat).textContent='—'; document.getElementById('utable-'+cat).textContent='값을 입력해 주세요.'; return; }
   const base = toBaseUnit(cat, val, from);
+  if(cat==='temp' && base < -273.15-1e-9){document.getElementById('ures-'+cat).textContent='범위 오류';document.getElementById('utable-'+cat).textContent='절대영도 미만의 온도입니다.';return;}
   const result = fromBaseUnit(cat, base, to);
   document.getElementById('ures-'+cat).textContent = fmt(result, 6);
 
@@ -4140,7 +4081,7 @@ function calcAirPipeSize() {
   const v = parseFloat(document.getElementById('air_v').value);     // m/s
   // Q_actual (m³/s) = Q_standard × (101.325/(P*100+101.325))
   const Pabs_kPa = P * 100 + 101.325;
-  const Q_actual_m3s = Q / 1000 / 60 * (Pabs_kPa / 101.325);
+  // 기준 유량을 선압 체적유량으로 환산합니다.
   // Actually: standard Q at line pressure → actual volume
   // d = sqrt(4*Q_actual / (pi*v)) in m → mm
   const Q_line_m3s = Q / 1000 / 60 * (101.325 / Pabs_kPa);
@@ -4390,13 +4331,13 @@ function calcParallel() {
 // 최근 계산 기록 — 로그인 사용자별 Firestore에 영구 저장
 let rpRecent = [];
 
-function rpAddRecent(title, value, unit) {
-  if (!value || value === '—') return;
+function rpAddRecent(title, value, unit, resultId) {
+  if (!value || value === '—' || value==='ERR' || !window._currentUser) return;
   const time = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
   const dateStr = new Date().toLocaleDateString('ko-KR',{month:'2-digit',day:'2-digit'});
 
   // 현재 활성 패널 + 탭
-  const activePanel = document.querySelector('.panel.active');
+  const activePanel = resultId ? document.getElementById(resultId)?.closest('.panel') : document.querySelector('.panel.active');
   const panel = activePanel ? activePanel.id : '';
 
   // 현재 패널의 모든 입력값 스냅샷
@@ -4421,33 +4362,41 @@ let _rpSaveTimer = null;
 function rpSaveToCloud() {
   if (!window._currentUser) return;
   clearTimeout(_rpSaveTimer);
+  const savingUser=window._currentUser;
+  const savingRecords=JSON.parse(JSON.stringify(rpRecent));
   _rpSaveTimer = setTimeout(async () => {
+    if(window._currentUser!==savingUser)return;
     try {
-      const email = window._currentUser.email;
-      await db.collection('history').doc(email).set({ records: rpRecent });
-    } catch(e) { console.error('기록 저장 실패', e); }
+      const email = savingUser.email;
+      await db.collection('history').doc(email).set({ records: savingRecords });
+    } catch(e) { console.error('기록 저장 실패', e); for(const id of ['rp-recent','rp-recent-mobile']){const el=document.getElementById(id);if(el&&!el.querySelector('.save-error')){const msg=document.createElement('p');msg.className='save-error';msg.setAttribute('role','status');msg.textContent='기록 저장에 실패했습니다. 필요한 결과를 복사해 보관하세요.';el.prepend(msg);}} }
   }, 400);
 }
 
 // Firestore에서 현재 사용자의 기록 불러오기
 async function rpLoadFromCloud() {
   if (!window._currentUser) return;
+  const loadingUser=window._currentUser;
   try {
     const email = window._currentUser.email;
     const doc = await db.collection('history').doc(email).get();
+    if(window._currentUser!==loadingUser)return;
     rpRecent = (doc.exists && doc.data().records) ? doc.data().records : [];
   } catch(e) {
+    if(window._currentUser!==loadingUser)return;
     console.error('기록 불러오기 실패', e);
     rpRecent = [];
   }
   rpRenderRecent();
 }
+function escapeHistory(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function rpRenderRecent() {
   const el  = document.getElementById('rp-recent');
   const elM = document.getElementById('rp-recent-mobile');  // 모바일용
   if (!el) return;
   if (rpRecent.length === 0) {
     el.innerHTML = '<div class="rp-empty">계산 실행 시 표시됩니다</div>';
+    if(elM) elM.innerHTML=el.innerHTML;
     return;
   }
   const sectionNames = {
@@ -4458,11 +4407,11 @@ function rpRenderRecent() {
   const html = rpRecent.map((r, idx) =>
     `<div class="rp-recent-item" onclick="rpRestoreRecord(${idx})" title="클릭하면 해당 섹션으로 이동합니다">
       <div class="rpi-meta">
-        <span class="rpi-section">${sectionNames[r.panel]||r.panel||'—'}</span>
-        <span class="rpi-time">${r.time}</span>
+        <span class="rpi-section">${escapeHistory(sectionNames[r.panel]||r.panel||'—')}</span>
+        <span class="rpi-time">${escapeHistory(r.time)}</span>
       </div>
-      <div class="rpi-title">${r.title}</div>
-      <div class="rpi-val">${r.value}<span class="rpi-unit">${r.unit||''}</span></div>
+      <div class="rpi-title">${escapeHistory(r.title)}</div>
+      <div class="rpi-val">${escapeHistory(r.value)}<span class="rpi-unit">${escapeHistory(r.unit||'')}</span></div>
       <div class="rpi-goto">↗ 섹션으로 이동</div>
     </div>`
   ).join('');
@@ -4487,8 +4436,8 @@ function rpRestoreRecord(idx) {
       tabPanel.classList.add('active');
       // 탭 버튼도 동기화
       const tabId = r.snapshot._activeTab; // e.g. "sec-rect"
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        if (btn.getAttribute('onclick')?.includes(tabId.split('-')[1])) {
+      tabPanel.closest('.panel').querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('onclick')?.includes("'"+tabId.split('-').slice(1).join('-')+"'")) {
           btn.classList.add('active');
         } else {
           btn.classList.remove('active');
@@ -4506,6 +4455,10 @@ function rpRestoreRecord(idx) {
     });
   }
 
+  const restoredPanel=document.getElementById(r.panel);
+  restoredPanel?.querySelectorAll('.result-grid').forEach(el=>{el.replaceChildren();if(el.nextElementSibling?.classList.contains('ux-result-tools'))el.nextElementSibling.remove();});
+  if(r.panel==='p5'){const sel=document.getElementById('nn_series');sel.dataset.mult=sel.value.split('|')[2]||'10';}
+  const note=document.getElementById('audit-restore-note')||document.createElement('p');note.id='audit-restore-note';note.textContent='저장된 입력값을 불러왔습니다. 계산하기를 눌러 결과를 확인하세요.';note.setAttribute('role','status');restoredPanel?.querySelector('.panel-header')?.append(note);
   // 4. 스크롤 맨 위로
   document.querySelector('.main')?.scrollTo({top:0, behavior:'smooth'});
 }
@@ -4525,12 +4478,12 @@ function showResultsHooked(elId, results) {
     <div class="result-card">
       <div class="result-label">${r.label||''}</div>
       <div class="result-value">${r.value||'—'}</div>
-      <div class="result-unit">${r.unit||''}</div>
+      <div class="result-unit">${escapeHistory(r.unit||'')}</div>
     </div>
   `).join('');
   // 첫 결과를 최근 기록에
   if (results[0] && results[0].value !== '—') {
-    rpAddRecent(results[0].label, results[0].value, results[0].unit);
+    if(results[0].label!=='오류') rpAddRecent(results[0].label, results[0].value, results[0].unit, elId);
   }
 }
 // 기존 showResults 덮어쓰기
@@ -4779,12 +4732,13 @@ function calcNozzlePitch() {
   drawNozzleDiagrams({W,H,ang,tilt,ov,fp,A_theor,B_actual,C_overlap,pitch_calc,cnt,G});
   showResults('nz_pitch_result', [
     {label:'이론 분사폭 A', value:fmt(A_theor, 1), unit:'mm'},
-    {label:'실제 분사폭 B', value:fmt(B_actual, 1), unit:'mm'},
+    {label:'보정 분사폭 B', value:fmt(B_actual, 1), unit:'mm'},
     {label:'중첩 치수 C',   value:fmt(C_overlap, 1), unit:'mm'},
     {label:'권장 피치',     value:fmt(pitch_calc, 1), unit:`mm (OV${ov}%)`},
     {label:'노즐 수량',     value:String(cnt), unit:'EA'},
     {label:'설계 피치',     value:fmt(fp), unit:'mm'},
     {label:'총 커버 범위',  value:fmt(G, 1), unit:'mm'},
+    {label:'배치 확인',value:fp>B_actual?'노즐 사이 미분사 구간':G<W?'전체 폭 부족':'기하학적 범위 충족',unit:'균일 분사 여부는 패턴·양끝 위치 확인'},
   ]);
 }
 
@@ -4799,11 +4753,12 @@ function calcAirFlow() {
   const d = parseFloat(document.getElementById('air_d').value);
   const P = parseFloat(document.getElementById('air_pres').value);
   const T = parseFloat(document.getElementById('air_temp').value);
+  if ((P+1.01325)/1.01325 < Math.pow(2.4/2,1.4/0.4)) { document.getElementById('air_flow_result').innerHTML='<div class="result-card" role="alert">현재 공기 근사식의 적용 범위 밖입니다. 대기 방출 기준 약 0.905 bar(g) 이상에서 사용하세요.</div>';return; }
   const P_kgcm2 = P / 0.980665;
   const A_mm2 = Math.PI / 4 * d * d;  // mm² 직접 사용
   const Qa = (237.6 / 1.2) * A_mm2 * (P_kgcm2 + 1.033) / Math.sqrt(T + 273);
   showResults('air_flow_result', [
-    {label:'분사 유량', value:fmt(Qa, 2), unit:'L/min'},
+    {label:'공기 분사량 (근사)', value:fmt(Qa, 2), unit:'L/min · 환산 밀도 1.2 kg/m³ · 대기 방출'},
   ]);
 }
 
@@ -4918,8 +4873,8 @@ const firebaseConfig = {
   messagingSenderId: "823973346627",
   appId: "1:823973346627:web:f81b71f84f7be4b82c43f6"
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+let db=null;
+try{firebase.initializeApp(firebaseConfig);db=firebase.firestore();}catch(e){window.addEventListener('DOMContentLoaded',()=>liError('로그인 서비스에 연결하지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침해 주세요.'));}
 
 // 기본 관리자 계정 (DB에 없을 경우 자동 생성됨)
 const DEFAULT_ADMIN = { email: 'ycjung@spray.co.kr', pw: 'Spray2024!', name: '정유찬', role: 'admin' };
@@ -5079,6 +5034,7 @@ document.addEventListener('click', (e) => {
 });
 
 function liLogout() {
+  clearTimeout(_rpSaveTimer); window._currentUser=null; rpRecent=[]; rpRenderRecent();
   sessionStorage.removeItem('li_user');
   localStorage.removeItem('li_auto');
   document.getElementById('li-pw').value = '';
@@ -5433,7 +5389,7 @@ function drawNozzleFront(d, targetId) {
   <line x1="${n2x}" y1="${nozzleY-41}" x2="${n2x}" y2="${nozzleY-31}" stroke="#1a7a40" stroke-width="1.5"/>
   <text x="${(n1x+n2x)/2}" y="${nozzleY-46}" text-anchor="middle" font-size="12" font-weight="700" fill="#1a7a40">F (피치) = ${Math.round(d.fp)}</text>
 
-  <!-- B 치수선 (실제 분사폭, 피도물 바로 아래 첫번째) -->
+  <!-- B 치수선 (보정 분사폭, 피도물 바로 아래 첫번째) -->
   <line x1="${n1x-halfB}" y1="${yB}" x2="${n1x+halfB}" y2="${yB}" stroke="#006bb1" stroke-width="1.5"/>
   <line x1="${n1x-halfB}" y1="${yB-5}" x2="${n1x-halfB}" y2="${yB+5}" stroke="#006bb1" stroke-width="1.5"/>
   <line x1="${n1x+halfB}" y1="${yB-5}" x2="${n1x+halfB}" y2="${yB+5}" stroke="#006bb1" stroke-width="1.5"/>
