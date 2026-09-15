@@ -1,0 +1,30 @@
+
+@media(max-width:768px){
+ header .hd-title h1{font-size:15px!important;line-height:1.4}
+ header .logo img{max-width:100px;object-fit:contain}
+ .tab-btn{font-size:14px!important;padding:10px 12px!important;min-height:44px}
+ .section-body{padding:16px!important}
+ .section-title{flex-wrap:wrap;overflow-wrap:anywhere}
+ .panel-title{overflow-wrap:anywhere}
+ .grid2>*,.grid3>*,.grid4>*,.field,.unit-conv-box{min-width:0}
+ .field select,.unit-sel{max-width:100%;font-size:16px!important;min-height:44px}
+ .unit-conv-layout{flex-direction:column;align-items:stretch;gap:12px}
+ .unit-conv-box,.unit-conv-box:first-child,.unit-conv-box:last-child{padding:0;border:0}
+ .unit-arrow-col{flex-direction:row;justify-content:center;padding:0}
+ .unit-arrow{display:none}.unit-conv-label{font-size:14px}
+ .unit-big-result,.unit-full-card .ufc-val{overflow-wrap:anywhere;min-width:0}
+ .unit-cat-bar{flex-wrap:wrap}.unit-cat-btn{min-height:44px;font-size:14px}
+ .unit-full-table{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .result-label{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.5}
+ .result-card{min-width:0}.result-unit{overflow-wrap:anywhere}
+ .scroll-x{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+ .section-body img{max-width:100%;height:auto}
+ .menu-btn,.sidebar-close button,.ux-password-toggle,.unit-swap-btn,.ux-result-tools button{min-height:44px;min-width:44px}
+ .ux-password-toggle{top:1px;right:3px}.ux-password-wrap input{min-height:48px}
+ .login-check{min-height:44px;gap:7px}.login-check input{width:18px;height:18px;flex-shrink:0}
+ #login-overlay{padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+ .login-box{margin-block:auto;flex-shrink:0}.login-field input{font-size:16px!important}
+ .sidebar{max-width:calc(100vw - 32px);padding-bottom:max(20px,env(safe-area-inset-bottom));height:calc(100vh - 60px)!important;height:calc(100dvh - 60px)!important}
+}
+@media(max-width:420px){.result-grid{grid-template-columns:minmax(0,1fr)!important}.login-title{font-size:22px}.login-box{padding:24px 18px}}
+@media(max-height:560px){#login-overlay{align-items:flex-start}.login-box{margin-block:0}}

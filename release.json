@@ -1,0 +1,237 @@
+{
+  "version": "2026.09.15",
+  "source_version": "2026.09.14-part1",
+  "included_stages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "validation": {
+    "automated_checks": 152,
+    "environment": "JSDOM with in-memory account service",
+    "mobile_visual_check": "not_completed",
+    "production_authorization_check": "not_completed"
+  },
+  "changed_files": [
+    "UPDATE_GUIDE.md",
+    "assets/css/interaction.css",
+    "assets/js/accessibility.js",
+    "assets/js/accounts.js",
+    "assets/js/admin.js",
+    "assets/js/air-discharge.js",
+    "assets/js/air-pipe.js",
+    "assets/js/design-sheet.js",
+    "assets/js/flow-coefficient.js",
+    "assets/js/flow-correction.js",
+    "assets/js/history.js",
+    "assets/js/impact.js",
+    "assets/js/mobile-navigation.js",
+    "assets/js/nozzle-capacity.js",
+    "assets/js/pipe-weight.js",
+    "assets/js/section-properties.js",
+    "assets/js/spray-angle.js",
+    "assets/js/ui-core.js",
+    "assets/js/units.js",
+    "assets/js/usability.js",
+    "assets/js/water-pipe.js",
+    "index.html"
+  ],
+  "files": [
+    {
+      "path": "UPDATE_GUIDE.md",
+      "bytes": 8433,
+      "sha256": "4193ae244c6309427eb136abcac3ab005ba305eebb09201137737d651c908dfa"
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "bytes": 10556,
+      "sha256": "8af001c814360b40c6f83507c00f0d19941ee9c69289650bce804089f31a8588"
+    },
+    {
+      "path": "assets/css/admin.css",
+      "bytes": 1774,
+      "sha256": "03f50b5a939a8dae8321cafe8fac63fb16af16549bc4f5e1e9866b6a0248cd9b"
+    },
+    {
+      "path": "assets/css/base.css",
+      "bytes": 60799,
+      "sha256": "49639fb4510c5adfb2dd50c16532ec61ef22a51e37c1f8756008b42fb1dda103"
+    },
+    {
+      "path": "assets/css/design-sheet.css",
+      "bytes": 3847,
+      "sha256": "b70cd2c3d1a1bd0d4e68c7aa7461f427d007e1ef3c96e3b2fa579faac6e57ef3"
+    },
+    {
+      "path": "assets/css/input-validation.css",
+      "bytes": 71,
+      "sha256": "06582fa712a8727a4e0e584278eff875ff1cf8330696caabecd4d5780a69513f"
+    },
+    {
+      "path": "assets/css/interaction.css",
+      "bytes": 2311,
+      "sha256": "e815872e3ef1fffacebbceed90a91ae5e8c6c762cbce3fc2fffdd5f52d491bfa"
+    },
+    {
+      "path": "assets/css/mobile.css",
+      "bytes": 2151,
+      "sha256": "6c5084fd3947de650f8c983d565644cdcf2ed257d9d798228ff7fb52bb3c6740"
+    },
+    {
+      "path": "assets/css/usability.css",
+      "bytes": 5252,
+      "sha256": "4f6a3af7cef2e5d657b196b489b23c3c68c889672f5bf527367a520b1ded213a"
+    },
+    {
+      "path": "assets/images/figure-1.png",
+      "bytes": 5818,
+      "sha256": "870fc198ff2a84ae4b6718169e2f613764e665b74bf852b6880ef6db4a7d7a67"
+    },
+    {
+      "path": "assets/images/figure-2.png",
+      "bytes": 15132,
+      "sha256": "e5e5d1f9ec9f51d85ceb6d4d967d249a09d7675d413e3deb2ebd39bb9fe7f28d"
+    },
+    {
+      "path": "assets/images/figure-3.png",
+      "bytes": 16155,
+      "sha256": "513d20a2aa27d52838256ab6089816a33b67138db2ba4d1d7257ee9bfdf3b137"
+    },
+    {
+      "path": "assets/images/figure-4.png",
+      "bytes": 8051,
+      "sha256": "14fc60ab170bd29cdd2a4f937bcbfab4e821ad001ff78a31c76a4da095868c8e"
+    },
+    {
+      "path": "assets/images/figure-5.png",
+      "bytes": 12601,
+      "sha256": "23e90b6862976edd50cea38b9eb18ac56691cb5c4006e811fbc29f286f50b9e6"
+    },
+    {
+      "path": "assets/images/figure-6.png",
+      "bytes": 9274,
+      "sha256": "d423f9b75ce2db18dea656aaf4c2d42d1a8070faf3ba82c913166aa54e89dc3e"
+    },
+    {
+      "path": "assets/js/accessibility.js",
+      "bytes": 3271,
+      "sha256": "0cd26ce73bc14f0084f6aae5f14b57f59ad3c56e8e732395249c33ff3e164ce0"
+    },
+    {
+      "path": "assets/js/accounts.js",
+      "bytes": 11989,
+      "sha256": "7a4d95dbb2332e63d54803245700c37085e59a6ca0d6f18fcb879c6287edfdf9"
+    },
+    {
+      "path": "assets/js/admin.js",
+      "bytes": 14274,
+      "sha256": "ae39721f0ecb9ff2084cfb1d2a531d8f10a501953f17298ffa66cc088010a718"
+    },
+    {
+      "path": "assets/js/air-discharge.js",
+      "bytes": 1709,
+      "sha256": "17ec6a3717f8bec819554e45dc4542c949ce8d69001151b815a41bfe96920567"
+    },
+    {
+      "path": "assets/js/air-pipe.js",
+      "bytes": 3233,
+      "sha256": "cde4f7003251ca1e1bb414407ae1faef2bf28b24fcaba15aca3552b09cf855f9"
+    },
+    {
+      "path": "assets/js/design-sheet.js",
+      "bytes": 23978,
+      "sha256": "c36b3a69b24a63e87970c72be27e1b1399c532eec005e2b1e545bbc0240e8e3b"
+    },
+    {
+      "path": "assets/js/flow-coefficient.js",
+      "bytes": 6211,
+      "sha256": "05f6a143d87a5a2563036fe525f80dc8e9fd544497fd4ad0689a55d7fd9aa1a5"
+    },
+    {
+      "path": "assets/js/flow-correction.js",
+      "bytes": 4465,
+      "sha256": "ae4b7ed0deb43822ff8804bf51f4f31af45f465c1f95fd5e45331846edf2eb15"
+    },
+    {
+      "path": "assets/js/header-diagram.js",
+      "bytes": 11551,
+      "sha256": "c23d38a7f84a979d9ee21d30062be2dd0058c7ec4bbe86da20fddc2bbef38440"
+    },
+    {
+      "path": "assets/js/history.js",
+      "bytes": 9186,
+      "sha256": "75c2f1d610f79e39d9dff573a00c5510eced95dc95cd8acb44d8c69795b6d580"
+    },
+    {
+      "path": "assets/js/impact.js",
+      "bytes": 1474,
+      "sha256": "e1876a938773ae461a94ad934d314b82f8e98db874fbc4a7ac61f4f2268596d5"
+    },
+    {
+      "path": "assets/js/mobile-navigation.js",
+      "bytes": 1860,
+      "sha256": "bfd3772fcf2dd2b93f78e0727caf822ca678897fcf27578c6d888edf94ec9962"
+    },
+    {
+      "path": "assets/js/nozzle-capacity.js",
+      "bytes": 2295,
+      "sha256": "dab8d667dd3f64d24efa68add244865584197d87578d589b86d15894f18e80da"
+    },
+    {
+      "path": "assets/js/nozzle-pitch.js",
+      "bytes": 2131,
+      "sha256": "c9c44034a131b72261f1049bdee5212ef0c3293bc269e3c139960a05ca794afc"
+    },
+    {
+      "path": "assets/js/nozzle-series.js",
+      "bytes": 946,
+      "sha256": "0c659bfe18eb54d9440866e82cd4ba0e6b6c22700e47fcd738b187cc68028157"
+    },
+    {
+      "path": "assets/js/pipe-weight.js",
+      "bytes": 2643,
+      "sha256": "c0d9912a528cc2ed47ee65e0000e2c3127b95e51acd850d84db9cf3e30113c05"
+    },
+    {
+      "path": "assets/js/section-properties.js",
+      "bytes": 4957,
+      "sha256": "3a0ba25f4ac060ed93e7a327b7ad445bf05f16853771c4d02645050b110f2d46"
+    },
+    {
+      "path": "assets/js/spray-angle.js",
+      "bytes": 2081,
+      "sha256": "ef8be9ea5b82dd420810270e3969a2e33b22c21f6958815cc94f81aa5daac35e"
+    },
+    {
+      "path": "assets/js/ui-core.js",
+      "bytes": 3783,
+      "sha256": "ab466b70d770dc67405547d077b14c06bd5fbb168c74157f5fe4ca4b327d70cb"
+    },
+    {
+      "path": "assets/js/units.js",
+      "bytes": 3448,
+      "sha256": "cf9f917e6cccc88a43711606ac1dbf270474f2d7a133104519c6dfbef50c8ae3"
+    },
+    {
+      "path": "assets/js/usability.js",
+      "bytes": 5391,
+      "sha256": "754418cad304fa14fcf1eb52a15a76a121f64559de5669990ea5fc9ec9acf7dc"
+    },
+    {
+      "path": "assets/js/water-pipe.js",
+      "bytes": 4470,
+      "sha256": "9b98eba2a3a0ef271b9cc40daaf8560fcf2715003e94c27fc0e64e6c7140c54e"
+    },
+    {
+      "path": "index.html",
+      "bytes": 137341,
+      "sha256": "981567fbde5f35586b3f365656a9b3b78fd9dd54abcbef959781deb40ff8cbc7"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 470,
+      "sha256": "552f473d9c3cb3863dad9e47a73883f7adcb9131ccc110ac1acdd255cf993144"
+    }
+  ]
+}

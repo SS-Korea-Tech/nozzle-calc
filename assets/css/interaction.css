@@ -1,0 +1,25 @@
+:focus-visible{outline:3px solid #087ba8;outline-offset:3px}
+body.modal-open,body.nav-open{overflow:hidden}
+.login-session-note{font-size:12px;color:#54677b;text-align:right;line-height:1.5}
+.mg-disabled{background:#fff0dd;color:#8a4300}.mg-row{flex-wrap:wrap}.mg-row .mg-info{flex-basis:200px}
+.user-menu-dropdown{max-width:min(330px,calc(100vw - 24px));max-height:calc(100dvh - 90px);overflow:auto}
+.user-menu-item{display:flex;align-items:center;min-height:44px;cursor:pointer}
+.tabs{flex-wrap:wrap}.tab-btn{min-height:44px}.result-grid{min-width:0}.ux-result-tools{flex-wrap:wrap}.ux-result-tools textarea{width:100%;min-height:140px}
+[role="dialog"] input,[role="dialog"] select{max-width:100%}
+#login-overlay,#req-overlay,#pw-overlay,#admin-overlay{overflow-y:auto;overscroll-behavior:contain;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+#req-overlay>div,#pw-overlay>div{margin:auto;flex-shrink:0}
+@media(max-width:768px){
+ header{padding-inline:12px!important;gap:8px!important}.hd-divider{display:none}
+ header .logo img{width:65px;max-height:40px}.user-menu-name{max-width:78px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .user-menu-btn{min-height:44px;padding:6px!important}.hd-title h1{font-size:14px!important}.hd-title .subtitle{display:none}
+ .tab-btn{flex:1 1 auto;padding:10px!important;white-space:normal}.tabs{gap:6px}
+ .design-actions{gap:8px}.design-actions button{flex:1 1 140px;min-height:44px}
+ .design-note,.formula-body,.formula-content{overflow-wrap:anywhere}.numeric-result{font-size:clamp(21px,6vw,30px)!important}
+ #req-overlay input,#pw-overlay input,#admin-overlay input,#admin-overlay select{font-size:16px!important;min-height:44px}
+ #req-overlay>div,#pw-overlay>div{padding:22px 18px!important;width:100%!important;max-width:420px!important}
+ .mg-row .mg-info{flex-basis:100%}.mg-row button{flex:1 1 100px}
+ .admin-box{max-width:100%;max-height:calc(100dvh - 32px);display:flex;flex-direction:column}.admin-body{min-height:0}
+ .scroll-x,.design-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+}
+@media(max-width:360px){header .logo{display:none}.login-check{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
