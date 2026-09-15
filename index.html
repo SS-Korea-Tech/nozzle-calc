@@ -237,7 +237,7 @@
     <h1><span>노즐·배관</span> 통합 계산 프로그램</h1>
     <div class="subtitle">Spraying Systems Co., Korea · 통합 개선판 2026.09.15</div>
   </div>
-  <div class="badge">13 계산 모듈</div>
+  <div class="badge">계산기 12종 · 설계 시트</div>
 </header>
 
 <!-- 모바일 사이드바 오버레이 배경 -->
@@ -250,7 +250,7 @@
       <span>📋 섹션 선택</span>
       <button onclick="toggleSidebar()" aria-label="닫기">✕</button>
     </div>
-    <div class="sidebar-section">설계 작업</div><div class="nav-item" onclick="showPanel('p13', this)"><div class="nav-num">13</div><span class="nav-icon">▤</span><div class="nav-label">설계 시트·비교</div></div>
+    <div class="sidebar-section">통합 설계</div><div class="nav-item" onclick="showPanel('p13', this)" title="노즐·배관 조건 통합 검토 및 설계안 비교"><span class="nav-icon" aria-hidden="true">▤</span><div class="nav-label">통합 설계 시트</div></div>
     <div class="sidebar-section">단위·기초</div>
     <div class="nav-item active" onclick="showPanel('p1', this)">
       <div class="nav-num">1</div>
@@ -273,11 +273,11 @@
       <span class="nav-icon">⚖️</span>
       <div class="nav-label">배관 무게 계산</div>
     </div>
-    <div class="sidebar-section">노즐 선정</div>
+    <div class="sidebar-section">노즐 용량·배치</div>
     <div class="nav-item" onclick="showPanel('p5', this)">
       <div class="nav-num">5</div>
       <span class="nav-icon">🏷️</span>
-      <div class="nav-label">노즐 번호 선정</div>
+      <div class="nav-label">노즐 용량번호 계산</div>
     </div>
     <div class="nav-item" onclick="showPanel('p6', this)">
       <div class="nav-num">6</div>
@@ -311,6 +311,7 @@
       <span class="nav-icon">💥</span>
       <div class="nav-label">분사 충격력 계산</div>
     </div>
+    <div class="sidebar-section">단면 특성</div>
     <div class="nav-item" onclick="showPanel('p12', this)">
       <div class="nav-num">12</div>
       <span class="nav-icon">📏</span>
@@ -944,7 +945,7 @@
     <!-- ============ P5: NOZZLE NO. MAKER ============ -->
     <div id="p5" class="panel">
       <div class="panel-header">
-        <div class="panel-title"><div class="icon">🏷️</div>노즐 번호 선정</div>
+        <div class="panel-title"><div class="icon">🏷️</div>노즐 용량번호 계산</div>
         <div class="panel-desc" style="margin-left:44px;">현장 압력·유량 조건으로 카탈로그 기준 Nozzle No.를 생성합니다.</div>
       </div>
 
@@ -1726,7 +1727,9 @@ y   : X축 → X'축 거리 [cm]</div>
 
 
     <!-- 모바일 전용: 최근 계산 결과 (우측 패널 대신) -->
-<div id="p13" class="panel"><div class="panel-header"><div class="panel-title"><div class="icon">▤</div>설계 시트</div><p class="panel-desc">노즐 총유량, 공급관 손실, 말단압력을 한 조건으로 검토합니다.</p></div>
+<div id="p13" class="panel"><div class="panel-header"><div class="panel-title"><div class="icon">▤</div>통합 설계 시트</div><p class="panel-desc">노즐과 배관 조건을 한 설계안으로 묶어 총유량·필요압력을 검토하고, 최대 3개 설계안을 비교합니다. 물 기준 계산입니다.</p></div>
+<div class="info-box"><strong>어떻게 사용하나요?</strong><br>7번에서 노즐 수량을 정하고 → 9번에서 전체 유량을 계산한 뒤 → 3번에서 배관 조건을 검토하세요.<br>각 계산기의 ‘적용’ 버튼으로 값을 이어서 가져오거나 아래에 직접 입력할 수 있습니다. 결과와 비교안은 설계 파일로 저장할 수 있습니다.</div>
+<div class="design-actions" aria-label="설계에 필요한 개별 계산기"><button type="button" onclick="deGo('p7')">7 · 노즐 수량·피치</button><button type="button" onclick="deGo('p9','fc','q')">9 · 노즐 유량 보정</button><button type="button" onclick="deGo('p3','water','loss')">3 · 물 배관 손실</button></div>
 <div class="calc-section"><div class="section-title design-top">설계 조건 · 물 배관</div><div class="section-body">
 <div class="grid2"><div class="field"><label for="ds_name">프로젝트 / 설계안 이름</label><input id="ds_name" type="text" value="" maxlength="300" ></div><div class="field"><label for="ds_revision">도면 / 설계 개정</label><input id="ds_revision" type="text" value="" maxlength="300" ></div><div class="field"><label for="ds_model">노즐 모델</label><input id="ds_model" type="text" value="" maxlength="300" ></div><div class="field"><label for="ds_source">카탈로그명·쪽·개정</label><input id="ds_source" type="text" value="" maxlength="300" ></div></div>
 <h3 class="design-subtitle">1. 노즐 운전 조건</h3><div class="grid3"><div class="field"><label for="ds_count">노즐 수량 <span class="unit">EA</span></label><input id="ds_count" type="number" value="4" step="any" ></div><div class="field"><label for="ds_qref">노즐당 기준 유량 <span class="unit">L/min</span></label><input id="ds_qref" type="number" value="2" step="any" ></div><div class="field"><label for="ds_pref">노즐 기준 압력 <span class="unit">bar</span></label><input id="ds_pref" type="number" value="3" step="any" ></div><div class="field"><label for="ds_pressure">말단 노즐 목표압력 <span class="unit">bar(g)</span></label><input id="ds_pressure" type="number" value="2" step="any" ></div><div class="field"><label for="ds_exponent">유량 지수 n</label><input id="ds_exponent" type="number" value="0.5" step="any" ></div></div><h3 class="design-subtitle">2. 공급관 · 부속품 · 높이차</h3><div class="grid3"><div class="field"><label for="ds_d">공급관 실제 내경 <span class="unit">mm</span></label><input id="ds_d" type="number" value="15.76" step="any" ></div><div class="field"><label for="ds_length">공급관 길이 (헤더 제외) <span class="unit">m</span></label><input id="ds_length" type="number" value="20" step="any" ></div><div class="field"><label for="ds_c">Hazen–Williams C</label><input id="ds_c" type="number" value="120" step="any" ></div><div class="field"><label for="ds_k">공급관 부속품 ΣK</label><input id="ds_k" type="number" value="0" step="any" ></div><div class="field"><label for="ds_filter">필터·기기 추가 손실 <span class="unit">bar</span></label><input id="ds_filter" type="number" value="0" step="any" ></div><div class="field"><label for="ds_elevation">높이차 (노즐 − 공급관 입구) <span class="unit">m</span></label><input id="ds_elevation" type="number" value="0" step="any" ></div><div class="field"><label for="ds_margin">설계 여유압 <span class="unit">bar</span></label><input id="ds_margin" type="number" value="0" step="any" ></div></div><p class="design-note">ΣK는 위 공급관 내경의 유속 기준 합계입니다. 다른 내경의 기기와 필터는 해당 유량에서의 압력손실을 추가 손실에 입력하세요. 내경은 호칭경이 아닌 외경 − 2 × 두께입니다.</p>
@@ -1759,7 +1762,7 @@ y   : X축 → X'축 거리 [cm]</div>
   <div class="rp-help-wrap">
     <div class="rp-section-header">💡 도움말</div>
     <div id="rp-help-body">
-      <div class="rp-help-item" data-panel="p13"><div class="rp-help-title">설계 시트</div><p class="rp-help-desc">헤더 수량 → 노즐 유량 보정 → 배관 조건을 연결할 수 있습니다. ΣK·기기 손실·높이차를 포함한 검토압력을 확인하세요.</p><p class="rp-help-tip">필요압력은 공급관 입구 기준입니다. 펌프의 흡입 조건과 성능곡선을 별도로 검토하세요.</p></div>
+      <div class="rp-help-item" data-panel="p13"><div class="rp-help-title">통합 설계 시트</div><p class="rp-help-desc">헤더 수량 → 노즐 유량 보정 → 배관 조건을 연결할 수 있습니다. ΣK·기기 손실·높이차를 포함한 검토압력을 확인하세요.</p><p class="rp-help-tip">필요압력은 공급관 입구 기준입니다. 펌프의 흡입 조건과 성능곡선을 별도로 검토하세요.</p></div>
       <div class="rp-help-item active" data-panel="p1">
         <div class="rp-help-title">🔄 단위 환산</div>
         <div class="rp-help-desc">입력·출력 단위를 드롭다운으로 선택하면 실시간 변환됩니다. ⇆ 버튼으로 단위를 즉시 교환할 수 있습니다.</div>
