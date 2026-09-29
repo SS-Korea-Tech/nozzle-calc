@@ -11,7 +11,7 @@ function toggleSidebar(){
 const _origShowPanelMobile=window.showPanel;
 window.showPanel=function(id,element){_origShowPanelMobile(id,element);if(window.innerWidth<=768)closeSidebar(false);};
 window.addEventListener('resize',()=>{if(window.innerWidth>768)closeSidebar(false);});
-function toggleMobileRecent(b){const closed=document.getElementById('mobileRecentBody').classList.toggle('collapsed');b.textContent=closed?'▼':'▲';b.setAttribute('aria-expanded',String(!closed));}
+
 window.addEventListener('DOMContentLoaded',()=>{
  const b=document.getElementById('menuBtn');b.setAttribute('aria-controls','sidebar');b.setAttribute('aria-expanded','false');const sb=document.getElementById('sidebar');sb.setAttribute('aria-label','계산기 메뉴');
  sb.addEventListener('keydown',e=>{if(window.innerWidth>768||!sb.classList.contains('open'))return;if(e.key==='Escape'){e.preventDefault();closeSidebar();}if(e.key==='Tab')trapFocus(e,sb);});

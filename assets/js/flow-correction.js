@@ -4,8 +4,8 @@ function calcFlowCorr() {
     {label:'노즐당 적용 유량',value:fmt(v.per,4),unit:'L/min'},
     {label:'전체 노즐 유량',value:fmt(v.per*v.count,4),unit:`L/min · ${v.count}개 동시 분사`},
     {label:'기준 대비 유량 비율',value:fmt(v.per/v.q*100,2),unit:'%'},
-    {label:'노즐당 유량 증감',value:fmt(v.per-v.q,4),unit:'L/min'}]);deMessage('fc_design_note','모든 노즐의 압력이 동일하다는 가정입니다. 헤더의 압력 차이는 설계 시트에서 검토하세요.');}
-  catch(e){document.getElementById('fc_q_result').replaceChildren();deMessage('fc_design_note',e.message,true);deInvalidate(document.getElementById('fc-q'));}
+    {label:'노즐당 유량 증감',value:fmt(v.per-v.q,4),unit:'L/min'}]);deMessage('fc_design_note','모든 노즐의 압력이 동일하다는 가정입니다. 노즐 간 압력 차이가 있으면 실제 총유량이 달라질 수 있습니다.');}
+  catch(e){showCalculationError('fc_q_result',e.message);deMessage('fc_design_note','');}
 }
 
 function calcPresCorr() {

@@ -5,6 +5,13 @@
 
 // 최근 계산 기록 — 로그인 사용자별 Firestore에 영구 저장
 let rpRecent = [];
+let rpClearRevision=0;
+function rpRecordKey(r){return JSON.stringify([r.panel,r.title,r.value,r.unit,r.snapshot]);}
+function rpValidRecords(records){
+  const seen=new Set();return records.filter(r=>r&&/^p(?:[1-9]|1[0-2])$/.test(r.panel)&&r.snapshot&&typeof r.snapshot==='object'&&!Array.isArray(r.snapshot))
+    .sort((a,b)=>(Number(b.ts)||0)-(Number(a.ts)||0))
+    .filter(r=>{const key=rpRecordKey(r);if(seen.has(key))return false;seen.add(key);return true;}).slice(0,20);
+}
 
 function rpAddRecent(title, value, unit, resultId) {
   if (!value || value === '—' || value==='ERR' || !window._currentUser) return;
@@ -28,6 +35,7 @@ function rpAddRecent(title, value, unit, resultId) {
   }
 
   const record = {time, date: dateStr, panel, title, value, unit, snapshot, ts: Date.now()};
+  if(rpRecent[0]&&rpRecordKey(rpRecent[0])===rpRecordKey(record))rpRecent.shift();
   rpRecent.unshift(record);
   if (rpRecent.length > 20) rpRecent.pop();
   rpRenderRecent();
@@ -53,16 +61,18 @@ function rpSaveToCloud() {
 // Firestore에서 현재 사용자의 기록 불러오기
 async function rpLoadFromCloud() {
   if (!window._currentUser) return;
-  const loadingUser=window._currentUser;
+  const loadingUser=window._currentUser,clearRevision=rpClearRevision;
   try {
     const email = window._currentUser.email;
     const doc = await db.collection('history').doc(email).get();
     if(window._currentUser!==loadingUser)return;
-    rpRecent = (doc.exists && doc.data().records) ? doc.data().records : [];
+    if(clearRevision!==rpClearRevision)return;
+    const incoming=doc.exists?doc.data().records:[];
+    rpRecent=rpValidRecords([...rpRecent,...(Array.isArray(incoming)?incoming:[])]);
   } catch(e) {
     if(window._currentUser!==loadingUser)return;
     console.error('기록 불러오기 실패', e);
-    rpRecent = [];
+    // Keep calculations made while the request was in flight.
   }
   rpRenderRecent();
 }
@@ -79,7 +89,7 @@ function rpRenderRecent() {
   const sectionNames = {
     p1:'단위환산', p2:'AIR배관', p3:'WATER배관', p4:'배관Weight',
     p5:'NozzleNo', p6:'유량계수', p7:'헤더노즐', p8:'AIR분사량',
-    p9:'유량보정', p10:'분사각도', p11:'충격력', p12:'단면모멘트', p13:'설계 시트'
+    p9:'유량보정', p10:'분사각도', p11:'충격력', p12:'단면모멘트'
   };
   const html = rpRecent.map((r, idx) =>
     `<div class="rp-recent-item" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="rpRestoreRecord(${idx})" title="클릭하면 해당 섹션으로 이동합니다">
@@ -98,7 +108,7 @@ function rpRenderRecent() {
 
 function rpRestoreRecord(idx) {
   const r = rpRecent[idx];
-  if (!r || !/^p(?:[1-9]|1[0-3])$/.test(r.panel)) return;
+  if (!r || !/^p(?:[1-9]|1[0-2])$/.test(r.panel)) return;
 
   // 1. 해당 패널로 이동
   const navItem = document.querySelector(`.nav-item[onclick*="'${r.panel}'"]`);
@@ -115,9 +125,9 @@ function rpRestoreRecord(idx) {
       const tabId = r.snapshot._activeTab; // e.g. "sec-rect"
       tabPanel.closest('.panel').querySelectorAll('.tab-btn').forEach(btn => {
         if (btn.getAttribute('onclick')?.includes("'"+tabId.split('-').slice(1).join('-')+"'")) {
-          btn.classList.add('active');
+          btn.classList.add('active');btn.setAttribute('aria-selected','true');
         } else {
-          btn.classList.remove('active');
+          btn.classList.remove('active');btn.setAttribute('aria-selected','false');
         }
       });
     }
@@ -133,6 +143,8 @@ function rpRestoreRecord(idx) {
   }
 
   const restoredPanel=document.getElementById(r.panel);
+  restoredPanel?.querySelectorAll('[aria-invalid]').forEach(e=>e.removeAttribute('aria-invalid'));
+  restoredPanel?.querySelectorAll('.design-message').forEach(e=>e.textContent='');
   restoredPanel?.querySelectorAll('.result-grid').forEach(el=>{el.replaceChildren();if(el.nextElementSibling?.classList.contains('ux-result-tools'))el.nextElementSibling.remove();});
   if(r.panel==='p5'){const sel=document.getElementById('nn_series');sel.dataset.mult=sel.value.split('|')[2]||'10';}
   const note=document.getElementById('audit-restore-note')||document.createElement('p');note.id='audit-restore-note';note.textContent='저장된 입력값을 불러왔습니다. 계산하기를 눌러 결과를 확인하세요.';note.setAttribute('role','status');restoredPanel?.querySelector('.panel-header')?.append(note);
@@ -140,7 +152,7 @@ function rpRestoreRecord(idx) {
   document.querySelector('.main')?.scrollTo({top:0, behavior:'smooth'});
 }
 function rpClearRecent() {
-  rpRecent.length = 0;
+  ++rpClearRevision;rpRecent.length = 0;
   rpRenderRecent();
   rpSaveToCloud();
 }
@@ -172,18 +184,8 @@ function updateRPHelp(panelId) {
 // showPanel 에 도움말 연동 추가
 const _origShowPanel = window.showPanel;
 window.showPanel = function(id, el) {
-  try {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    const target = document.getElementById(id);
-    if (target) target.classList.add('active');
-    if (el) el.classList.add('active');
-    document.querySelector('.main')?.scrollTo(0, 0);
-    if (id === 'p10' && typeof buildSprayTable === 'function') buildSprayTable();
-    if (id === 'p1' && typeof calcUnit === 'function') calcUnit('pressure');
-    // 도움말 패널 업데이트
-    updateRPHelp(id);
-  } catch(e) { console.error('showPanel error:', e); }
+  _origShowPanel(id,el);
+  updateRPHelp(id);
 };
 
 

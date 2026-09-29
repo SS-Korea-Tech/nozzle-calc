@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<!DOCTYPE html><html lang="ko"><head>
   <!-- PWA 설정 -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,10 +15,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>노즐·배관 통합 계산 프로그램</title>
 <link rel="stylesheet" href="assets/css/base.css?v=49639fb4510c">
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <link rel="stylesheet" href="assets/css/input-validation.css?v=06582fa712a8">
-<link rel="stylesheet" href="assets/css/usability.css?v=4f6a3af7cef2" id="ux-revision"><link rel="stylesheet" href="assets/css/mobile.css?v=6c5084fd3947" id="mobile-usability-fixes"><link rel="stylesheet" href="assets/css/admin.css?v=03f50b5a939a"><link rel="stylesheet" href="assets/css/design-sheet.css?v=b70cd2c3d1a1" id="design-improvements"><link rel="stylesheet" href="assets/css/interaction.css?v=e815872e3ef1"></head>
+<link rel="stylesheet" href="assets/css/usability.css?v=4f6a3af7cef2" id="ux-revision"><link rel="stylesheet" href="assets/css/mobile.css?v=6c5084fd3947" id="mobile-usability-fixes"><link rel="stylesheet" href="assets/css/admin.css?v=03f50b5a939a"><link rel="stylesheet" href="assets/css/calculations.css?v=d2f11020e181" id="calculation-improvements"><link rel="stylesheet" href="assets/css/interaction.css?v=e815872e3ef1"><link rel="stylesheet" href="assets/css/convenience.css?v=983b13252e96"></head>
 <body>
 
 
@@ -50,8 +48,8 @@
         <!-- JS로 렌더링 -->
       </div>
 
-      <div class="admin-add-form">
-        <h3>새 계정 추가</h3><div class="admin-field"><label for="adm-dept">부서 (선택)</label><input id="adm-dept" maxlength="100" placeholder="부서명"></div>
+      <details class="compact-detail"><summary>새 계정 직접 추가</summary><div class="admin-add-form">
+        <div class="admin-field"><label for="adm-dept">부서 (선택)</label><input id="adm-dept" maxlength="100" placeholder="부서명"></div>
         <div class="admin-grid">
           <div class="admin-field">
             <label>이메일</label>
@@ -75,7 +73,7 @@
         </div>
         <button class="admin-add-btn" onclick="adminAddUser()">계정 추가</button>
         <div class="admin-msg" id="adm-msg"></div>
-      </div>
+      </div></details>
 
     </div>
   </div>
@@ -120,8 +118,7 @@
     </div>
     <div style="margin-bottom:20px;">
       <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">비밀번호 확인</label>
-      <input type="password" id="req-pw2" placeholder="다시 입력" autocomplete="new-password"
-        onkeydown="if(event.key==='Enter') reqSubmit()" style="
+      <input type="password" id="req-pw2" placeholder="다시 입력" autocomplete="new-password" onkeydown="if(event.key==='Enter') reqSubmit()" style="
         width:100%;padding:10px 13px;border:1.5px solid var(--border);
         border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
     </div>
@@ -164,8 +161,7 @@
     </div>
     <div style="margin-bottom:20px;">
       <label style="display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:4px;">새 비밀번호 확인</label>
-      <input type="password" id="pw-new2" autocomplete="new-password"
-        onkeydown="if(event.key==='Enter') pwSubmit()" style="
+      <input type="password" id="pw-new2" autocomplete="new-password" onkeydown="if(event.key==='Enter') pwSubmit()" style="
         width:100%;padding:10px 13px;border:1.5px solid var(--border);
         border-radius:7px;font-size:14px;outline:none;box-sizing:border-box;">
     </div>
@@ -190,27 +186,23 @@
     <div class="login-title">노즐·배관 계산 프로그램</div>
     <div class="login-sub">Spraying Systems Co., Korea &nbsp;|&nbsp; 사내 전용</div>
 
-    <div class="login-field">
+    <form id="login-form" onsubmit="event.preventDefault(); liLogin();" autocomplete="on" novalidate=""><div class="login-field">
       <label>이메일 주소</label>
-      <input type="email" id="li-email" placeholder="example@spray.co.kr"
-             autocomplete="email" oninput="liClear()">
-    </div>
-    <div class="login-field">
+      <input type="email" id="li-email" placeholder="example@spray.co.kr" autocomplete="username" oninput="liClear()" name="username">
+    </div><div class="login-field">
       <label>비밀번호</label>
-      <input type="password" id="li-pw" placeholder="비밀번호 입력"
-             autocomplete="current-password" oninput="liClear()"
-             onkeydown="if(event.key==='Enter') liLogin()">
-    </div>
-
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <input type="password" id="li-pw" placeholder="비밀번호 입력" autocomplete="current-password" oninput="liClear()" name="password" required="">
+    </div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
       <label class="login-check">
-        <input type="checkbox" id="li-remember"> 이메일 저장
-      </label>
-      <span class="login-session-note">새로고침 시 다시 로그인</span>
-    </div>
+        <input type="checkbox" id="li-remember" checked=""> 로그인 유지 (개인 PC)</label>
+      <span class="login-session-note">공용 PC에서는 해제</span>
+    </div><button class="login-btn" type="submit">로그인</button><div class="login-error" id="li-error" role="alert" aria-live="polite"></div><button type="button" id="li-reset" class="login-reset" onclick="liResetPassword()">비밀번호 재설정</button></form>
+    
 
-    <button class="login-btn" onclick="liLogin()">로그인</button>
-    <div class="login-error" id="li-error" role="alert" aria-live="polite"></div>
+    
+
+    
+    
 
     <div style="text-align:center;margin-top:16px;">
       <button onclick="reqOpen()" style="
@@ -237,7 +229,7 @@
     <h1><span>노즐·배관</span> 통합 계산 프로그램</h1>
     <div class="subtitle">Spraying Systems Co., Korea · 통합 개선판 2026.09.15</div>
   </div>
-  <div class="badge">계산기 12종 · 설계 시트</div>
+  <div class="badge">계산기 12종</div>
 </header>
 
 <!-- 모바일 사이드바 오버레이 배경 -->
@@ -250,7 +242,7 @@
       <span>📋 섹션 선택</span>
       <button onclick="toggleSidebar()" aria-label="닫기">✕</button>
     </div>
-    <div class="sidebar-section">통합 설계</div><div class="nav-item" onclick="showPanel('p13', this)" title="노즐·배관 조건 통합 검토 및 설계안 비교"><span class="nav-icon" aria-hidden="true">▤</span><div class="nav-label">통합 설계 시트</div></div>
+    
     <div class="sidebar-section">단위·기초</div>
     <div class="nav-item active" onclick="showPanel('p1', this)">
       <div class="nav-num">1</div>
@@ -328,7 +320,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">🔄</div>단위 환산</div>
         <div class="panel-desc">입력 단위와 출력 단위를 각각 선택하여 변환합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <!-- 카테고리 선택 버튼 -->
       <div class="unit-cat-bar">
@@ -348,9 +340,7 @@
               <!-- 입력 -->
               <div class="unit-conv-box">
                 <div class="unit-conv-label">변환할 값</div>
-                <input type="number" id="uval-pressure" value="1" step="any"
-                  class="unit-big-input"
-                  oninput="calcUnit('pressure')">
+                <input type="number" id="uval-pressure" value="1" step="any" class="unit-big-input" oninput="calcUnit('pressure')">
                 <div class="unit-conv-label" style="margin-top:12px;">입력 단위</div>
                 <select id="ufrom-pressure" class="unit-sel" onchange="calcUnit('pressure')">
                   <option value="bar">bar</option><option value="kgcm2">kgf/cm²</option><option value="mpa">MPa</option><option value="kpa">kPa</option><option value="psi">psi</option><option value="atm">atm</option><option value="mmhg">mmHg</option><option value="mmh2o">mmH₂O</option>
@@ -369,7 +359,7 @@
                 <div id="ures-pressure" class="unit-big-result">—</div>
                 <div class="unit-conv-label" style="margin-top:12px;">출력 단위</div>
                 <select id="uto-pressure" class="unit-sel" onchange="calcUnit('pressure')">
-                  <option value="bar">bar</option><option value="kgcm2" selected>kgf/cm²</option><option value="mpa">MPa</option><option value="kpa">kPa</option><option value="psi">psi</option><option value="atm">atm</option><option value="mmhg">mmHg</option><option value="mmh2o">mmH₂O</option>
+                  <option value="bar">bar</option><option value="kgcm2" selected="">kgf/cm²</option><option value="mpa">MPa</option><option value="kpa">kPa</option><option value="psi">psi</option><option value="atm">atm</option><option value="mmhg">mmHg</option><option value="mmh2o">mmH₂O</option>
                 </select>
               </div>
             </div>
@@ -378,10 +368,10 @@
 
         <!-- 전체 환산표 -->
         <div class="calc-section">
-          <div class="section-title">📋 전체 단위 환산표</div>
-          <div class="section-body">
+          <details class="compact-detail"><summary>전체 단위 환산표</summary><div><div class="section-body">
             <div id="utable-pressure" class="unit-full-table"></div>
-          </div>
+          </div></div></details>
+          
         </div>
       </div>
       <div id="ucat-flow" class="unit-cat-panel" style="display:none">
@@ -392,9 +382,7 @@
               <!-- 입력 -->
               <div class="unit-conv-box">
                 <div class="unit-conv-label">변환할 값</div>
-                <input type="number" id="uval-flow" value="1" step="any"
-                  class="unit-big-input"
-                  oninput="calcUnit('flow')">
+                <input type="number" id="uval-flow" value="1" step="any" class="unit-big-input" oninput="calcUnit('flow')">
                 <div class="unit-conv-label" style="margin-top:12px;">입력 단위</div>
                 <select id="ufrom-flow" class="unit-sel" onchange="calcUnit('flow')">
                   <option value="lmin">L/min</option><option value="m3hr">m³/hr</option><option value="m3min">m³/min</option><option value="m3s">m³/s</option><option value="lhr">L/hr</option><option value="gpm">GPM</option><option value="gph">GPH</option>
@@ -413,7 +401,7 @@
                 <div id="ures-flow" class="unit-big-result">—</div>
                 <div class="unit-conv-label" style="margin-top:12px;">출력 단위</div>
                 <select id="uto-flow" class="unit-sel" onchange="calcUnit('flow')">
-                  <option value="lmin">L/min</option><option value="m3hr" selected>m³/hr</option><option value="m3min">m³/min</option><option value="m3s">m³/s</option><option value="lhr">L/hr</option><option value="gpm">GPM</option><option value="gph">GPH</option>
+                  <option value="lmin">L/min</option><option value="m3hr" selected="">m³/hr</option><option value="m3min">m³/min</option><option value="m3s">m³/s</option><option value="lhr">L/hr</option><option value="gpm">GPM</option><option value="gph">GPH</option>
                 </select>
               </div>
             </div>
@@ -422,10 +410,10 @@
 
         <!-- 전체 환산표 -->
         <div class="calc-section">
-          <div class="section-title">📋 전체 단위 환산표</div>
-          <div class="section-body">
+          <details class="compact-detail"><summary>전체 단위 환산표</summary><div><div class="section-body">
             <div id="utable-flow" class="unit-full-table"></div>
-          </div>
+          </div></div></details>
+          
         </div>
       </div>
       <div id="ucat-length" class="unit-cat-panel" style="display:none">
@@ -436,9 +424,7 @@
               <!-- 입력 -->
               <div class="unit-conv-box">
                 <div class="unit-conv-label">변환할 값</div>
-                <input type="number" id="uval-length" value="1" step="any"
-                  class="unit-big-input"
-                  oninput="calcUnit('length')">
+                <input type="number" id="uval-length" value="1" step="any" class="unit-big-input" oninput="calcUnit('length')">
                 <div class="unit-conv-label" style="margin-top:12px;">입력 단위</div>
                 <select id="ufrom-length" class="unit-sel" onchange="calcUnit('length')">
                   <option value="mm">mm</option><option value="cm">cm</option><option value="m">m</option><option value="inch">inch</option><option value="ft">ft</option>
@@ -457,7 +443,7 @@
                 <div id="ures-length" class="unit-big-result">—</div>
                 <div class="unit-conv-label" style="margin-top:12px;">출력 단위</div>
                 <select id="uto-length" class="unit-sel" onchange="calcUnit('length')">
-                  <option value="mm">mm</option><option value="cm" selected>cm</option><option value="m">m</option><option value="inch">inch</option><option value="ft">ft</option>
+                  <option value="mm">mm</option><option value="cm" selected="">cm</option><option value="m">m</option><option value="inch">inch</option><option value="ft">ft</option>
                 </select>
               </div>
             </div>
@@ -466,10 +452,10 @@
 
         <!-- 전체 환산표 -->
         <div class="calc-section">
-          <div class="section-title">📋 전체 단위 환산표</div>
-          <div class="section-body">
+          <details class="compact-detail"><summary>전체 단위 환산표</summary><div><div class="section-body">
             <div id="utable-length" class="unit-full-table"></div>
-          </div>
+          </div></div></details>
+          
         </div>
       </div>
       <div id="ucat-temp" class="unit-cat-panel" style="display:none">
@@ -480,9 +466,7 @@
               <!-- 입력 -->
               <div class="unit-conv-box">
                 <div class="unit-conv-label">변환할 값</div>
-                <input type="number" id="uval-temp" value="1" step="any"
-                  class="unit-big-input"
-                  oninput="calcUnit('temp')">
+                <input type="number" id="uval-temp" value="1" step="any" class="unit-big-input" oninput="calcUnit('temp')">
                 <div class="unit-conv-label" style="margin-top:12px;">입력 단위</div>
                 <select id="ufrom-temp" class="unit-sel" onchange="calcUnit('temp')">
                   <option value="c">°C</option><option value="f">°F</option><option value="k">K</option><option value="r">°R</option>
@@ -501,7 +485,7 @@
                 <div id="ures-temp" class="unit-big-result">—</div>
                 <div class="unit-conv-label" style="margin-top:12px;">출력 단위</div>
                 <select id="uto-temp" class="unit-sel" onchange="calcUnit('temp')">
-                  <option value="c">°C</option><option value="f" selected>°F</option><option value="k">K</option><option value="r">°R</option>
+                  <option value="c">°C</option><option value="f" selected="">°F</option><option value="k">K</option><option value="r">°R</option>
                 </select>
               </div>
             </div>
@@ -510,10 +494,10 @@
 
         <!-- 전체 환산표 -->
         <div class="calc-section">
-          <div class="section-title">📋 전체 단위 환산표</div>
-          <div class="section-body">
+          <details class="compact-detail"><summary>전체 단위 환산표</summary><div><div class="section-body">
             <div id="utable-temp" class="unit-full-table"></div>
-          </div>
+          </div></div></details>
+          
         </div>
       </div>
       <div id="ucat-weight" class="unit-cat-panel" style="display:none">
@@ -524,9 +508,7 @@
               <!-- 입력 -->
               <div class="unit-conv-box">
                 <div class="unit-conv-label">변환할 값</div>
-                <input type="number" id="uval-weight" value="1" step="any"
-                  class="unit-big-input"
-                  oninput="calcUnit('weight')">
+                <input type="number" id="uval-weight" value="1" step="any" class="unit-big-input" oninput="calcUnit('weight')">
                 <div class="unit-conv-label" style="margin-top:12px;">입력 단위</div>
                 <select id="ufrom-weight" class="unit-sel" onchange="calcUnit('weight')">
                   <option value="kg">kg</option><option value="g">g</option><option value="ton">ton</option><option value="lb">lb</option><option value="oz">oz</option>
@@ -545,7 +527,7 @@
                 <div id="ures-weight" class="unit-big-result">—</div>
                 <div class="unit-conv-label" style="margin-top:12px;">출력 단위</div>
                 <select id="uto-weight" class="unit-sel" onchange="calcUnit('weight')">
-                  <option value="kg">kg</option><option value="g" selected>g</option><option value="ton">ton</option><option value="lb">lb</option><option value="oz">oz</option>
+                  <option value="kg">kg</option><option value="g" selected="">g</option><option value="ton">ton</option><option value="lb">lb</option><option value="oz">oz</option>
                 </select>
               </div>
             </div>
@@ -554,10 +536,10 @@
 
         <!-- 전체 환산표 -->
         <div class="calc-section">
-          <div class="section-title">📋 전체 단위 환산표</div>
-          <div class="section-body">
+          <details class="compact-detail"><summary>전체 단위 환산표</summary><div><div class="section-body">
             <div id="utable-weight" class="unit-full-table"></div>
-          </div>
+          </div></div></details>
+          
         </div>
       </div>
       <div id="ucat-velocity" class="unit-cat-panel" style="display:none">
@@ -568,9 +550,7 @@
               <!-- 입력 -->
               <div class="unit-conv-box">
                 <div class="unit-conv-label">변환할 값</div>
-                <input type="number" id="uval-velocity" value="1" step="any"
-                  class="unit-big-input"
-                  oninput="calcUnit('velocity')">
+                <input type="number" id="uval-velocity" value="1" step="any" class="unit-big-input" oninput="calcUnit('velocity')">
                 <div class="unit-conv-label" style="margin-top:12px;">입력 단위</div>
                 <select id="ufrom-velocity" class="unit-sel" onchange="calcUnit('velocity')">
                   <option value="ms">m/s</option><option value="kmh">km/h</option><option value="mph">mph</option><option value="fts">ft/s</option>
@@ -589,7 +569,7 @@
                 <div id="ures-velocity" class="unit-big-result">—</div>
                 <div class="unit-conv-label" style="margin-top:12px;">출력 단위</div>
                 <select id="uto-velocity" class="unit-sel" onchange="calcUnit('velocity')">
-                  <option value="ms">m/s</option><option value="kmh" selected>km/h</option><option value="mph">mph</option><option value="fts">ft/s</option>
+                  <option value="ms">m/s</option><option value="kmh" selected="">km/h</option><option value="mph">mph</option><option value="fts">ft/s</option>
                 </select>
               </div>
             </div>
@@ -598,10 +578,10 @@
 
         <!-- 전체 환산표 -->
         <div class="calc-section">
-          <div class="section-title">📋 전체 단위 환산표</div>
-          <div class="section-body">
+          <details class="compact-detail"><summary>전체 단위 환산표</summary><div><div class="section-body">
             <div id="utable-velocity" class="unit-full-table"></div>
-          </div>
+          </div></div></details>
+          
         </div>
       </div>
     </div>
@@ -611,7 +591,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">💨</div>공기 배관 계산 (유속·배관 사이즈)</div>
         <div class="panel-desc">압력, 유량, 유속 조건에 따른 압축 공기 배관 내경을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="notice">
         ※ 해당 계산식은 참고용으로 현장 조건 및 노즐 구조에 따라 결과값이 달라질 수 있습니다.
@@ -683,15 +663,15 @@
       </div>
 
       <!-- 배관부속 등가길이표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 스테인리스 배관 규격표 <span class="sec-badge">ASME B36.19</span></div>
+      <details class="compact-detail" data-optional="reference"><summary>스테인리스 배관 규격표 ASME B36.19</summary><div class="calc-section">
+        
         <div class="section-body">
           <div class="grid2" style="align-items:start;gap:18px;">
             <div><div class="diag-label">KS / JIS 배관 확인</div><p style="font-size:14px;line-height:1.8">KS/JIS와 ASME는 동일 호칭이어도 외경이 다를 수 있습니다. 예: JIS 15A 외경 21.7 mm, 아래 ASME 표 15A 외경 21.3 mm. 구매 규격의 외경·두께로 내경을 계산하세요. 기존 KS/JIS 표는 수치 검증 전까지 제외했습니다.</p><a href="https://www.nipponsteel.com/product/catalog_download/pdf/P007en.pdf" target="_blank" rel="noopener">제조사 치수 자료</a></div>
             <div><div class="diag-label">▶ ASME B36.19</div>
           <div class="scroll-x">
             <table class="compact-table">
-              <tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>5S</th><th>10S</th><th>40</th><th>80</th></tr>
+              <tbody><tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>5S</th><th>10S</th><th>40</th><th>80</th></tr>
               <tr><td>6A (1/8")</td><td>10.3</td><td>1.24</td><td>1.24</td><td>1.73</td><td>2.41</td></tr>
 <tr><td>8A (1/4")</td><td>13.7</td><td>1.65</td><td>1.65</td><td>2.24</td><td>3.02</td></tr>
 <tr><td>10A (3/8")</td><td>17.1</td><td>1.65</td><td>1.65</td><td>2.31</td><td>3.2</td></tr>
@@ -707,14 +687,14 @@
 <tr><td>125A (5")</td><td>141.3</td><td>2.77</td><td>3.4</td><td>6.55</td><td>9.53</td></tr>
 <tr><td>150A (6")</td><td>168.3</td><td>2.77</td><td>3.4</td><td>7.11</td><td>10.97</td></tr>
 <tr><td>200A (8")</td><td>219.1</td><td>2.77</td><td>3.76</td><td>8.18</td><td>12.7</td></tr>
-            </table>
+            </tbody></table>
           </div></div>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
             ※ 두께(mm) 기준 — 규격별 외경·두께가 다르므로 KS/JIS와 ASME를 구분하여 적용, 호칭경은 A(mm) · inch 함께 표기
           </div>
         </div>
-      </div>
+      </div></details>
 
 
       
@@ -726,7 +706,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">💧</div>물 배관 계산</div>
         <div class="panel-desc">물 배관의 내경, 유속, 압력손실을 계산합니다. (Hazen-Williams 공식 적용)</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="tabs">
         <div class="tab-btn active" onclick="switchTab('water','size',this)">배관 크기</div>
@@ -809,7 +789,7 @@
                 <label>Hazen–Williams 계수 C</label>
                 <select id="watloss_c">
                   <option value="100">100 – Cast Iron</option>
-                  <option value="120" selected>120 – Steel (Wet)</option>
+                  <option value="120" selected="">120 – Steel (Wet)</option>
                   <option value="130">130 – Copper/Brass</option>
                   <option value="140">140 – PVC</option>
                 </select>
@@ -820,21 +800,21 @@
               </div>
             </div>
             <button class="calc-btn" onclick="calcWaterLoss()">⚡ 계산하기</button>
-            <div class="result-grid" id="watloss_result"></div><div class="design-actions"><button type="button" onclick="applyPipeToDesign()">배관 조건으로 설계 시트 열기 →</button></div><p id="watloss_design_note" class="design-message" role="status"></p>
+            <div class="result-grid" id="watloss_result"></div>
           </div>
         </div>
       </div>
 
       <!-- 배관부속 등가길이표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 스테인리스 배관 규격표 <span class="sec-badge">ASME B36.19</span></div>
+      <details class="compact-detail" data-optional="reference"><summary>스테인리스 배관 규격표 ASME B36.19</summary><div class="calc-section">
+        
         <div class="section-body">
           <div class="grid2" style="align-items:start;gap:18px;">
             <div><div class="diag-label">KS / JIS 배관 확인</div><p style="font-size:14px;line-height:1.8">KS/JIS와 ASME는 동일 호칭이어도 외경이 다를 수 있습니다. 예: JIS 15A 외경 21.7 mm, 아래 ASME 표 15A 외경 21.3 mm. 구매 규격의 외경·두께로 내경을 계산하세요. 기존 KS/JIS 표는 수치 검증 전까지 제외했습니다.</p><a href="https://www.nipponsteel.com/product/catalog_download/pdf/P007en.pdf" target="_blank" rel="noopener">제조사 치수 자료</a></div>
             <div><div class="diag-label">▶ ASME B36.19</div>
           <div class="scroll-x">
             <table class="compact-table">
-              <tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>5S</th><th>10S</th><th>40</th><th>80</th></tr>
+              <tbody><tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>5S</th><th>10S</th><th>40</th><th>80</th></tr>
               <tr><td>6A (1/8")</td><td>10.3</td><td>1.24</td><td>1.24</td><td>1.73</td><td>2.41</td></tr>
 <tr><td>8A (1/4")</td><td>13.7</td><td>1.65</td><td>1.65</td><td>2.24</td><td>3.02</td></tr>
 <tr><td>10A (3/8")</td><td>17.1</td><td>1.65</td><td>1.65</td><td>2.31</td><td>3.2</td></tr>
@@ -850,14 +830,14 @@
 <tr><td>125A (5")</td><td>141.3</td><td>2.77</td><td>3.4</td><td>6.55</td><td>9.53</td></tr>
 <tr><td>150A (6")</td><td>168.3</td><td>2.77</td><td>3.4</td><td>7.11</td><td>10.97</td></tr>
 <tr><td>200A (8")</td><td>219.1</td><td>2.77</td><td>3.76</td><td>8.18</td><td>12.7</td></tr>
-            </table>
+            </tbody></table>
           </div></div>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
             ※ 두께(mm) 기준 — 규격별 외경·두께가 다르므로 KS/JIS와 ASME를 구분하여 적용, 호칭경은 A(mm) · inch 함께 표기
           </div>
         </div>
-      </div>
+      </div></details>
 
 
       
@@ -870,7 +850,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">⚖️</div>배관 무게 계산</div>
         <div class="panel-desc">PIPE 및 FITTING류의 무게를 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="calc-section">
         <div class="section-title">⚖️ 배관 단위 무게 자동 계산 (Steel Pipe 기준)</div>
@@ -908,15 +888,15 @@
         </div>
       </div>
 
-      <div class="calc-section">
-        <div class="section-title">📋 스테인리스 배관 단위 무게표 <span class="sec-badge">SCH 40S / 80S</span></div>
+      <details class="compact-detail" data-optional="reference"><summary>스테인리스 배관 단위 무게표 SCH 40S / 80S</summary><div class="calc-section">
+        
         <div class="section-body">
           <div class="grid2" style="align-items:start;gap:18px;">
             <div><div class="diag-label">KS / JIS 배관 확인</div><p style="font-size:14px;line-height:1.8">KS/JIS와 ASME는 동일 호칭이어도 외경이 다를 수 있습니다. 예: JIS 15A 외경 21.7 mm, 아래 ASME 표 15A 외경 21.3 mm. 구매 규격의 외경·두께로 내경을 계산하세요. 기존 KS/JIS 표는 수치 검증 전까지 제외했습니다.</p><a href="https://www.nipponsteel.com/product/catalog_download/pdf/P007en.pdf" target="_blank" rel="noopener">제조사 치수 자료</a></div>
             <div><div class="diag-label">▶ ASME B36.19</div>
           <div class="scroll-x">
             <table class="ref-table">
-              <tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>SCH40 (kg/m)</th><th>SCH80 (kg/m)</th></tr>
+              <tbody><tr><th>호칭경 (A / inch)</th><th>외경 D (mm)</th><th>SCH40 (kg/m)</th><th>SCH80 (kg/m)</th></tr>
               <tr><td>6A (1/8")</td><td>10.3</td><td>0.37</td><td>0.48</td></tr>
 <tr><td>8A (1/4")</td><td>13.7</td><td>0.64</td><td>0.81</td></tr>
 <tr><td>10A (3/8")</td><td>17.1</td><td>0.86</td><td>1.12</td></tr>
@@ -932,14 +912,14 @@
 <tr><td>125A (5")</td><td>141.3</td><td>22.13</td><td>31.48</td></tr>
 <tr><td>150A (6")</td><td>168.3</td><td>28.73</td><td>43.27</td></tr>
 <tr><td>200A (8")</td><td>219.1</td><td>43.25</td><td>65.72</td></tr>
-            </table>
+            </tbody></table>
           </div></div>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
             ※ 밀도 7980 kg/m³ (SUS304) 기준 — 규격별 외경·두께가 다르므로 KS/JIS와 ASME를 구분하여 적용, 호칭경은 A(mm) · inch 함께 표기
           </div>
         </div>
-      </div>
+      </div></details>
     </div>
 
     <!-- ============ P5: NOZZLE NO. MAKER ============ -->
@@ -947,10 +927,10 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">🏷️</div>노즐 용량번호 계산</div>
         <div class="panel-desc" style="margin-left:44px;">현장 압력·유량 조건으로 카탈로그 기준 Nozzle No.를 생성합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="calc-section">
-        <div class="section-title">🏷️ 노즐 번호 생성</div>
+        <div class="section-title">노즐 용량번호 계산</div>
         <div class="section-body">
 
           <div class="formula-toggle-wrap">
@@ -970,11 +950,11 @@
               <option value="">— 시리즈를 선택하면 기준압·n값이 자동 입력됩니다 —</option>
               <optgroup label="Full Cone / Fulljet (표준)">
                 <option value="0.7030696|0.46|10">1/8"~1/2" · Full Cone HH, H, G, GG, GA, GGA / Teejet TG</option>
-                <option value="0.4921487|0.46|1" >3/4"~10" · Full Cone HH, H, G / Teejet TG</option>
+                <option value="0.4921487|0.46|1">3/4"~10" · Full Cone HH, H, G / Teejet TG</option>
                 <option value="0.7030696|0.44|10">1/8"~1/2" · Full Cone W-Type (HH-W, H-W, G-W) / Teejet TG-W</option>
-                <option value="0.4921487|0.44|1" >3/4"~4"  · Full Cone W-Type</option>
+                <option value="0.4921487|0.44|1">3/4"~4"  · Full Cone W-Type</option>
                 <option value="0.7030696|0.46|10">1/8"~6"  · Full Cone SQ (G-SQ, GG-SQ, H-SQ, HH-SQ)</option>
-                <option value="2.812278|0.50|10" >1/8"~5"  · Full Cone Angle 15~30°</option>
+                <option value="2.812278|0.50|10">1/8"~5"  · Full Cone Angle 15~30°</option>
                 <option value="0.7030696|0.50|10">1/4"~1/2" · Fulljet GANV, GGANV</option>
               </optgroup>
               <optgroup label="Spiraljet">
@@ -986,11 +966,11 @@
               <optgroup label="Flat Fan / Veejet">
                 <option value="2.812278|0.50|10">1/8"~2"   · Veejet (H-VV, H-U, U) / Teejet TPU</option>
                 <option value="0.7030696|0.50|10">1/8"~1"  · Floodjet (K) / Teejet TK</option>
-                <option value="2.812278|0.50|10" >1/8"~3/4" · Flatjet (P)</option>
+                <option value="2.812278|0.50|10">1/8"~3/4" · Flatjet (P)</option>
               </optgroup>
               <optgroup label="Hollow Cone / Whirljet">
                 <option value="0.7030696|0.46|10">1/8"~3/4" · Whirljet (A, AX, B, BX) W-Type</option>
-                <option value="0.4921487|0.50|1" >1/2"~6"   · Whirljet (C, CX, CF, CRC)</option>
+                <option value="0.4921487|0.50|1">1/2"~6"   · Whirljet (C, CX, CF, CRC)</option>
               </optgroup>
               <optgroup label="직접 입력">
                 <option value="custom">직접 입력...</option>
@@ -1031,10 +1011,10 @@
         </div>
       </div>
 
-<div class="calc-section"><div class="section-title">카탈로그 후보 비교</div><div class="section-body"><p class="design-note">위 현장 압력·요구 유량을 기준으로 비교합니다. 실제 판매 모델과 성능표 값을 입력하세요.</p><h3 class="design-subtitle">후보 A</h3><div class="grid3"><div class="field"><label for="nc_a_model">모델명</label><input id="nc_a_model" type="text" value="" maxlength="300" ></div><div class="field"><label for="nc_a_q">카탈로그 기준 유량 <span class="unit">L/min</span></label><input id="nc_a_q" type="number" value="" step="any" ></div><div class="field"><label for="nc_a_p">카탈로그 기준 압력 <span class="unit">bar</span></label><input id="nc_a_p" type="number" value="" step="any" ></div><div class="field"><label for="nc_a_n">유량 지수 n</label><input id="nc_a_n" type="number" value="0.5" step="any" ></div><div class="field"><label for="nc_a_spec">각도·재질·나사규격</label><input id="nc_a_spec" type="text" value="" maxlength="300" ></div><div class="field"><label for="nc_a_source">카탈로그명·쪽·개정</label><input id="nc_a_source" type="text" value="" maxlength="300" ></div></div><h3 class="design-subtitle">후보 B</h3><div class="grid3"><div class="field"><label for="nc_b_model">모델명</label><input id="nc_b_model" type="text" value="" maxlength="300" ></div><div class="field"><label for="nc_b_q">카탈로그 기준 유량 <span class="unit">L/min</span></label><input id="nc_b_q" type="number" value="" step="any" ></div><div class="field"><label for="nc_b_p">카탈로그 기준 압력 <span class="unit">bar</span></label><input id="nc_b_p" type="number" value="" step="any" ></div><div class="field"><label for="nc_b_n">유량 지수 n</label><input id="nc_b_n" type="number" value="0.5" step="any" ></div><div class="field"><label for="nc_b_spec">각도·재질·나사규격</label><input id="nc_b_spec" type="text" value="" maxlength="300" ></div><div class="field"><label for="nc_b_source">카탈로그명·쪽·개정</label><input id="nc_b_source" type="text" value="" maxlength="300" ></div></div><div class="design-actions"><button type="button" onclick="compareNozzleCandidates()">후보 비교</button></div><p id="nn_candidate_note" class="design-message" role="status"></p><div id="nn_candidate_result" class="scroll-x"></div></div></div>
+
       <!-- 참고표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 노즐 타입별 기준압력 및 지수(n) 참고표</div>
+      <details class="compact-detail" data-optional="reference"><summary>노즐 타입별 기준압력 및 지수(n) 참고표</summary><div class="calc-section">
+        
         <div class="section-body">
           <div class="scroll-x">
             <table class="compact-table"><thead><tr><th>노즐 시리즈</th><th>기준압 (kgf/cm²)</th><th>지수 n</th><th>승수</th></tr></thead><tbody id="nn_reference_body"></tbody></table>
@@ -1043,7 +1023,7 @@
             기존 기준값을 선택창·표·도움말에서 함께 사용합니다. 자료판: 2026.09.13. 시리즈 전체의 구매 사양 검증을 뜻하지 않으며, 적용 모델의 최신 카탈로그와 대조하세요.
           </div>
         </div>
-      </div>
+      </div></details>
 
     </div>
 
@@ -1052,7 +1032,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">📐</div>노즐 유량계수·오리피스 계산</div>
         <div class="panel-desc">방출계수(Cd), 오리피스 구경, 노즐 구경에 따른 물 기준 유량 및 압력을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="tabs">
         <div class="tab-btn active" onclick="switchTab('or','flow',this)">유량 계산</div>
@@ -1187,7 +1167,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">🔢</div>헤더 노즐수량 및 피치 계산</div>
         <div class="panel-desc">Flat Type 노즐의 분사 폭, 중첩률, 피치 및 수량을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="calc-section">
         <div class="section-title">🔢 Flat Spray 노즐 수량·피치 자동 계산</div>
@@ -1222,7 +1202,7 @@
             <div></div>
           </div>
           <button class="calc-btn" onclick="calcNozzlePitch()">⚡ 계산하기</button>
-          <div class="design-actions"><button type="button" onclick="applyRecommendedPitch()">권장 피치 적용</button><button type="button" onclick="applyHeaderCount()">수량을 노즐 유량에 적용 →</button></div>
+          <div class="design-actions"><button type="button" onclick="applyRecommendedPitch()">권장 피치 적용</button><button type="button" onclick="applyHeaderCount()">수량 적용 → 9. 유량 보정</button></div>
           <div class="result-grid" id="nz_pitch_result"></div><p id="nz_design_note" class="design-message" role="status"></p>
 
           <!-- 계산 결과 도면 (동적, 계산값 바로 아래) -->
@@ -1241,8 +1221,8 @@
       </div>
 
       <!-- 참고도 (고정 예시 + 기호표) -->
-      <div class="calc-section">
-        <div class="section-title">📐 헤더 노즐 배치 참고도</div>
+      <div class="calc-section"><div class="section-title">헤더 노즐 배치 참고도</div>
+        
         <div class="section-body">
           <div class="diag-label">▶ 정면도 예시 — 분사거리(H) · 분사범위(A,B) · 중첩(C)</div>
           <div id="nz_ref_front_svg" style="margin:8px auto;max-width:560px;"></div>
@@ -1252,7 +1232,7 @@
 
           <div class="diag-label" style="margin-top:16px;">▶ 치수 기호 설명표</div>
           <table class="compact-table">
-            <tr><th>기호</th><th>명칭</th><th>설명</th><th>관련 계산</th></tr>
+            <tbody><tr><th>기호</th><th>명칭</th><th>설명</th><th>관련 계산</th></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;border:1.5px dashed #5a9fd4;background:none;margin-right:5px;vertical-align:middle;"></span>A</td><td>이론 분사폭</td><td>분사 거리(H)와 분사각도(θ)만으로 계산한 분사 폭</td><td>A = 2 × H × tan(θ/2)</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#006bb1;margin-right:5px;vertical-align:middle;"></span>B</td><td>보정 분사폭</td><td>이론 분사폭에 사용자가 지정한 감소율을 적용한 추정 폭</td><td>B = A × (1 − 감소율 / 100)</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#c0392b;margin-right:5px;vertical-align:middle;"></span>C</td><td>중첩 폭</td><td>인접 두 노즐의 분사 영역이 겹치는 폭</td><td>피치(F) &lt; 분사폭(B) 일 때 발생</td></tr>
@@ -1260,7 +1240,7 @@
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#1a7a40;margin-right:5px;vertical-align:middle;"></span>F</td><td>노즐 설계 피치</td><td>인접 노즐 사이의 간격</td><td>사용자 입력값</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#c0392b;margin-right:5px;vertical-align:middle;"></span>H</td><td>분사 거리(비거리)</td><td>노즐 ~ 피도물 표면까지의 거리</td><td>사용자 입력값</td></tr>
             <tr><td><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:#333;margin-right:5px;vertical-align:middle;"></span>N</td><td>노즐 수량</td><td>피도물 폭을 커버하기 위한 노즐 개수</td><td>N = ⌈피도물폭 W / F⌉</td></tr>
-          </table>
+          </tbody></table>
         </div>
       </div>
     </div>
@@ -1270,7 +1250,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">🌬️</div>노즐 공기 분사량 계산</div>
         <div class="panel-desc">노즐 구경, 압력, 온도 조건에 따른 압축 공기 분사량을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="calc-section">
         <div class="section-title">🌬️ 압축 공기 분사량 계산식</div>
@@ -1304,12 +1284,12 @@
       </div>
 
       <!-- 구경×압력별 AIR 분사량 참조표 -->
-      <div class="calc-section">
-        <div class="section-title">📋 노즐 구경 및 압력별 AIR 분사량 참조표 <span class="sec-badge">단위: L/min, 온도 20°C</span></div>
+      <details class="compact-detail" data-optional="reference"><summary>노즐 구경 및 압력별 AIR 분사량 참조표 단위: L/min, 온도 20°C</summary><div class="calc-section">
+        
         <div class="section-body">
           <div class="scroll-x">
             <table class="compact-table">
-              <tr>
+              <tbody><tr>
                 <th>구경(mm)</th>
                 <th>0.7 kgf/cm²(g)</th><th>1.0</th><th>1.5</th><th>2.0</th>
                 <th>2.5</th><th>3.0</th><th>4.0</th><th>5.0</th><th>7.0</th><th>10.0</th>
@@ -1324,13 +1304,13 @@
               <tr><td>7.0</td><td>범위 밖</td><td>905.6</td><td>1128.4</td><td>1351.1</td><td>1573.8</td><td>1796.5</td><td>2241.9</td><td>2687.3</td><td>3578.2</td><td>4914.5</td></tr>
               <tr><td>10.0</td><td>범위 밖</td><td>1848.3</td><td>2302.8</td><td>2757.3</td><td>3211.8</td><td>3666.3</td><td>4575.3</td><td>5484.4</td><td>7302.4</td><td>10029.5</td></tr>
               <tr><td>15.0</td><td>범위 밖</td><td>4158.6</td><td>5181.2</td><td>6203.9</td><td>7226.6</td><td>8249.2</td><td>10294.5</td><td>12339.8</td><td>16430.5</td><td>22566.4</td></tr>
-            </table>
+            </tbody></table>
           </div>
           <div style="font-size:10px;color:var(--text2);margin-top:8px;">
             ※ 위 임계유동 식으로 계산 · Cd=1 · 20°C · 환산 밀도 1.2 kg/m³ · 압력은 게이지압 · 임계압력 미만은 범위 밖
           </div>
         </div>
-      </div>
+      </div></details>
 
 
       
@@ -1342,7 +1322,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">🔁</div>노즐 유량 보정 계산</div>
         <div class="panel-desc">압력 변화에 따른 유량 보정 및 비중이 다른 액체의 유량 환산을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="tabs">
         <div class="tab-btn active" onclick="switchTab('fc','q',this)">압력→유량 보정</div>
@@ -1378,12 +1358,12 @@
                 <select id="fc_n">
                   <option value="0.46">0.46 – 원형(표준)</option>
                   <option value="0.44">0.44 – 원형(광각)</option>
-                  <option value="0.5" selected>0.5 – 부채꼴/중공</option>
+                  <option value="0.5" selected="">0.5 – 부채꼴/중공</option>
                 </select>
               </div>
             </div>
             <div class="field"><label for="fc_count">노즐 수량 <span class="unit">EA</span></label><input id="fc_count" type="number" value="1" step="any" min="1" max="500"></div><button class="calc-btn" onclick="calcFlowCorr()">⚡ 계산하기</button>
-            <div class="result-grid" id="fc_q_result"></div><div class="design-actions"><button type="button" onclick="applyTotalFlow()">총유량을 배관·설계 시트에 적용 →</button></div><p id="fc_design_note" class="design-message" role="status"></p>
+            <div class="result-grid" id="fc_q_result"></div><div class="design-actions"><button type="button" onclick="applyTotalFlow()">총유량 적용 → 3. 물 배관</button></div><p id="fc_design_note" class="design-message" role="status"></p>
           </div>
         </div>
       </div>
@@ -1416,7 +1396,7 @@
                 <select id="fp_n">
                   <option value="0.46">0.46 – 원형(표준)</option>
                   <option value="0.44">0.44 – 원형(광각)</option>
-                  <option value="0.5" selected>0.5 – 부채꼴/중공</option>
+                  <option value="0.5" selected="">0.5 – 부채꼴/중공</option>
                 </select>
               </div>
             </div>
@@ -1443,13 +1423,11 @@
               </div>
               <div class="field">
                 <label>비중 SG <span style="color:var(--text3);font-weight:400;font-size:10px;">↔ 밀도 자동연동</span></label>
-                <input type="number" id="sg_sg" value="1.2" step="any" min="0.01"
-                  oninput="document.getElementById('sg_rho').value=(this.value*1000).toFixed(1)">
+                <input type="number" id="sg_sg" value="1.2" step="any" min="0.01" oninput="document.getElementById('sg_rho').value=(this.value*1000).toFixed(1)">
               </div>
               <div class="field">
                 <label>밀도 <span class="unit">kg/m³</span></label>
-                <input type="number" id="sg_rho" value="1200" step="any" min="1"
-                  oninput="document.getElementById('sg_sg').value=(this.value/1000).toFixed(4)">
+                <input type="number" id="sg_rho" value="1200" step="any" min="1" oninput="document.getElementById('sg_sg').value=(this.value/1000).toFixed(4)">
               </div>
             </div>
             <button class="calc-btn" onclick="calcSGFlow()">⚡ 계산하기</button>
@@ -1470,7 +1448,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">📡</div>분사 각도 계산</div>
         <div class="panel-desc">분사 거리와 각도에 따른 이론적 분사 범위 및 중첩률을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="info-box">
         ☞ 실제 분사범위는 이론상의 범위보다 작기 때문에 10% ~ 30% 작게 참고하여야 합니다.<br>
@@ -1478,8 +1456,8 @@
       </div>
 
       <!-- 분사 각도 개념도 -->
-      <div class="calc-section">
-        <div class="section-title">📐 분사 각도(θ) 및 분사 범위(W) 개념도</div>
+      <div class="calc-section"><div class="section-title">분사 각도(θ) 및 분사 범위(W) 개념도</div>
+        
         <div class="section-body">
           <img src="assets/images/figure-2.png" alt="분사각도 개념도" style="width:100%;max-width:500px;display:block;margin:8px auto;border-radius:6px;border:1px solid #c8dcea;">
         </div>
@@ -1516,14 +1494,14 @@
 
       
 
-      <div class="calc-section">
-        <div class="section-title">📊 분사 각도·거리별 이론 분사 범위 표 (mm)</div>
+      <details class="compact-detail" data-optional="reference"><summary>분사 각도·거리별 이론 분사 범위 표 (mm)</summary><div class="calc-section">
+        
         <div class="section-body">
           <div class="spray-table-wrap">
             <table class="spray-table" id="spray_ref_table"></table>
           </div>
         </div>
-      </div>
+      </div></details>
     </div>
 
     <!-- ============ P11: 충격력 ============ -->
@@ -1531,7 +1509,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">💥</div>분사 충격력 계산</div>
         <div class="panel-desc">노즐에서 분출되는 유체가 목표 표면에 가하는 이론상 충격력을 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="calc-section">
         <div class="section-title">💥 이론상 분사 충격력 계산식</div>
@@ -1567,8 +1545,8 @@
       </div>
 
       <!-- 충격력 개념도 -->
-      <div class="calc-section">
-        <div class="section-title">📐 충격력 개념도</div>
+      <div class="calc-section"><div class="section-title">충격력 개념도</div>
+        
         <div class="section-body">
           <img src="assets/images/figure-3.png" alt="충격력 개념도" style="width:100%;max-width:560px;display:block;margin:8px auto;border-radius:6px;border:1px solid #c8dcea;">
         </div>
@@ -1581,7 +1559,7 @@
       <div class="panel-header">
         <div class="panel-title"><div class="icon">📐</div>단면 2차 모멘트 · 단면계수 계산기</div>
         <div class="panel-desc">단면 형상별 I (단면2차모멘트), Z (단면계수), 평행축 정리를 계산합니다.</div>
-      </div>
+      <div class="mobile-support-actions"><button type="button" onclick="openCalculatorSupport('calculation-help')">도움말</button><button type="button" onclick="openCalculatorSupport('calculation-history')">최근 기록</button></div></div>
 
       <div class="tabs">
         <div class="tab-btn active" onclick="switchTab('sec','rect',this)">사각형 단면</div>
@@ -1727,43 +1705,14 @@ y   : X축 → X'축 거리 [cm]</div>
 
 
     <!-- 모바일 전용: 최근 계산 결과 (우측 패널 대신) -->
-<div id="p13" class="panel"><div class="panel-header"><div class="panel-title"><div class="icon">▤</div>통합 설계 시트</div><p class="panel-desc">노즐과 배관 조건을 한 설계안으로 묶어 총유량·필요압력을 검토하고, 최대 3개 설계안을 비교합니다. 물 기준 계산입니다.</p></div>
-<div class="info-box"><strong>어떻게 사용하나요?</strong><br>7번에서 노즐 수량을 정하고 → 9번에서 전체 유량을 계산한 뒤 → 3번에서 배관 조건을 검토하세요.<br>각 계산기의 ‘적용’ 버튼으로 값을 이어서 가져오거나 아래에 직접 입력할 수 있습니다. 결과와 비교안은 설계 파일로 저장할 수 있습니다.</div>
-<div class="design-actions" aria-label="설계에 필요한 개별 계산기"><button type="button" onclick="deGo('p7')">7 · 노즐 수량·피치</button><button type="button" onclick="deGo('p9','fc','q')">9 · 노즐 유량 보정</button><button type="button" onclick="deGo('p3','water','loss')">3 · 물 배관 손실</button></div>
-<div class="calc-section"><div class="section-title design-top">설계 조건 · 물 배관</div><div class="section-body">
-<div class="grid2"><div class="field"><label for="ds_name">프로젝트 / 설계안 이름</label><input id="ds_name" type="text" value="" maxlength="300" ></div><div class="field"><label for="ds_revision">도면 / 설계 개정</label><input id="ds_revision" type="text" value="" maxlength="300" ></div><div class="field"><label for="ds_model">노즐 모델</label><input id="ds_model" type="text" value="" maxlength="300" ></div><div class="field"><label for="ds_source">카탈로그명·쪽·개정</label><input id="ds_source" type="text" value="" maxlength="300" ></div></div>
-<h3 class="design-subtitle">1. 노즐 운전 조건</h3><div class="grid3"><div class="field"><label for="ds_count">노즐 수량 <span class="unit">EA</span></label><input id="ds_count" type="number" value="4" step="any" ></div><div class="field"><label for="ds_qref">노즐당 기준 유량 <span class="unit">L/min</span></label><input id="ds_qref" type="number" value="2" step="any" ></div><div class="field"><label for="ds_pref">노즐 기준 압력 <span class="unit">bar</span></label><input id="ds_pref" type="number" value="3" step="any" ></div><div class="field"><label for="ds_pressure">말단 노즐 목표압력 <span class="unit">bar(g)</span></label><input id="ds_pressure" type="number" value="2" step="any" ></div><div class="field"><label for="ds_exponent">유량 지수 n</label><input id="ds_exponent" type="number" value="0.5" step="any" ></div></div><h3 class="design-subtitle">2. 공급관 · 부속품 · 높이차</h3><div class="grid3"><div class="field"><label for="ds_d">공급관 실제 내경 <span class="unit">mm</span></label><input id="ds_d" type="number" value="15.76" step="any" ></div><div class="field"><label for="ds_length">공급관 길이 (헤더 제외) <span class="unit">m</span></label><input id="ds_length" type="number" value="20" step="any" ></div><div class="field"><label for="ds_c">Hazen–Williams C</label><input id="ds_c" type="number" value="120" step="any" ></div><div class="field"><label for="ds_k">공급관 부속품 ΣK</label><input id="ds_k" type="number" value="0" step="any" ></div><div class="field"><label for="ds_filter">필터·기기 추가 손실 <span class="unit">bar</span></label><input id="ds_filter" type="number" value="0" step="any" ></div><div class="field"><label for="ds_elevation">높이차 (노즐 − 공급관 입구) <span class="unit">m</span></label><input id="ds_elevation" type="number" value="0" step="any" ></div><div class="field"><label for="ds_margin">설계 여유압 <span class="unit">bar</span></label><input id="ds_margin" type="number" value="0" step="any" ></div></div><p class="design-note">ΣK는 위 공급관 내경의 유속 기준 합계입니다. 다른 내경의 기기와 필터는 해당 유량에서의 압력손실을 추가 손실에 입력하세요. 내경은 호칭경이 아닌 외경 − 2 × 두께입니다.</p>
-<h3 class="design-subtitle">3. 헤더 압력 분포</h3><div class="field"><label for="ds_feed">헤더 계산 방식</label><select id="ds_feed"><option value="uniform">헤더 손실 제외 · 노즐 압력 동일 가정</option><option value="end">끝단 공급 · 압력에 따른 노즐 유량 계산</option></select></div>
-<div id="ds_header_fields" hidden><div class="grid2"><div class="field"><label for="ds_headerD">헤더 실제 내경 <span class="unit">mm</span></label><input id="ds_headerD" type="number" value="15.76" step="any" ></div><div class="field"><label for="ds_pitch">헤더 노즐 피치 <span class="unit">mm</span></label><input id="ds_pitch" type="number" value="300" step="any" ></div></div><p class="design-note">공급관은 첫 노즐 위치에 연결되고, 동일 높이의 같은 노즐이 등간격으로 배치된 조건입니다. 마지막 노즐의 목표압력부터 앞쪽 압력과 유량을 계산합니다.</p></div>
-<button class="calc-btn" onclick="dsCalculate()">계산하기</button><p id="ds_message" class="design-message" role="status"></p><div class="result-grid" id="ds_result"></div><p id="ds_warning" class="design-message" role="status"></p><div id="ds_breakdown" class="scroll-x"></div><details class="design-detail"><summary>노즐 위치별 결과</summary><div id="ds_nodes" class="scroll-x"></div></details>
-<div class="design-actions"><button type="button" onclick="dsAddCase()">현재 조건을 비교에 추가</button><button type="button" onclick="dsDownload()">설계 파일 저장</button><button type="button" onclick="document.getElementById('ds_file').click()">설계 파일 불러오기</button><button type="button" onclick="dsPrint()">계산서 인쇄 / PDF</button></div>
-<input id="ds_file" type="file" accept=".json,application/json" hidden>
-<p class="design-note">설계 파일에 입력조건과 비교안이 저장됩니다. 다른 기기에서도 파일을 불러올 수 있습니다.</p>
-<details class="design-detail"><summary>계산식과 적용 범위</summary><p class="design-note">물 밀도 1000 kg/m³, 중력가속도 9.80665 m/s². Hazen–Williams 식은 물의 난류 마찰손실 근사입니다. 에탄올·고점도액에 적용하지 마세요.<br>hf = 10.67 × L × Q^1.852 / (C^1.852 × d^4.87), 식 내부 Q: m³/s · d: m · L: m.<br>부속품 손실 ΔP = ΣK × ρv²/2. 높이차 ΔP = ρgΔz. 노즐 유량 Q = Qref × (P/Pref)^n.</p><a href="https://usepa.github.io/EPANET2.2/3_network_model.html" target="_blank" rel="noopener noreferrer">EPA EPANET 계산 모델</a></details>
-</div></div><div class="calc-section"><div class="section-title">설계안 비교</div><div class="section-body"><div id="ds_comparison" class="scroll-x design-note">조건을 바꿔가며 최대 3개 설계안을 비교할 수 있습니다.</div></div></div></div>
-    <div class="mobile-recent-wrap" id="mobileRecentWrap">
-      <div class="mobile-recent-header">
-        <span>🕐 최근 계산 결과</span>
-        <button class="mobile-recent-toggle" onclick="toggleMobileRecent(this)" aria-label="접기">▲</button>
-      </div>
-      <div class="mobile-recent-body" id="mobileRecentBody">
-        <div class="rp-recent" id="rp-recent-mobile">
-          <div class="rp-empty">계산 실행 시 표시됩니다</div>
-        </div>
-        <button class="rp-clear-btn" style="margin-top:8px;width:100%;" onclick="rpClearRecent()">🗑 기록 지우기</button>
-      </div>
-    </div>
+
+    
   </main>
 
   <!-- RIGHT INFO PANEL -->
-  <aside class="right-panel">
+  
 
-  <!-- 도움말 (섹션 연동) -->
-  <div class="rp-help-wrap">
-    <div class="rp-section-header">💡 도움말</div>
-    <div id="rp-help-body">
-      <div class="rp-help-item" data-panel="p13"><div class="rp-help-title">통합 설계 시트</div><p class="rp-help-desc">헤더 수량 → 노즐 유량 보정 → 배관 조건을 연결할 수 있습니다. ΣK·기기 손실·높이차를 포함한 검토압력을 확인하세요.</p><p class="rp-help-tip">필요압력은 공급관 입구 기준입니다. 펌프의 흡입 조건과 성능곡선을 별도로 검토하세요.</p></div>
-      <div class="rp-help-item active" data-panel="p1">
+  <aside class="right-panel" aria-label="현재 계산 도움말과 최근 기록"><details id="calculation-help" class="support-panel" open=""><summary>계산 도움말</summary><div id="rp-help-body" class="rp-help-wrap"><div class="rp-help-item active" data-panel="p1">
         <div class="rp-help-title">🔄 단위 환산</div>
         <div class="rp-help-desc">입력·출력 단위를 드롭다운으로 선택하면 실시간 변환됩니다. ⇆ 버튼으로 단위를 즉시 교환할 수 있습니다.</div>
         <div class="rp-help-tip">💡 전체 환산표에서 모든 단위 결과를 한번에 확인하세요.</div>
@@ -1776,8 +1725,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>강철 밀도</span><span>7850 kg/m³</span></div>
           <div class="rht-row"><span>중력 가속도</span><span>9.80665 m/s²</span></div>
         </div>
-      </div>
-      <div class="rp-help-item" data-panel="p2">
+      </div><div class="rp-help-item" data-panel="p2">
         <div class="rp-help-title">💨 AIR 배관 내경 계산</div>
         <div class="rp-help-desc">압축공기 배관 선정 시 배관 내 유속을 기준으로 내경을 결정합니다.</div>
         <div class="rp-help-table">
@@ -1788,8 +1736,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>최대 허용 유속</span><span>120</span></div>
         </div>
         <div class="rp-help-tip">💡 AIR 배관내 장려유속 참고표 (m/sec 기준)</div>
-      </div>
-      <div class="rp-help-item" data-panel="p3">
+      <p class="rp-help-desc">내경·유속 탭의 유량과 압력은 함께 변경됩니다.</p></div><div class="rp-help-item" data-panel="p3">
         <div class="rp-help-title">💧 물 배관 계산</div>
         <div class="rp-help-desc">Hazen-Williams 공식으로 압력 손실을 계산합니다.</div>
         <div class="rp-help-table">
@@ -1803,8 +1750,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>냉각수</span><span>1~2.5</span></div>
         </div>
         <div class="rp-help-tip">💡 WATER 배관내 장려유속 참고표 (m/sec 기준)</div>
-      </div>
-      <div class="rp-help-item" data-panel="p4">
+      <p class="rp-help-desc">세 탭의 유량과 유속·손실 탭의 실제 내경은 함께 변경됩니다.</p></div><div class="rp-help-item" data-panel="p4">
         <div class="rp-help-title">⚖️ 배관 Weight</div>
         <div class="rp-help-desc">스테인리스 배관의 단위 무게를 계산합니다. 단면 형식에서 배관과 속찬 원형 봉을 선택합니다.</div>
         <div class="rp-help-table">
@@ -1820,21 +1766,17 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>10S</span><span>일반 배관용</span></div>
           <div class="rht-row"><span>40S</span><span>두꺼움, 고압/구조용</span></div>
         </div>
-      </div>
-      <div class="rp-help-item" data-panel="p5">
+      </div><div class="rp-help-item" data-panel="p5">
         <div class="rp-help-title">선택한 노즐 기준</div><p id="nn_help_current" class="rp-help-desc"></p>
         <div id="nn_help_values" class="rp-help-table"></div>
         <p class="rp-help-tip">본문 입력값과 같은 기준을 표시합니다. 용량번호는 실제 판매 모델과 대조하세요.</p>
-      </div>
-      <div class="rp-help-item" data-panel="p6"><div class="rp-help-title">방출계수 Cd</div>
+      </div><div class="rp-help-item" data-panel="p6"><div class="rp-help-title">방출계수 Cd</div>
         <p class="rp-help-desc">Cd는 무차원 방출계수입니다. 밸브 용량계수 Cv와 구분하고 해당 노즐의 실측값을 적용하세요.</p>
         <p class="rp-help-tip">Q [L/min] = 0.666432 × Cd × d² × √ΔP<br>d: mm · ΔP: bar · 물 밀도 1000 kg/m³</p>
-      </div>
-      <div class="rp-help-item" data-panel="p7"><div class="rp-help-title">헤더 배치 판정</div>
+      </div><div class="rp-help-item" data-panel="p7"><div class="rp-help-title">헤더 배치 판정</div>
         <p class="rp-help-desc">폭 커버, 노즐 사이 빈 구간, 목표 중첩률을 각각 확인합니다. 목표 중첩률은 해당 노즐의 분포 자료로 정하세요.</p>
         <p class="rp-help-tip">수량 N = ceil(W/F), 중앙 정렬 배치입니다. 실제 분사 균일도는 패턴 및 압력 조건을 확인하세요.</p>
-      </div>
-      <div class="rp-help-item" data-panel="p8">
+      </div><div class="rp-help-item" data-panel="p8">
         <div class="rp-help-title">💨 노즐 공기 분사량</div>
         <div class="rp-help-desc">오리피스 구경과 게이지 압력으로 공기 분사량(L/min)을 계산합니다.</div>
         <div class="rp-help-tip">💡 입력 압력은 bar(g), 결과는 밀도 1.2 kg/m³로 환산한 L/min입니다. 실측 또는 카탈로그 공기 소모량과 대조하세요.</div>
@@ -1844,8 +1786,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>3~7</span><span>블로잉</span></div>
           <div class="rht-row"><span>7~10</span><span>건조·고압세정</span></div>
         </div>
-      </div>
-      <div class="rp-help-item" data-panel="p9">
+      </div><div class="rp-help-item" data-panel="p9">
         <div class="rp-help-title">🔁 유량 보정</div>
         <div class="rp-help-desc">압력 변화 또는 액체 비중이 다를 때 유량을 보정합니다.</div>
         <div class="rp-help-tip">💡 압력: Q₂ = Q₁ × √(P₂/P₁)<br>비중: Q_liq = Q_water / √SG</div>
@@ -1857,8 +1798,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>경유</span><span>0.83~0.85</span></div>
           <div class="rht-row"><span>황산 (98%)</span><span>1.84</span></div>
         </div>
-      </div>
-      <div class="rp-help-item" data-panel="p10">
+      <p class="rp-help-desc">압력→유량·유량→압력 탭은 기준 유량·기준 압력·지수를 공유합니다.</p></div><div class="rp-help-item" data-panel="p10">
         <div class="rp-help-title">📐 분사 각도 계산</div>
         <div class="rp-help-desc">분사 거리(H)와 분사각(θ)으로 분사 범위(W)를 계산합니다.</div>
         <div class="rp-help-tip">💡 W = 2 × H × tan(θ/2) · 실제 ≈ 이론 × 0.7~0.9</div>
@@ -1869,8 +1809,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>중공원형 (Hollow)</span><span>30°~120°</span></div>
           <div class="rht-row"><span>나선형 (Spiral)</span><span>50°~180°</span></div>
         </div>
-      </div>
-      <div class="rp-help-item" data-panel="p11">
+      </div><div class="rp-help-item" data-panel="p11">
         <div class="rp-help-title">💥 분사 충격력 계산</div>
         <div class="rp-help-desc">노즐 분사에 의한 이론 충격력(kgf)을 계산합니다.</div>
         <div class="rp-help-tip">💡 F [N] = ρQ√(2ΔP/ρ)<br>Q: m³/s · ΔP: Pa · 물 기준</div>
@@ -1883,8 +1822,7 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>원형 80°</span><span>0.2%</span></div>
           <div class="rht-row"><span>중공원형 60°</span><span>2%</span></div>
         </div>
-      </div>
-      <div class="rp-help-item" data-panel="p12">
+      </div><div class="rp-help-item" data-panel="p12">
         <div class="rp-help-title">📏 단면 2차 모멘트</div>
         <div class="rp-help-desc">단면 형상별 I (단면2차모멘트)와 Z (단면계수)를 계산합니다.</div>
         <div class="rp-help-table">
@@ -1894,16 +1832,8 @@ y   : X축 → X'축 거리 [cm]</div>
           <div class="rht-row"><span>중공원형</span><span>π(D₂⁴-D₁⁴)/64</span><span>I/(D₂/2)</span></div>
         </div>
         <div class="rp-help-tip">💡 Z = I / y_max · 평행축: Ix′= Ix + A·y²</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 구분선 -->
-  <div class="rp-divider"></div>
-
-  <!-- 메모 + 최근 계산 (항상 표시) -->
-  <div class="rp-bottom-wrap">
-    <div class="rp-section-header">🕐 최근 계산 결과</div>
+      </div></div></details><details class="support-panel" id="calculation-history" open=""><summary>최근 계산 결과</summary><div class="rp-bottom-wrap">
+    
     <div class="rp-recent" id="rp-recent">
       <div class="rp-empty">계산 실행 시 표시됩니다</div>
     </div>
@@ -1911,10 +1841,7 @@ y   : X축 → X'축 거리 [cm]</div>
         🗑 지우기
       </button>
     </div>
-  </div>
-</aside>
-
-  </div>
+  </div></details></aside></div>
 
 </div>
 
@@ -1926,16 +1853,17 @@ y   : X축 → X'축 거리 [cm]</div>
 <script src="assets/js/nozzle-capacity.js?v=dab8d667dd3f"></script>
 <script src="assets/js/impact.js?v=e1876a938773"></script>
 <script src="assets/js/section-properties.js?v=3a0ba25f4ac0"></script>
-<script src="assets/js/history.js?v=75c2f1d610f7"></script>
-<script src="assets/js/mobile-navigation.js?v=bfd3772fcf2d"></script>
+<script src="assets/js/history.js?v=01876a9907d7"></script>
+<script src="assets/js/mobile-navigation.js?v=6697366fa1c2"></script>
 <script src="assets/js/nozzle-series.js?v=0c659bfe18eb"></script>
 <script src="assets/js/flow-coefficient.js?v=05f6a143d87a"></script>
 <script src="assets/js/nozzle-pitch.js?v=c9c44034a131"></script>
 <script src="assets/js/air-discharge.js?v=17ec6a3717f8"></script>
-<script src="assets/js/flow-correction.js?v=ae4b7ed0deb4"></script>
+<script src="assets/js/flow-correction.js?v=1386df52a94c"></script>
 <script src="assets/js/spray-angle.js?v=ef8be9ea5b82"></script>
-<script src="assets/js/accounts.js?v=7a4d95dbb233"></script>
+<script src="assets/js/accounts.js?v=10b5ed9dcc54"></script>
 <script src="assets/js/header-diagram.js?v=c23d38a7f84a"></script>
 
-<script id="ux-behavior" src="assets/js/usability.js?v=754418cad304"></script><dialog id="profile-dialog" aria-labelledby="profile-title"><h2 id="profile-title">내 정보</h2><p id="profile-email"></p><label for="profile-name">이름</label><input id="profile-name" maxlength="80"><label for="profile-dept">부서</label><input id="profile-dept" maxlength="100"><p id="profile-msg" role="status"></p><button id="profile-save" class="mg-button" onclick="profileSave()">저장</button><button class="mg-button" onclick="document.getElementById('profile-dialog').close()">닫기</button></dialog><script id="management-improvements" src="assets/js/admin.js?v=ae39721f0ecb"></script><div id="design-print" class="design-print"></div><script id="design-workflow" src="assets/js/design-sheet.js?v=c36b3a69b24a"></script><script src="assets/js/accessibility.js?v=0cd26ce73bc1"></script></body>
-</html>
+<script id="ux-behavior" src="assets/js/usability.js?v=d40a27b58cb2"></script><dialog id="profile-dialog" aria-labelledby="profile-title"><h2 id="profile-title">내 정보</h2><p id="profile-email"></p><label for="profile-name">이름</label><input id="profile-name" maxlength="80"><label for="profile-dept">부서</label><input id="profile-dept" maxlength="100"><p id="profile-msg" role="status"></p><button id="profile-save" class="mg-button" onclick="profileSave()">저장</button><button class="mg-button" onclick="document.getElementById('profile-dialog').close()">닫기</button></dialog><script id="management-improvements" src="assets/js/admin.js?v=47acba993ede"></script><script id="calculation-workflow" src="assets/js/calculation-workflow.js?v=5349b938abb9"></script><script src="assets/js/accessibility.js?v=f5103208a83e"></script><script src="assets/js/convenience.js?v=a393b888d4fb"></script>
+
+</body></html>

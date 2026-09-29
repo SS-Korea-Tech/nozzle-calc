@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded',()=>{
  for(const id of ['req-msg','pw-msg','profile-msg','mg-status']){const e=document.getElementById(id);e.setAttribute('role','status');e.setAttribute('aria-live','polite');}
  for(const id of ['req-name','req-email','req-dept','req-pw1','req-pw2','pw-old','pw-new1','pw-new2']){const e=document.getElementById(id);e.parentElement.querySelector('label')?.setAttribute('for',id);}
  for(const e of document.querySelectorAll('input[type="number"]')){e.inputMode='decimal';e.step='any';}
- for(const id of ['fc_count','ds_count']){const e=document.getElementById(id);e.step='1';e.inputMode='numeric';}
+ for(const id of ['fc_count']){const e=document.getElementById(id);e.step='1';e.inputMode='numeric';}
  document.getElementById('req-name').maxLength=80;document.getElementById('req-dept').maxLength=100;
  for(const e of document.querySelectorAll('input[autocomplete="new-password"]')){e.minLength=8;e.maxLength=128;}
  for(const e of document.querySelectorAll('input[type="email"]')){e.autocapitalize='none';e.spellcheck=false;e.maxLength=254;}

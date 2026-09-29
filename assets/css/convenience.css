@@ -1,0 +1,22 @@
+.cx-box{margin:10px 0;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#f3f8fc;color:#172b4d;font-size:13px;overflow-wrap:anywhere}
+.cx-box[hidden]{display:none}.cx-box>strong{margin-right:10px}.cx-box button,.mobile-support-actions button{min-height:44px;padding:8px 12px;border:1px solid #94a3b8;border-radius:6px;background:#fff;color:#153756;cursor:pointer;font:inherit}.cx-box summary{padding:8px 0;cursor:pointer}.cx-box li{line-height:1.7}
+.just-applied{outline:2px solid #2378aa;outline-offset:1px}
+.compact-detail{margin:12px 0;border:1px solid #d4dce4;border-radius:8px;background:#fff;min-width:0}
+.compact-detail>summary,.support-panel>summary{padding:12px 14px;min-height:44px;box-sizing:border-box;cursor:pointer;font-weight:600;color:#334e68;line-height:1.5}
+.compact-detail[open]>summary{border-bottom:1px solid #e4e9ee}.compact-detail>.calc-section{margin:0;border:0;box-shadow:none}
+.compact-detail summary:focus-visible,.support-panel summary:focus-visible{outline:3px solid #287bb8;outline-offset:-3px}
+.mobile-support-actions{display:none}.main{max-width:none;margin:0;width:auto}
+.right-panel{width:300px;display:flex;overflow-y:auto}.right-panel>.support-panel{flex:none;min-height:0}
+.right-panel #calculation-help{border-bottom:1px solid var(--border)}
+.right-panel .rp-help-wrap{padding:0 14px 14px;max-height:none;overflow:visible}
+.right-panel .rp-bottom-wrap{padding:0 12px 12px;border:0}.right-panel .rp-recent{max-height:40vh;overflow:auto;overscroll-behavior:contain}
+.support-panel .rp-help-item{display:none}.support-panel .rp-help-item.active{display:block}
+.login-session-note{font-size:11px;max-width:170px;text-align:right;line-height:1.4}
+@media(min-width:1001px) and (max-width:1200px){.right-panel{width:250px}}
+@media(max-width:1000px){
+ .right-panel{display:none}.mobile-support-actions{display:flex;gap:8px;margin-top:12px}
+ .panel>.support-panel{background:white;border:1px solid #d4dce4;border-radius:8px;margin:12px 0;scroll-margin-top:12px}
+ .panel>.support-panel .rp-help-wrap{padding:0 14px 14px}.panel>.support-panel .rp-bottom-wrap{border:0}.panel>.support-panel .rp-recent{max-height:360px;overflow-y:auto}
+}
+@media(max-width:768px){.compact-detail>summary,.support-panel>summary{font-size:14px}.compact-detail .grid2{grid-template-columns:minmax(0,1fr)}}
+.login-reset{display:block;margin:8px auto 0;min-height:44px;padding:8px 12px;border:0;background:transparent;color:var(--blue-primary);text-decoration:underline;font:inherit;cursor:pointer}.login-reset:disabled{opacity:.5;cursor:wait}

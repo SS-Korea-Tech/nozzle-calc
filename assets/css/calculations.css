@@ -1,0 +1,20 @@
+
+/* Individual calculators: readable results and transfer controls. */
+.result-grid {grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))!important;align-items:stretch}
+.result-card {min-width:0;overflow:hidden}
+.result-label {white-space:normal;line-height:1.5;overflow:visible;text-overflow:clip}
+.result-value {overflow-wrap:anywhere;word-break:keep-all;font-size:26px}
+.result-value.numeric-result {white-space:nowrap;overflow-wrap:normal;word-break:normal;overflow-x:auto;font-size:clamp(21px,2vw,27px)}
+.result-card.result-warning {background:#fff8e9;border-color:#d6aa4c}
+.result-card.result-warning .result-value {color:#805114;font-size:20px}
+.result-card.result-pass {background:#eef8f3;border-color:#9bcbb1}
+.result-card.result-pass .result-value {color:#246347;font-size:20px}
+.design-actions {display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.design-actions button,.design-button {min-height:44px;padding:10px 14px;border:1px solid #a9bfd3;border-radius:7px;background:#fff;color:#164c75;font:500 14px var(--font-body);cursor:pointer}
+.design-actions button:disabled,.design-button:disabled {opacity:.45;cursor:default}
+.design-note {font-size:14px;line-height:1.7;color:#4d6376;margin:12px 0;overflow-wrap:anywhere}
+.design-message {font-size:14px;line-height:1.6;padding:12px 14px;background:#edf5fc;border-left:3px solid #006bb1;border-radius:5px;margin:12px 0}
+.design-message:empty {display:none}
+.design-message.warning {background:#fff8e9;border-color:#be8a27;color:#78501a}
+#nn_series{min-height:46px;font-size:16px!important}
+@media(max-width:600px){.design-actions{display:grid;grid-template-columns:1fr}.design-actions button{width:100%}.formula-content{overflow:auto}}
